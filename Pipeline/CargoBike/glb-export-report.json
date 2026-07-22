@@ -1,10 +1,10 @@
 {
   "source": "ThreeJS/src/createDeliveryCargoBikeModel.ts",
   "output": "/Users/cristian/Documents/Game assets/Assets/DeliveryCargoBike.source.glb",
-  "bytes": 2330836,
-  "meshes": 123,
-  "vertices": 66692,
-  "triangles": 29108,
+  "bytes": 2743016,
+  "meshes": 153,
+  "vertices": 78376,
+  "triangles": 34488,
   "materials": [
     "M_Brushed_Metal",
     "M_Charcoal",

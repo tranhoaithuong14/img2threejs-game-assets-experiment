@@ -1,24 +1,31 @@
 {
   "asset": "DeliveryCargoBike",
+  "revision": 2,
+  "sourceGlb": "Assets/DeliveryCargoBike.source.glb",
   "sourceBlend": "Blender/DeliveryCargoBike.blend",
   "optimizedBlend": "Blender/DeliveryCargoBike.optimized.blend",
   "optimizedGlb": "Assets/DeliveryCargoBike.optimized.glb",
   "unityBridgeFbx": "UnityProject/Assets/DeliveryCargoBike/Models/DeliveryCargoBike.fbx",
   "before": {
-    "objects": 185,
-    "meshObjects": 169,
-    "triangles": 34076
+    "objects": 169,
+    "meshObjects": 153,
+    "triangles": 34488
   },
   "after": {
-    "objects": 88,
-    "meshObjects": 72,
-    "triangles": 34076,
-    "materials": 6,
-    "glbBytes": 2271808,
-    "fbxBytes": 1429676
+    "objects": 26,
+    "meshObjects": 10,
+    "triangles": 34152,
+    "materials": 9,
+    "glbBytes": 939380,
+    "fbxBytes": 834572
   },
   "targetTriangleBudget": 35000,
   "budgetResult": "pass",
+  "meshHealth": {
+    "nonManifoldEdges": 132,
+    "degenerateFaces": 0,
+    "looseVertices": 0
+  },
   "preservedInteractionNodes": [
     "Steering_Pivot",
     "FrontWheel_Pivot",
@@ -29,10 +36,21 @@
     "Battery_Detachable",
     "Kickstand_Hinge"
   ],
+  "materials": [
+    "M_Brushed_Metal",
+    "M_Charcoal",
+    "M_Headlight_Lens",
+    "M_Safety_Orange",
+    "M_Tail_Lens",
+    "M_Teal_Dark",
+    "M_Teal_Satin",
+    "M_Tire_Rubber",
+    "M_Warm_Cream"
+  ],
   "notes": [
-    "Merged non-interactive mesh children by functional group while preserving silhouette and material boundaries.",
-    "Preserved named pivots and detachable nodes required by the Unity prefab.",
-    "Added Blender PBR material tuning and micro-surface grain to teal paint and rubber.",
-    "Consolidated equivalent accent materials to meet the six-material game-asset budget."
+    "Consolidated static renderers by functional pivot while preserving every Unity interaction node.",
+    "Reoriented the tire detail into a smooth normal-based tread treatment; the wheel silhouette no longer uses floating lug blocks.",
+    "Added Blender micro-surface treatment to painted metal and rubber without changing the nine-material authored palette.",
+    "Kept the source under the 35k triangle budget after the reference-matching geometry pass."
   ]
 }

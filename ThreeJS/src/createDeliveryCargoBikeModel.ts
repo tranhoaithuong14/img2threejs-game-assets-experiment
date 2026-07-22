@@ -13,7 +13,6 @@ export type CargoBikeRuntime = {
 };
 
 const Y_AXIS = new THREE.Vector3(0, 1, 0);
-const X_AXIS = new THREE.Vector3(1, 0, 0);
 
 function createGrainTexture(size: number, seed: number, mode: 'normal' | 'roughness') {
   const data = new Uint8Array(size * size * 4);
@@ -44,6 +43,72 @@ function createGrainTexture(size: number, seed: number, mode: 'normal' | 'roughn
   texture.wrapT = THREE.RepeatWrapping;
   texture.repeat.set(mode === 'normal' ? 8 : 5, mode === 'normal' ? 8 : 5);
   texture.colorSpace = THREE.NoColorSpace;
+  texture.needsUpdate = true;
+  return texture;
+}
+
+function createTireTreadNormalTexture(width = 256, height = 64) {
+  const heights = new Float32Array(width * height);
+  const wrapDistance = (value: number) => Math.abs(((value + 0.5) % 1) - 0.5);
+  for (let y = 0; y < height; y += 1) {
+    const v = y / (height - 1);
+    const crown = 1 - Math.min(1, Math.abs(v - 0.5) / 0.42);
+    for (let x = 0; x < width; x += 1) {
+      const u = x / width;
+      const leftGroove = wrapDistance(u * 22 + (v - 0.5) * 1.4) < 0.075;
+      const rightGroove = wrapDistance(u * 22 - (v - 0.5) * 1.4) < 0.075;
+      const inTread = Math.abs(v - 0.5) < 0.37;
+      heights[y * width + x] = crown * 0.08 - (inTread && (leftGroove || rightGroove) ? 0.68 : 0);
+    }
+  }
+
+  const data = new Uint8Array(width * height * 4);
+  for (let y = 0; y < height; y += 1) {
+    for (let x = 0; x < width; x += 1) {
+      const left = heights[y * width + ((x - 1 + width) % width)];
+      const right = heights[y * width + ((x + 1) % width)];
+      const down = heights[Math.max(0, y - 1) * width + x];
+      const up = heights[Math.min(height - 1, y + 1) * width + x];
+      const normal = new THREE.Vector3((left - right) * 2.2, (down - up) * 2.2, 1).normalize();
+      const offset = (y * width + x) * 4;
+      data[offset] = Math.round((normal.x * 0.5 + 0.5) * 255);
+      data[offset + 1] = Math.round((normal.y * 0.5 + 0.5) * 255);
+      data[offset + 2] = Math.round((normal.z * 0.5 + 0.5) * 255);
+      data[offset + 3] = 255;
+    }
+  }
+  const texture = new THREE.DataTexture(data, width, height, THREE.RGBAFormat);
+  texture.name = 'T_Tire_Chevron_Normal';
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.ClampToEdgeWrapping;
+  texture.colorSpace = THREE.NoColorSpace;
+  texture.needsUpdate = true;
+  return texture;
+}
+
+function createTireTreadColorTexture(width = 256, height = 64) {
+  const data = new Uint8Array(width * height * 4);
+  const wrapDistance = (value: number) => Math.abs(((value + 0.5) % 1) - 0.5);
+  for (let y = 0; y < height; y += 1) {
+    const v = y / (height - 1);
+    for (let x = 0; x < width; x += 1) {
+      const u = x / width;
+      const inTread = Math.abs(v - 0.5) < 0.37;
+      const leftGroove = wrapDistance(u * 22 + (v - 0.5) * 1.4) < 0.075;
+      const rightGroove = wrapDistance(u * 22 - (v - 0.5) * 1.4) < 0.075;
+      const value = inTread && (leftGroove || rightGroove) ? 92 : 224;
+      const offset = (y * width + x) * 4;
+      data[offset] = value;
+      data[offset + 1] = value;
+      data[offset + 2] = value;
+      data[offset + 3] = 255;
+    }
+  }
+  const texture = new THREE.DataTexture(data, width, height, THREE.RGBAFormat);
+  texture.name = 'T_Tire_Chevron_Albedo';
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.ClampToEdgeWrapping;
+  texture.colorSpace = THREE.SRGBColorSpace;
   texture.needsUpdate = true;
   return texture;
 }
@@ -105,6 +170,121 @@ function tubeAlong(
   return mesh;
 }
 
+function arcBand(
+  name: string,
+  center: THREE.Vector3,
+  radius: number,
+  start: number,
+  end: number,
+  width: number,
+  thickness: number,
+  material: THREE.Material,
+  segments = 36,
+) {
+  const vertices: number[] = [];
+  const indices: number[] = [];
+
+  for (let index = 0; index <= segments; index += 1) {
+    const angle = THREE.MathUtils.lerp(start, end, index / segments);
+    const radialY = Math.cos(angle);
+    const radialZ = Math.sin(angle);
+    for (const [x, radialOffset] of [
+      [-width * 0.5, -thickness * 0.5],
+      [width * 0.5, -thickness * 0.5],
+      [width * 0.5, thickness * 0.5],
+      [-width * 0.5, thickness * 0.5],
+    ] as const) {
+      vertices.push(
+        center.x + x,
+        center.y + radialY * (radius + radialOffset),
+        center.z + radialZ * (radius + radialOffset),
+      );
+    }
+  }
+
+  for (let index = 0; index < segments; index += 1) {
+    const current = index * 4;
+    const next = (index + 1) * 4;
+    for (let side = 0; side < 4; side += 1) {
+      const sideNext = (side + 1) % 4;
+      indices.push(current + side, next + side, next + sideNext);
+      indices.push(current + side, next + sideNext, current + sideNext);
+    }
+  }
+  indices.push(0, 1, 2, 0, 2, 3);
+  const endBase = segments * 4;
+  indices.push(endBase, endBase + 2, endBase + 1, endBase, endBase + 3, endBase + 2);
+
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+  geometry.setIndex(indices);
+  geometry.computeVertexNormals();
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.name = name;
+  return mesh;
+}
+
+function extrudedProfileAlongX(
+  name: string,
+  profile: Array<[number, number]>,
+  width: number,
+  material: THREE.Material,
+  bevel = 0.01,
+) {
+  const shape = new THREE.Shape();
+  profile.forEach(([z, y], index) => {
+    if (index === 0) shape.moveTo(-z, y);
+    else shape.lineTo(-z, y);
+  });
+  shape.closePath();
+  const geometry = new THREE.ExtrudeGeometry(shape, {
+    depth: width,
+    bevelEnabled: bevel > 0,
+    bevelSegments: 2,
+    bevelSize: bevel,
+    bevelThickness: bevel,
+    curveSegments: 8,
+  });
+  geometry.translate(0, 0, -width * 0.5);
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.name = name;
+  mesh.rotation.y = Math.PI / 2;
+  return mesh;
+}
+
+function createSaddle(name: string, cream: THREE.Material, dark: THREE.Material) {
+  const group = new THREE.Group();
+  group.name = name;
+
+  const shape = new THREE.Shape();
+  shape.moveTo(0, 0.165);
+  shape.bezierCurveTo(0.035, 0.15, 0.07, 0.105, 0.078, 0.055);
+  shape.bezierCurveTo(0.12, 0.025, 0.14, -0.03, 0.135, -0.085);
+  shape.bezierCurveTo(0.115, -0.118, 0.065, -0.125, 0, -0.125);
+  shape.bezierCurveTo(-0.065, -0.125, -0.115, -0.118, -0.135, -0.085);
+  shape.bezierCurveTo(-0.14, -0.03, -0.12, 0.025, -0.078, 0.055);
+  shape.bezierCurveTo(-0.07, 0.105, -0.035, 0.15, 0, 0.165);
+  const geometry = new THREE.ExtrudeGeometry(shape, {
+    depth: 0.068,
+    bevelEnabled: true,
+    bevelSegments: 3,
+    bevelSize: 0.014,
+    bevelThickness: 0.012,
+    curveSegments: 12,
+  });
+  geometry.translate(0, 0, -0.034);
+  const cushion = new THREE.Mesh(geometry, cream);
+  cushion.name = `${name}_Cushion`;
+  cushion.rotation.x = Math.PI / 2;
+  cushion.position.y = 0.038;
+  group.add(cushion);
+
+  const base = roundedBox(`${name}_Underside`, [0.215, 0.034, 0.17], 0.015, dark);
+  base.position.set(0, -0.012, -0.018);
+  group.add(base);
+  return group;
+}
+
 function createWheel(
   name: string,
   materials: {
@@ -153,55 +333,14 @@ function createWheel(
     }
   }
 
-  const treadGeometry = new RoundedBoxGeometry(0.102, 0.021, 0.063, 1, 0.007);
-  const tread = new THREE.InstancedMesh(treadGeometry, materials.tire, 24);
-  tread.name = `${name}_Tread_Instanced`;
-  const transform = new THREE.Matrix4();
-  const rotation = new THREE.Quaternion();
-  const scale = new THREE.Vector3(1, 1, 1);
-  for (let index = 0; index < 24; index += 1) {
-    const angle = (index / 24) * Math.PI * 2;
-    rotation.setFromAxisAngle(X_AXIS, -angle);
-    transform.compose(
-      new THREE.Vector3(0, Math.cos(angle) * 0.357, Math.sin(angle) * 0.357),
-      rotation,
-      scale,
-    );
-    tread.setMatrixAt(index, transform);
-  }
-  tread.instanceMatrix.needsUpdate = true;
-  pivot.add(tread);
-
   for (const angle of [0.68, 3.82]) {
     const reflector = roundedBox(`${name}_Reflector`, [0.012, 0.055, 0.026], 0.006, materials.orange);
     reflector.position.set(0.058, Math.cos(angle) * 0.265, Math.sin(angle) * 0.265);
-    reflector.rotation.x = -angle;
+    reflector.rotation.x = angle;
     pivot.add(reflector);
   }
 
   return pivot;
-}
-
-function arcTube(
-  name: string,
-  center: THREE.Vector3,
-  radius: number,
-  start: number,
-  end: number,
-  tubeRadius: number,
-  material: THREE.Material,
-) {
-  const points: THREE.Vector3[] = [];
-  for (let index = 0; index <= 18; index += 1) {
-    const t = index / 18;
-    const angle = THREE.MathUtils.lerp(start, end, t);
-    points.push(new THREE.Vector3(
-      center.x,
-      center.y + Math.cos(angle) * radius,
-      center.z + Math.sin(angle) * radius,
-    ));
-  }
-  return tubeAlong(name, points, tubeRadius, material, 32, 7);
 }
 
 function addParcelBadge(
@@ -210,27 +349,30 @@ function addParcelBadge(
   position: THREE.Vector3,
   face: 'side' | 'rear',
   cream: THREE.Material,
-  teal: THREE.Material,
 ) {
   const badge = new THREE.Group();
   badge.name = name;
   badge.position.copy(position);
+  badge.scale.set(1.12, 1.12, 1);
 
-  const slab = face === 'side'
-    ? roundedBox(`${name}_Cream`, [0.008, 0.14, 0.14], 0.006, cream)
-    : roundedBox(`${name}_Cream`, [0.14, 0.14, 0.008], 0.006, cream);
-  badge.add(slab);
-
-  const vertical = face === 'side'
-    ? roundedBox(`${name}_Vertical_Seam`, [0.011, 0.15, 0.014], 0.003, teal)
-    : roundedBox(`${name}_Vertical_Seam`, [0.014, 0.15, 0.011], 0.003, teal);
-  badge.add(vertical);
-
-  const horizontal = face === 'side'
-    ? roundedBox(`${name}_Horizontal_Seam`, [0.011, 0.014, 0.15], 0.003, teal)
-    : roundedBox(`${name}_Horizontal_Seam`, [0.15, 0.014, 0.011], 0.003, teal);
-  horizontal.rotation[face === 'side' ? 'x' : 'z'] = 0.42;
-  badge.add(horizontal);
+  const faces = [
+    [[0, 0.078], [0.068, 0.039], [0, 0.002], [-0.068, 0.039]],
+    [[-0.068, 0.032], [-0.006, -0.003], [-0.006, -0.078], [-0.068, -0.041]],
+    [[0.068, 0.032], [0.006, -0.003], [0.006, -0.078], [0.068, -0.041]],
+  ];
+  faces.forEach((points, index) => {
+    const shape = new THREE.Shape();
+    points.forEach(([x, y], pointIndex) => {
+      if (pointIndex === 0) shape.moveTo(x, y);
+      else shape.lineTo(x, y);
+    });
+    shape.closePath();
+    const mesh = new THREE.Mesh(new THREE.ShapeGeometry(shape), cream);
+    mesh.name = `${name}_Cube_Face_${index}`;
+    mesh.position.z = 0.002;
+    badge.add(mesh);
+  });
+  badge.rotation.y = face === 'side' ? Math.PI / 2 : Math.PI;
   parent.add(badge);
 }
 
@@ -249,18 +391,19 @@ export function createDeliveryCargoBikeModel(options: CargoBikeOptions = {}) {
   tealDark.name = 'M_Teal_Dark';
   const dark = physical('#1D2426', 0.48, 0.18, 0.05);
   dark.name = 'M_Charcoal';
-  const tire = physical('#141817', 0.82, 0, 0);
+  const tire = physical('#252A28', 0.82, 0, 0);
   tire.name = 'M_Tire_Rubber';
   if (typeof document !== 'undefined') {
-    tire.normalMap = createGrainTexture(96, 3821, 'normal');
-    tire.normalScale.set(0.22, 0.22);
+    tire.map = createTireTreadColorTexture();
+    tire.normalMap = createTireTreadNormalTexture();
+    tire.normalScale.set(0.42, 0.42);
     tire.roughnessMap = createGrainTexture(96, 4339, 'roughness');
   }
   const cream = physical('#F1D7A7', 0.31, 0.02, 0.25);
   cream.name = 'M_Warm_Cream';
   const orange = physical('#F27A32', 0.28, 0, 0.22);
   orange.name = 'M_Safety_Orange';
-  const metal = physical('#8C9694', 0.24, 0.82, 0.1);
+  const metal = physical('#AAB4B2', 0.24, 0.76, 0.1);
   metal.name = 'M_Brushed_Metal';
   const lens = new THREE.MeshPhysicalMaterial({
     name: 'M_Headlight_Lens',
@@ -287,19 +430,19 @@ export function createDeliveryCargoBikeModel(options: CargoBikeOptions = {}) {
     new THREE.Vector3(0, 0.29, 0.22),
     new THREE.Vector3(0, 0.34, 0.54),
     new THREE.Vector3(0, 0.78, 0.78),
-  ], 0.074, teal, 64, 10);
+  ], 0.063, teal, 64, 12);
   chassis.add(frame);
 
   chassis.add(tubeAlong('Frame_Seat_Mast', [
     new THREE.Vector3(0, 0.34, -0.22),
     new THREE.Vector3(0, 0.62, -0.29),
     new THREE.Vector3(0, 0.9, -0.31),
-  ], 0.061, teal, 28, 10));
+  ], 0.052, teal, 28, 12));
   chassis.add(cylinderBetween(
     'Frame_Steering_Head',
     new THREE.Vector3(0, 0.72, 0.74),
     new THREE.Vector3(0, 0.96, 0.82),
-    0.075,
+    0.066,
     tealDark,
     12,
   ));
@@ -341,16 +484,16 @@ export function createDeliveryCargoBikeModel(options: CargoBikeOptions = {}) {
       `Front_Fork_Upper_${side}`,
       new THREE.Vector3(side * 0.055, 0.02, 0),
       new THREE.Vector3(side * 0.105, -0.25, 0.08),
-      0.027,
-      dark,
+      0.026,
+      metal,
       9,
     ));
     steering.add(cylinderBetween(
       `Front_Fork_Lower_${side}`,
       new THREE.Vector3(side * 0.105, -0.25, 0.08),
       new THREE.Vector3(side * 0.095, -0.465, 0.13),
-      0.03,
-      metal,
+      0.032,
+      dark,
       9,
     ));
   }
@@ -370,19 +513,45 @@ export function createDeliveryCargoBikeModel(options: CargoBikeOptions = {}) {
     new THREE.Vector3(0.18, 0.37, 0.015),
     new THREE.Vector3(0.34, 0.36, -0.04),
   ], 0.022, dark, 36, 8));
+  const stemClamp = roundedBox('Handlebar_Stem_Clamp', [0.13, 0.06, 0.085], 0.015, dark);
+  stemClamp.position.set(0, 0.35, 0.025);
+  steering.add(stemClamp);
+  const display = roundedBox('Handlebar_Display', [0.12, 0.045, 0.09], 0.012, dark);
+  display.position.set(0, 0.395, -0.005);
+  display.rotation.x = -0.16;
+  steering.add(display);
   for (const side of [-1, 1]) {
     const grip = new THREE.Mesh(new THREE.CylinderGeometry(0.033, 0.033, 0.125, 10), cream);
     grip.name = side < 0 ? 'Left_Grip' : 'Right_Grip';
     grip.rotation.z = Math.PI / 2;
     grip.position.set(side * 0.36, 0.36, -0.045);
     steering.add(grip);
+    const gripCollar = new THREE.Mesh(new THREE.CylinderGeometry(0.038, 0.038, 0.048, 10), dark);
+    gripCollar.name = side < 0 ? 'Left_Grip_Collar' : 'Right_Grip_Collar';
+    gripCollar.rotation.z = Math.PI / 2;
+    gripCollar.position.set(side * 0.295, 0.36, -0.035);
+    steering.add(gripCollar);
+    const control = roundedBox(`Handlebar_Control_${side}`, [0.055, 0.055, 0.06], 0.012, dark);
+    control.position.set(side * 0.245, 0.355, -0.005);
+    steering.add(control);
     const brake = tubeAlong(`Brake_Lever_${side}`, [
       new THREE.Vector3(side * 0.25, 0.34, 0.0),
       new THREE.Vector3(side * 0.3, 0.29, 0.03),
       new THREE.Vector3(side * 0.25, 0.27, 0.05),
     ], 0.009, dark, 14, 6);
     steering.add(brake);
+    steering.add(tubeAlong(`Brake_Cable_${side}`, [
+      new THREE.Vector3(side * 0.25, 0.32, 0.015),
+      new THREE.Vector3(side * 0.18, 0.18, 0.11),
+      new THREE.Vector3(side * 0.08, -0.02, 0.075),
+      new THREE.Vector3(side * 0.07, -0.24, 0.10),
+    ], 0.0045, dark, 20, 5));
   }
+  const bell = new THREE.Mesh(new THREE.SphereGeometry(0.035, 12, 8), orange);
+  bell.name = 'Handlebar_Bell';
+  bell.scale.y = 0.65;
+  bell.position.set(0.205, 0.4, 0.01);
+  steering.add(bell);
 
   const headlight = new THREE.Group();
   headlight.name = 'Headlight_Socket';
@@ -405,26 +574,63 @@ export function createDeliveryCargoBikeModel(options: CargoBikeOptions = {}) {
   headlightLens.rotation.x = Math.PI / 2;
   headlightLens.position.z = 0.077;
   headlight.add(headlightLens);
+  const headlightInnerRing = new THREE.Mesh(new THREE.TorusGeometry(0.061, 0.006, 7, 24), metal);
+  headlightInnerRing.name = 'Headlight_Inner_Ring';
+  headlightInnerRing.position.z = 0.085;
+  headlight.add(headlightInnerRing);
   steering.add(headlight);
 
-  steering.add(arcTube(
+  for (const side of [-1, 1]) {
+    const marker = roundedBox(`Headlight_Side_Marker_${side}`, [0.025, 0.036, 0.02], 0.006, orange);
+    marker.position.set(side * 0.117, 0.08, 0.225);
+    steering.add(marker);
+  }
+
+  const forkCrown = new THREE.Mesh(new THREE.CylinderGeometry(0.032, 0.032, 0.22, 10), dark);
+  forkCrown.name = 'Front_Fork_Crown';
+  forkCrown.rotation.z = Math.PI / 2;
+  forkCrown.position.set(0, -0.215, 0.07);
+  steering.add(forkCrown);
+
+  steering.add(arcBand(
     'Front_Mudguard',
     new THREE.Vector3(0, -0.465, 0.13),
-    0.382,
+    0.381,
     -1.17,
     1.17,
-    0.019,
+    0.102,
+    0.018,
     teal,
   ));
-  chassis.add(arcTube(
+  chassis.add(arcBand(
     'Rear_Mudguard',
     new THREE.Vector3(0, 0.355, -0.92),
-    0.382,
+    0.381,
     -1.22,
     1.22,
-    0.019,
+    0.102,
+    0.018,
     teal,
   ));
+
+  for (const side of [-1, 1]) {
+    steering.add(cylinderBetween(
+      `Front_Mudguard_Stay_${side}`,
+      new THREE.Vector3(side * 0.062, -0.465, 0.13),
+      new THREE.Vector3(side * 0.062, -0.31, -0.20),
+      0.005,
+      metal,
+      6,
+    ));
+    chassis.add(cylinderBetween(
+      `Rear_Mudguard_Stay_${side}`,
+      new THREE.Vector3(side * 0.062, 0.355, -0.92),
+      new THREE.Vector3(side * 0.062, 0.49, -1.26),
+      0.005,
+      metal,
+      6,
+    ));
+  }
 
   const saddleStem = cylinderBetween(
     'Saddle_Stem',
@@ -435,33 +641,62 @@ export function createDeliveryCargoBikeModel(options: CargoBikeOptions = {}) {
     10,
   );
   chassis.add(saddleStem);
-  const saddle = roundedBox('Saddle', [0.31, 0.085, 0.27], 0.04, cream);
-  saddle.position.set(0, 1.04, -0.28);
-  saddle.scale.set(1, 1, 1);
+  const saddle = createSaddle('Saddle', cream, dark);
+  saddle.position.set(0, 1.045, -0.28);
   chassis.add(saddle);
 
-  const battery = roundedBox('Battery_Detachable', [0.22, 0.45, 0.24], 0.032, dark);
-  battery.position.set(0, 0.61, -0.25);
-  battery.rotation.x = -0.05;
+  const battery = extrudedProfileAlongX('Battery_Detachable', [
+    [-0.11, -0.19],
+    [0.105, -0.19],
+    [0.105, 0.115],
+    [0.04, 0.19],
+    [-0.075, 0.17],
+    [-0.115, 0.065],
+  ], 0.18, dark, 0.012);
+  battery.position.set(0, 0.62, -0.25);
   chassis.add(battery);
-  const batteryCap = roundedBox('Battery_Cap', [0.19, 0.05, 0.2], 0.018, tealDark);
-  batteryCap.position.set(0, 0.845, -0.25);
+  const batteryCap = roundedBox('Battery_Cap', [0.176, 0.044, 0.155], 0.015, tealDark);
+  batteryCap.position.set(0, 0.81, -0.205);
   chassis.add(batteryCap);
+  for (let index = 0; index < 3; index += 1) {
+    const indicator = roundedBox(`Battery_Indicator_${index}`, [0.009, 0.012, 0.028], 0.003, index < 2 ? teal : dark);
+    indicator.position.set(0.098, 0.765 - index * 0.025, -0.17);
+    chassis.add(indicator);
+  }
 
   const drivetrain = new THREE.Group();
   drivetrain.name = 'Crank_Pivot';
   drivetrain.position.set(0, 0.36, -0.18);
   root.add(drivetrain);
-  const chainGuard = roundedBox('Chain_Guard', [0.16, 0.23, 0.68], 0.055, dark);
-  chainGuard.position.set(0.07, 0, -0.24);
+  const chainGuard = roundedBox('Chain_Guard', [0.13, 0.17, 0.66], 0.07, dark);
+  chainGuard.position.set(0.065, -0.005, -0.25);
   drivetrain.add(chainGuard);
-  const inset = roundedBox('Chain_Guard_Inset', [0.008, 0.055, 0.35], 0.02, tealDark);
-  inset.position.set(0.155, -0.015, -0.24);
+  const inset = roundedBox('Chain_Guard_Inset', [0.009, 0.047, 0.33], 0.018, tealDark);
+  inset.position.set(0.135, -0.008, -0.26);
   drivetrain.add(inset);
   const crank = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.18, 18), dark);
   crank.name = 'Crank_Hub';
   crank.rotation.z = Math.PI / 2;
   drivetrain.add(crank);
+  const crankRing = new THREE.Mesh(new THREE.TorusGeometry(0.092, 0.009, 7, 24), tealDark);
+  crankRing.name = 'Crank_Accent_Ring';
+  crankRing.rotation.y = Math.PI / 2;
+  crankRing.position.x = 0.098;
+  drivetrain.add(crankRing);
+  const chainLower = cylinderBetween(
+    'Drive_Chain_Lower',
+    new THREE.Vector3(0.105, -0.09, -0.33),
+    new THREE.Vector3(0.105, -0.075, -0.7),
+    0.005,
+    metal,
+    6,
+  );
+  drivetrain.add(chainLower);
+  const rearSprocket = new THREE.Mesh(new THREE.TorusGeometry(0.075, 0.008, 6, 24), dark);
+  rearSprocket.name = 'Rear_Sprocket';
+  rearSprocket.rotation.y = Math.PI / 2;
+  rearSprocket.position.set(0.105, -0.005, -0.74);
+  drivetrain.add(rearSprocket);
   for (const side of [-1, 1]) {
     const arm = cylinderBetween(
       `Pedal_Arm_${side}`,
@@ -499,39 +734,63 @@ export function createDeliveryCargoBikeModel(options: CargoBikeOptions = {}) {
       dark,
       8,
     ));
+    rack.add(cylinderBetween(
+      `Rack_Rear_Brace_${side}`,
+      new THREE.Vector3(side * 0.16, 0.38, -0.98),
+      new THREE.Vector3(side * 0.23, 0.82, -1.0),
+      0.018,
+      dark,
+      8,
+    ));
+  }
+  for (const z of [-0.98, -0.82, -0.66, -0.5]) {
+    rack.add(cylinderBetween(
+      `Rack_Crossbar_${z}`,
+      new THREE.Vector3(-0.23, 0.82, z),
+      new THREE.Vector3(0.23, 0.82, z),
+      0.016,
+      dark,
+      8,
+    ));
   }
 
   const cargo = new THREE.Group();
   cargo.name = 'Cargo_Pivot';
   root.add(cargo);
-  const cargoBody = roundedBox('Cargo_Box', [0.58, 0.44, 0.62], 0.043, teal);
-  cargoBody.position.set(0, 1.04, -0.74);
+  const cargoBase = roundedBox('Cargo_Base', [0.585, 0.052, 0.635], 0.018, dark);
+  cargoBase.position.set(0, 0.79, -0.74);
+  cargo.add(cargoBase);
+  const cargoBody = roundedBox('Cargo_Box', [0.56, 0.39, 0.60], 0.032, teal);
+  cargoBody.position.set(0, 1.005, -0.74);
   cargo.add(cargoBody);
-  const cargoLid = roundedBox('Cargo_Lid_Hinge', [0.62, 0.09, 0.66], 0.043, teal);
-  cargoLid.position.set(0, 1.305, -0.74);
+  const cargoLid = roundedBox('Cargo_Lid_Hinge', [0.59, 0.072, 0.63], 0.028, teal);
+  cargoLid.position.set(0, 1.235, -0.74);
   cargo.add(cargoLid);
-  const lidBand = roundedBox('Cargo_Lid_Seam', [0.592, 0.018, 0.632], 0.008, tealDark);
-  lidBand.position.set(0, 1.255, -0.74);
+  const lidBand = roundedBox('Cargo_Lid_Seam', [0.566, 0.016, 0.606], 0.006, tealDark);
+  lidBand.position.set(0, 1.198, -0.74);
   cargo.add(lidBand);
   const latch = roundedBox('Cargo_Latch', [0.16, 0.055, 0.025], 0.012, cream);
-  latch.position.set(0, 1.255, -0.415);
+  latch.position.set(0, 1.202, -1.052);
   cargo.add(latch);
 
-  for (const x of [-0.286, 0.286]) {
-    for (const y of [0.86, 1.22]) {
-      for (const z of [-1.045, -0.435]) {
-        const guard = roundedBox('Cargo_Corner_Guard', [0.026, 0.058, 0.058], 0.009, orange);
+  for (const x of [-0.276, 0.276]) {
+    for (const y of [0.84, 1.17]) {
+      for (const z of [-1.035, -0.445]) {
+        const guard = roundedBox('Cargo_Corner_Guard', [0.025, 0.052, 0.052], 0.007, orange);
         guard.position.set(x, y, z);
         cargo.add(guard);
       }
     }
   }
 
-  addParcelBadge(cargo, 'Parcel_Badge_Side', new THREE.Vector3(0.294, 1.06, -0.74), 'side', cream, tealDark);
-  addParcelBadge(cargo, 'Parcel_Badge_Rear', new THREE.Vector3(0, 1.06, -1.054), 'rear', cream, tealDark);
+  addParcelBadge(cargo, 'Parcel_Badge_Side', new THREE.Vector3(0.282, 1.015, -0.74), 'side', cream);
+  addParcelBadge(cargo, 'Parcel_Badge_Rear', new THREE.Vector3(0, 1.015, -1.042), 'rear', cream);
 
-  const rearLight = roundedBox('Rear_Light', [0.16, 0.1, 0.05], 0.018, tail);
-  rearLight.position.set(0, 0.79, -1.07);
+  const rearLightHousing = roundedBox('Rear_Light_Housing', [0.16, 0.11, 0.048], 0.018, dark);
+  rearLightHousing.position.set(0, 0.73, -1.075);
+  root.add(rearLightHousing);
+  const rearLight = roundedBox('Rear_Light', [0.125, 0.075, 0.054], 0.015, tail);
+  rearLight.position.set(0, 0.73, -1.103);
   root.add(rearLight);
 
   const kickstand = cylinderBetween(
@@ -594,6 +853,7 @@ export function createDeliveryCargoBikeModel(options: CargoBikeOptions = {}) {
   root.userData.assetInfo = {
     id: 'delivery-cargo-bike',
     source: 'img2threejs procedural reconstruction',
+    revision: 2,
     forward: '+Z',
     up: '+Y',
     unit: 'meter',

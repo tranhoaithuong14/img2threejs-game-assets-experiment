@@ -17,14 +17,28 @@ This workspace contains original game props derived from the supplied mobile-gam
 
 ## Asset 01 — Delivery Cargo Bike
 
+Revision 2 is a close six-view matching pass. It replaces the blockout-like tire lugs and tubular mudguards, reshapes the saddle/battery/chain case, corrects the cargo latch and cube emblem, and adds the missing fork, rack, drivetrain, handlebar-control, cable, and lighting details.
+
 - Six-view concept: `Assets/Concepts/DeliveryCargoBike_6View.png`
 - Procedural reconstruction: `ThreeJS/src/createDeliveryCargoBikeModel.ts`
+- Detailed comparison audit: `Pipeline/CargoBike/reference-audit-v2.md`
+- Fixed browser views: `Previews/DeliveryCargoBike_v2_ThreeQuarter.png`, `Previews/DeliveryCargoBike_v2_Side.png`, and `Previews/DeliveryCargoBike_v2_Front.png`
 - Source GLB: `Assets/DeliveryCargoBike.source.glb`
 - Optimized Blender scene: `Blender/DeliveryCargoBike.optimized.blend`
 - Optimized GLB: `Assets/DeliveryCargoBike.optimized.glb`
 - Hero render: `Previews/DeliveryCargoBike_Blender.png`
 - Unity prefab: `UnityProject/Assets/DeliveryCargoBike/Prefabs/DeliveryCargoBike.prefab`
 - Validation: `UnityProject/Assets/DeliveryCargoBike/PrefabValidationReport.json`
+
+| Bike gate | Result | Budget |
+| --- | ---: | ---: |
+| Source reconstruction | 34,488 triangles | 35,000 max |
+| Blender/Unity optimized | 34,152 triangles | 35,000 max |
+| Blender renderers | 10 | Functional-pivot consolidation |
+| Unity colliders | 4 | 4 required |
+| Missing interaction nodes | 0 | 0 required |
+
+Rebuild the bike with `npm run build && npm run export:glb` from `ThreeJS`, then run `blender --background --python Pipeline/CargoBike/blender_optimize.py` from the repository root. The Unity prefab is regenerated in batch mode through `DeliveryCargoBikePrefabBuilder.BuildBatch`.
 
 ## Asset 02 — Plaza Fountain
 
