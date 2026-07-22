@@ -1,0 +1,251 @@
+{
+  "sourceImage": "Assets/Concepts/PlazaFountain_6View.png",
+  "zonesDir": "Pipeline/PlazaFountain/detail-zones",
+  "detailInventory": {
+    "scanMethod": "grid-3x3",
+    "targetMinDetails": 10,
+    "details": [
+      {
+        "id": "d01-step-bevel",
+        "kind": "bevel",
+        "description": "Rounded chamfer catching a warm highlight on both octagonal steps.",
+        "region": {
+          "x": 0.03,
+          "y": 0.22,
+          "width": 0.45,
+          "height": 0.11,
+          "units": "normalized"
+        },
+        "scale": "0.025 m radius",
+        "affects": "plinth silhouette and highlight",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "step-edge-bevel"
+        },
+        "evidenceRef": "front-view",
+        "confidence": 0.97
+      },
+      {
+        "id": "d02-radial-seams",
+        "kind": "seam",
+        "description": "Eight radial stone joints segment each octagonal plinth ring.",
+        "region": {
+          "x": 0.02,
+          "y": 0.22,
+          "width": 0.46,
+          "height": 0.11,
+          "units": "normalized"
+        },
+        "scale": "8 seams per ring",
+        "affects": "plinth construction read",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "octagonal-radial-seams"
+        },
+        "evidenceRef": "top-view",
+        "confidence": 0.95
+      },
+      {
+        "id": "d03-basin-lip",
+        "kind": "bevel",
+        "description": "Thick rounded lower-basin lip with a broad cream highlight.",
+        "region": {
+          "x": 0.05,
+          "y": 0.14,
+          "width": 0.42,
+          "height": 0.1,
+          "units": "normalized"
+        },
+        "scale": "0.14 m section radius",
+        "affects": "lower basin silhouette",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "lower-lip-bevel"
+        },
+        "evidenceRef": "three-quarter-view",
+        "confidence": 0.98
+      },
+      {
+        "id": "d04-inner-channel",
+        "kind": "groove",
+        "description": "Dark inner channel beneath the cream basin lip.",
+        "region": {
+          "x": 0.06,
+          "y": 0.15,
+          "width": 0.4,
+          "height": 0.05,
+          "units": "normalized"
+        },
+        "scale": "0.025 m recessed band",
+        "affects": "basin depth and contact AO",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "lower-inner-groove"
+        },
+        "evidenceRef": "front-view",
+        "confidence": 0.92
+      },
+      {
+        "id": "d05-panel-recess",
+        "kind": "groove",
+        "description": "Four dark-teal recessed trapezoid panels in the pedestal faces.",
+        "region": {
+          "x": 0.17,
+          "y": 0.08,
+          "width": 0.16,
+          "height": 0.13,
+          "units": "normalized"
+        },
+        "scale": "four radial panels",
+        "affects": "pedestal identity",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "pedestal-panel-recess"
+        },
+        "evidenceRef": "three-quarter-view",
+        "confidence": 0.98
+      },
+      {
+        "id": "d06-fish-mouth",
+        "kind": "hole",
+        "description": "Round fish-mouth outlet at the end of each stylized spout.",
+        "region": {
+          "x": 0.1,
+          "y": 0.09,
+          "width": 0.3,
+          "height": 0.08,
+          "units": "normalized"
+        },
+        "scale": "0.045 m outlet",
+        "affects": "spout silhouette and water emitter",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "fish-mouth-outlet"
+        },
+        "evidenceRef": "front-view",
+        "confidence": 0.91
+      },
+      {
+        "id": "d07-fish-eyes",
+        "kind": "fastener",
+        "description": "Paired raised eye beads on each fish-head spout.",
+        "region": {
+          "x": 0.11,
+          "y": 0.08,
+          "width": 0.28,
+          "height": 0.07,
+          "units": "normalized"
+        },
+        "scale": "two 0.018 m beads per spout",
+        "affects": "spout recognizability",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "fish-eye-beads"
+        },
+        "evidenceRef": "three-quarter-view",
+        "confidence": 0.82
+      },
+      {
+        "id": "d08-upper-rim",
+        "kind": "ridge",
+        "description": "Raised rounded crest on the upper bowl rim.",
+        "region": {
+          "x": 0.17,
+          "y": 0.015,
+          "width": 0.17,
+          "height": 0.08,
+          "units": "normalized"
+        },
+        "scale": "0.08 m rounded ring",
+        "affects": "upper bowl silhouette",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "upper-rim-ridge"
+        },
+        "evidenceRef": "left-view",
+        "confidence": 0.95
+      },
+      {
+        "id": "d09-finial-flutes",
+        "kind": "ridge",
+        "description": "Eight shallow vertical flutes on the acorn finial.",
+        "region": {
+          "x": 0.23,
+          "y": 0,
+          "width": 0.08,
+          "height": 0.05,
+          "units": "normalized"
+        },
+        "scale": "eight radial flutes",
+        "affects": "finial highlight breakup",
+        "mapsTo": {
+          "type": "component.localFeatures",
+          "ref": "finial-flutes"
+        },
+        "evidenceRef": "three-quarter-view",
+        "confidence": 0.89
+      },
+      {
+        "id": "d10-water-ripples",
+        "kind": "gloss",
+        "description": "Low-roughness concentric and radial ripple highlights on both water surfaces.",
+        "region": {
+          "x": 0.06,
+          "y": 0.13,
+          "width": 0.4,
+          "height": 0.09,
+          "units": "normalized"
+        },
+        "scale": "0.02-0.12 m wavelengths",
+        "affects": "water material response",
+        "mapsTo": {
+          "type": "material.localOverrides",
+          "ref": "water-ripple-gloss"
+        },
+        "evidenceRef": "top-view",
+        "confidence": 0.9
+      },
+      {
+        "id": "d11-limestone-mottle",
+        "kind": "stain",
+        "description": "Very subtle warm and cool limestone mottling with cavity-biased darkening.",
+        "region": {
+          "x": 0.02,
+          "y": 0.02,
+          "width": 0.46,
+          "height": 0.29,
+          "units": "normalized"
+        },
+        "scale": "0.06-0.35 m low-contrast patches",
+        "affects": "limestone albedo and roughness",
+        "mapsTo": {
+          "type": "material.localOverrides",
+          "ref": "limestone-mottle"
+        },
+        "evidenceRef": "front-view",
+        "confidence": 0.84
+      },
+      {
+        "id": "d12-copper-patina",
+        "kind": "stain",
+        "description": "Muted brown-red copper rings with restrained teal patina in lower cavities.",
+        "region": {
+          "x": 0.18,
+          "y": 0.03,
+          "width": 0.15,
+          "height": 0.12,
+          "units": "normalized"
+        },
+        "scale": "0.03-0.08 m bands",
+        "affects": "copper color and roughness",
+        "mapsTo": {
+          "type": "material.localOverrides",
+          "ref": "copper-cavity-patina"
+        },
+        "evidenceRef": "three-quarter-view",
+        "confidence": 0.86
+      }
+    ]
+  },
+  "authoringInstruction": "Open each zone crop under zonesDir and replace every detail stub's kind, description, scale, affects, mapsTo, and confidence with what is actually observed. Add more detail entries per zone if a single zone contains multiple distinct marks; do not leave stubs unfilled or unlinked (mapsTo must reference a real component.localFeatures or material.localOverrides entry)."
+}

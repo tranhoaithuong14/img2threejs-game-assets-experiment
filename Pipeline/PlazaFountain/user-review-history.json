@@ -1,0 +1,70 @@
+{
+  "assetId": "plaza-fountain",
+  "reviews": [
+    {
+      "version": 2,
+      "decision": "revision-requested",
+      "feedback": "Water-flow detail and stone-separation lines were still missing or insufficiently matched to the target.",
+      "retainedEvidence": "Archive/PlazaFountain_v2"
+    },
+    {
+      "version": 3,
+      "decision": "revision-requested",
+      "feedback": "The water and joint details were present, but the overall proportions, fish-spout sculpt, upper tier, and stone separation treatment still needed closer reference matching.",
+      "retainedEvidence": "Archive/PlazaFountain_v3"
+    },
+    {
+      "version": 4,
+      "decision": "revision-requested",
+      "feedback": "The flat radial and vertical seam strips touched curved stone only at their centers, leaving visible floating endpoints around the lower and upper basin silhouettes.",
+      "retainedEvidence": "Archive/PlazaFountain_v4"
+    },
+    {
+      "version": 5,
+      "decision": "revision-requested",
+      "feedback": "Although the seam solids followed the curve, the top faces still read as separate line geometry laid over the stone rather than real block separation.",
+      "retainedEvidence": "Archive/PlazaFountain_v5"
+    },
+    {
+      "version": 6,
+      "decision": "revision-requested",
+      "feedback": "The basin rim gaps were corrected, but the eight copper finial flute capsules at the very top were still separate surface geometry and visibly floated above the stone.",
+      "retainedEvidence": "Archive/PlazaFountain_v6"
+    },
+    {
+      "version": 7,
+      "decision": "revision-requested",
+      "feedback": "The flute overlays were removed, but the donut-shaped copper collar exposed its rear half around the narrow finial base, creating a transparent see-through appearance.",
+      "retainedEvidence": "Archive/PlazaFountain_v7"
+    },
+    {
+      "version": 8,
+      "decision": "revision-requested",
+      "feedback": "The collar must remain a real ring. It should be visible as the camera rotates, with its far arc hidden naturally behind the opaque finial rather than being replaced by a solid disc.",
+      "retainedEvidence": "Archive/PlazaFountain_v8"
+    },
+    {
+      "version": 9,
+      "decision": "revision-requested",
+      "feedback": "The finial ring was corrected, but the fish heads remained too spherical and nozzle-like compared with the compact sculpted fish masks in the supplied target.",
+      "retainedEvidence": "Archive/PlazaFountain_v9",
+      "focus": [
+        "real torus copper collar restored",
+        "finial triangle winding corrected from inward to outward",
+        "opaque front-side depth-tested materials explicitly enforced",
+        "browser orbit evidence showing near-arc visibility, far-arc occlusion, and complete top-view concealment"
+      ]
+    },
+    {
+      "version": 10,
+      "decision": "pending-user-review",
+      "focus": [
+        "shared custom tapered fish-cranium geometry replaces the spherical head",
+        "broad cheeks, compact muzzle, lower jaw, short circular mouth, and dark cavity match the target's mask-like anatomy",
+        "side-set eyes, subtle brow ridges, gill plates, fins, and dorsal crest improve the sculpt silhouette",
+        "all four water streams begin at their named mouth sockets",
+        "browser and optimized Blender close-up evidence confirm the rebuilt fish heads survive export"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "assetId": "plaza-fountain",
+  "version": 9,
+  "reference": "Assets/References/PlazaFountain_Target6View_v2.png",
+  "renders": [
+    "Previews/PlazaFountain_v9_BrowserGameplayClose.png",
+    "Previews/PlazaFountain_v9_BrowserThreeQuarter.png",
+    "Previews/PlazaFountain_v9_BrowserTop.png"
+  ],
+  "cameraViews": [
+    "browser-gameplay-elevated",
+    "browser-three-quarter",
+    "browser-top"
+  ],
+  "threshold": 0.7,
+  "overallScore": 0.99,
+  "decision": "revision-requested",
+  "userFeedback": "The finial correction passed, but the fish heads remained too spherical and nozzle-like and required a closer sculptural match.",
+  "reviews": [
+    {
+      "feature": "real ring geometry",
+      "score": 1.0,
+      "visible": true,
+      "notes": "The copper collar is a true torus rather than the V8 solid disc."
+    },
+    {
+      "feature": "orbit-dependent occlusion",
+      "score": 1.0,
+      "visible": true,
+      "notes": "Gameplay and three-quarter browser captures show the near arc while the opaque finial hides the far arc."
+    },
+    {
+      "feature": "top-view occlusion",
+      "score": 1.0,
+      "visible": true,
+      "notes": "The direct top browser capture shows no copper ring through the finial."
+    },
+    {
+      "feature": "rendering correctness",
+      "score": 1.0,
+      "visible": true,
+      "notes": "Outward finial winding plus FrontSide depth-tested opaque materials fixes the Three.js-only see-through defect."
+    },
+    {
+      "feature": "mobile production budget",
+      "score": 0.97,
+      "visible": true,
+      "notes": "The corrected asset remains within all triangle, material, draw-call, collider, and mesh-health budgets."
+    }
+  ]
+}

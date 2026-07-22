@@ -1,0 +1,83 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.909,
+  "estimatedFidelity": 0.909,
+  "targetThreshold": 0.7,
+  "materialId": "limestone",
+  "sourceImage": "/Users/cristian/Documents/Game assets/Pipeline/PlazaFountain/detail-zones/zone-r0c0.png",
+  "outDir": "/Users/cristian/Documents/Game assets/Pipeline/PlazaFountain/pbr/limestone",
+  "palette": [
+    "#AB9B83",
+    "#50645E",
+    "#CBB9A0",
+    "#887E69",
+    "#EFDDC5"
+  ],
+  "maps": {
+    "albedo": {
+      "path": "/Users/cristian/Documents/Game assets/Pipeline/PlazaFountain/pbr/limestone/limestone_albedo.png",
+      "url": "limestone_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "/Users/cristian/Documents/Game assets/Pipeline/PlazaFountain/pbr/limestone/limestone_roughness.png",
+      "url": "limestone_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "/Users/cristian/Documents/Game assets/Pipeline/PlazaFountain/pbr/limestone/limestone_height.png",
+      "url": "limestone_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "/Users/cristian/Documents/Game assets/Pipeline/PlazaFountain/pbr/limestone/limestone_normal.png",
+      "url": "limestone_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "/Users/cristian/Documents/Game assets/Pipeline/PlazaFountain/pbr/limestone/limestone_ao.png",
+      "url": "limestone_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 341,
+    "sourceHeight": 512,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 341,
+      "height": 493
+    },
+    "mask": {
+      "backgroundColor": "#D3D3D3",
+      "backgroundNoise": 1.732,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.4787
+    },
+    "mapStats": {
+      "valueRange": 0.5563,
+      "heightP90Gradient": 0.06573,
+      "roughnessBase": 0.688,
+      "roughnessVariation": 0.125,
+      "normalStrength": 0.233,
+      "blurRadius": 21
+    },
+    "palette": [
+      "#AB9B83",
+      "#50645E",
+      "#CBB9A0",
+      "#887E69",
+      "#EFDDC5"
+    ]
+  },
+  "warnings": [],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

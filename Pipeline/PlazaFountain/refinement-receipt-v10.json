@@ -1,0 +1,106 @@
+{
+  "assetId": "plaza-fountain",
+  "version": 10,
+  "timestamp": "2026-07-22T13:28:06Z",
+  "request": "Compare the fish heads closely with the supplied target and polish their sculpt.",
+  "route": "deterministic img2threejs fish-head reconstruction followed by real Chromium multi-view validation, source GLB export, Blender optimization and close render, optimized GLB re-import, and Unity prefab rebuild",
+  "providerGenerationUsed": false,
+  "creditsConsumed": 0,
+  "cost": 0,
+  "status": "pass-pending-user-review",
+  "rootCause": "The previous fish module was assembled from a scaled sphere and long cylindrical nozzle, so it read as a puffer or pipe rather than the target's compact sculpted fish mask.",
+  "changes": [
+    "replaced the spherical head with a custom closed six-section elliptical cranium that tapers from skull and cheeks into the muzzle root",
+    "removed the long cylindrical snout and rebuilt the outlet as short puckered lips around a dark mouth cavity",
+    "added a broad muzzle pad and separate lower jaw",
+    "enlarged and repositioned side-set eyes, pupils, and shallow orbital brow ridges",
+    "strengthened gill plates, side fins, and the paired dorsal crest silhouette",
+    "made every water stream originate from the transformed position of its named fish-mouth socket"
+  ],
+  "results": {
+    "sourceExport": {
+      "meshes": 164,
+      "vertices": 15483,
+      "triangles": 21096,
+      "materials": 5,
+      "fishModules": 4,
+      "mouthSockets": 4
+    },
+    "browser": {
+      "engine": "Chromium via Playwright CLI",
+      "frontView": "pass",
+      "sideView": "pass",
+      "threeQuarterView": "pass",
+      "fishCloseView": "pass",
+      "relevantConsoleErrors": 0,
+      "unrelatedConsoleNote": "favicon.ico returned 404"
+    },
+    "blender": {
+      "sourceImportedTriangles": 21600,
+      "lod0Triangles": 21600,
+      "lod1Triangles": 10368,
+      "lod2Triangles": 3455,
+      "materials": 5,
+      "lod0EstimatedDrawCalls": 8,
+      "nonManifoldEdges": 192,
+      "degenerateFaces": 0,
+      "looseVertices": 0
+    },
+    "optimizedGlbReimport": {
+      "meshes": 2,
+      "triangles": 21600,
+      "materials": 5
+    },
+    "unity": {
+      "version": "6000.5.4f1",
+      "lod0Triangles": 21600,
+      "lod1Triangles": 10368,
+      "lod2Triangles": 3361,
+      "materials": 5,
+      "estimatedLod0DrawCalls": 8,
+      "colliders": 3,
+      "missingScripts": 0,
+      "rigConfigured": true,
+      "lodGroupConfigured": true
+    }
+  },
+  "validation": {
+    "typescriptBuild": "pass",
+    "browserMultiView": "pass",
+    "blenderReview": "pass",
+    "optimizedGlbReimport": "pass",
+    "blenderBudgets": "pass",
+    "unityBatch": "pass",
+    "eligibility": "candidate-development-only"
+  },
+  "hashes": {
+    "sourceGlbSha256": "e31837fa1444cef87879c9dbd0c8aea5b1bfd3a661cfcf0bdbb3d061037cf48b",
+    "optimizedGlbSha256": "7cc88def8974721f4144b9b901a05108087aa8c2eefa3f3eac44cb405659225c",
+    "optimizedBlendSha256": "e7dd77049da559e9c7f21ce9599f3f02f683bb7518c4c0f08c0d070f6e47bf7b",
+    "browserFrontSha256": "cd1afa0df7d9f08c95d57dedb54472978fe1199a2620ccaf069b316db27b3d07",
+    "browserSideSha256": "d2aa41eaf35e290a6fb7b9ca174c41cd7912f136ae136e4b85d3c4346e41fa30",
+    "browserThreeQuarterSha256": "914fd979cf09a0c6d41c89afe2a8f82ad3e17d599fbbd3ac6a6d7ee8eeaac088",
+    "browserFishCloseSha256": "44ee4243eaa8846886a8227df4f65b641b6805e7a8947e0a8711c8cb0ceb3de0",
+    "blenderFishCloseSha256": "d2f79614744dfa2b8e0b64aeb22439b7341d00fc49121a7060951f14591e8eb9",
+    "unityPrefabSha256": "0592079c52134e4065863a3f4425944f90b00c1ddaaba55528424a914f3d80d2"
+  },
+  "evidence": [
+    "Assets/References/PlazaFountain_FishHeadReferenceClose.png",
+    "Previews/PlazaFountain_v9_FishHeadBefore.png",
+    "Previews/PlazaFountain_v10_FishFront.png",
+    "Previews/PlazaFountain_v10_FishSide.png",
+    "Previews/PlazaFountain_v10_FishThreeQuarter.png",
+    "Previews/PlazaFountain_v10_FishHeadClose.png",
+    "Previews/PlazaFountain_v10_FishBlenderClose.png",
+    "Pipeline/PlazaFountain/glb-export-report.json",
+    "Pipeline/PlazaFountain/blender-optimization-report.json",
+    "UnityProject/Assets/PlazaFountain/PrefabValidationReport.json",
+    "Pipeline/PlazaFountain/unity-batch.log"
+  ],
+  "limitations": [
+    "The deterministic primitive sculpt is slightly cleaner and more symmetrical than the softly hand-modeled fish heads in the painted target.",
+    "Vertical wall and upper-bowl seams remain separate embedded solids rather than destructive mortar cuts.",
+    "Water jets and impacts remain runtime or review effects excluded from structural GLB and FBX geometry.",
+    "Android device performance and final user art-direction approval remain pending."
+  ]
+}

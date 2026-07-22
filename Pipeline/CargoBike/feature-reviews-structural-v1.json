@@ -1,0 +1,14 @@
+[
+  {
+    "id": "steering-and-wheel-system",
+    "score": 0.61,
+    "visible": true,
+    "notes": "Wheel and fork hierarchy reads correctly, but the headlight has a clear gap from the steering column and fails the attachment gate."
+  },
+  {
+    "id": "rear-cargo-system",
+    "score": 0.82,
+    "visible": true,
+    "notes": "Cargo body, lid, rack supports and rear wheel overlap form a coherent attached assembly."
+  }
+]

@@ -1,0 +1,76 @@
+{
+  "assetId": "plaza-fountain",
+  "version": 5,
+  "timestamp": "2026-07-22T10:38:21Z",
+  "request": "Correct the stone-separation lines that appeared to float beyond the curved basin and upper-bowl surfaces.",
+  "route": "deterministic img2threejs geometry correction followed by source GLB export, Blender MCP close-angle validation and optimization, optimized GLB re-import, and Unity prefab rebuild",
+  "providerGenerationUsed": false,
+  "creditsConsumed": 0,
+  "cost": 0,
+  "status": "superseded-by-v6",
+  "userDecision": "revision-requested because the top seam solids still read as overlay geometry rather than physical stone-block gaps",
+  "rootCause": "The previous seams were flat boxes positioned on tangent planes. Their centers touched the rounded stone, but their radial endpoints remained planar while the torus and tapered wall curved away beneath them.",
+  "changes": [
+    "replaced sixteen flat lower-rim strips with closed narrow solids sampled along the complete torus profile",
+    "replaced sixteen constant-radius basin-wall strips with closed solids following the wall taper from bottom to top",
+    "replaced eight flat upper-rim strips with closed solids sampled along the smaller torus profile",
+    "replaced eight constant-radius upper-bowl body strips with closed solids following the lathed bowl profile",
+    "embedded each seam slightly into the stone surface so no edge or cap can float beyond the silhouette",
+    "retained the existing five-material and eight-draw-call limits"
+  ],
+  "results": {
+    "sourceExport": {
+      "meshes": 166,
+      "vertices": 16802,
+      "triangles": 22840,
+      "materials": 5
+    },
+    "blender": {
+      "sourceImportedTriangles": 23344,
+      "lod0Triangles": 23224,
+      "lod1Triangles": 11146,
+      "lod2Triangles": 3714,
+      "materials": 5,
+      "lod0EstimatedDrawCalls": 8,
+      "nonManifoldEdges": 152,
+      "degenerateFaces": 0,
+      "looseVertices": 0
+    },
+    "unity": {
+      "version": "6000.5.4f1",
+      "lod0Triangles": 23224,
+      "lod1Triangles": 11146,
+      "lod2Triangles": 3618,
+      "materials": 5,
+      "estimatedLod0DrawCalls": 8,
+      "colliders": 3,
+      "missingScripts": 0,
+      "rigConfigured": true,
+      "lodGroupConfigured": true
+    }
+  },
+  "validation": {
+    "typescriptBuild": "pass",
+    "closeLowAngleVisualReview": "pass",
+    "threeQuarterBlenderReview": "pass",
+    "optimizedGlbReimport": "pass",
+    "blenderBudgets": "pass",
+    "unityBatch": "pass",
+    "browserRefresh": "blocked by local browser URL policy; exact exported geometry was reviewed through Blender instead",
+    "eligibility": "candidate-development-only"
+  },
+  "evidence": [
+    "Previews/PlazaFountain_v5_SeamClose.png",
+    "Previews/PlazaFountain_Blender.png",
+    "Pipeline/PlazaFountain/comparison-refinement-v5-seam-contact.png",
+    "Pipeline/PlazaFountain/glb-export-report.json",
+    "Pipeline/PlazaFountain/blender-optimization-report.json",
+    "UnityProject/Assets/PlazaFountain/PrefabValidationReport.json",
+    "Pipeline/PlazaFountain/unity-batch.log"
+  ],
+  "limitations": [
+    "The seam accents remain separate embedded solids rather than destructive mortar cuts in the limestone mesh.",
+    "Water jets and impacts remain runtime/review effects excluded from structural GLB and FBX geometry.",
+    "Android device performance and final user art-direction approval remain pending."
+  ]
+}

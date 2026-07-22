@@ -1,0 +1,14 @@
+[
+  {
+    "id": "basin-tower-structure",
+    "score": 0.83,
+    "visible": true,
+    "notes": "The plinth, lower basin, pedestal base/body/cap, upper bowl, water disks, and finial overlap cleanly with no visible floating tier."
+  },
+  {
+    "id": "spout-panel-system",
+    "score": 0.81,
+    "visible": true,
+    "notes": "Four radial spout roots visibly embed into the tower and the four inset panels sit flush on matching faces; fish anatomy is intentionally deferred to form refinement."
+  }
+]

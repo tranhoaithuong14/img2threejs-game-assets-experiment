@@ -1,0 +1,84 @@
+{
+  "assetId": "plaza-fountain",
+  "version": 7,
+  "timestamp": "2026-07-22T11:32:27Z",
+  "request": "Remove the remaining floating separation marks from the top finial.",
+  "route": "deterministic img2threejs component correction followed by source GLB export, Blender close-angle validation and optimization, optimized GLB re-import, and Unity prefab rebuild",
+  "providerGenerationUsed": false,
+  "creditsConsumed": 0,
+  "cost": 0,
+  "status": "superseded-by-v8",
+  "userDecision": "revision-requested because the open torus collar exposed its rear half around the narrow finial base and read as transparency",
+  "rootCause": "The eight reddish finial marks were tiny copper CapsuleGeometry objects positioned above the limestone surface. They were decorative overlays rather than recessed stone detail.",
+  "changes": [
+    "removed all eight FinialFlute copper capsule meshes",
+    "rebuilt the finial as one closed parameterized limestone BufferGeometry",
+    "integrated eight shallow radial channels by modulating the stone surface itself",
+    "retained the V6 capped lower-rim and upper-rim blocks with physical gaps",
+    "hardened Blender renderer consolidation so its result is independent of active child object order"
+  ],
+  "results": {
+    "sourceExport": {
+      "meshes": 156,
+      "vertices": 15695,
+      "triangles": 21224,
+      "materials": 5,
+      "finialFluteObjects": 0
+    },
+    "blender": {
+      "sourceImportedTriangles": 21728,
+      "lod0Triangles": 21728,
+      "lod1Triangles": 10428,
+      "lod2Triangles": 3476,
+      "materials": 5,
+      "lod0EstimatedDrawCalls": 8,
+      "nonManifoldEdges": 112,
+      "degenerateFaces": 0,
+      "looseVertices": 0
+    },
+    "unity": {
+      "version": "6000.5.4f1",
+      "lod0Triangles": 21728,
+      "lod1Triangles": 10428,
+      "lod2Triangles": 3388,
+      "materials": 5,
+      "estimatedLod0DrawCalls": 8,
+      "colliders": 3,
+      "missingScripts": 0,
+      "rigConfigured": true,
+      "lodGroupConfigured": true
+    }
+  },
+  "validation": {
+    "typescriptBuild": "pass",
+    "finialCloseVisualReview": "pass",
+    "threeQuarterBlenderReview": "pass",
+    "optimizedGlbReimport": "pass",
+    "finialFluteObjectAbsence": "pass",
+    "blenderBudgets": "pass",
+    "unityBatch": "pass",
+    "eligibility": "candidate-development-only"
+  },
+  "hashes": {
+    "sourceGlbSha256": "ea16911e4eb0aceb34d9e4fb21be7735b3da321c3eac42c49b2f2ea7dea381f7",
+    "optimizedGlbSha256": "358cf9ffda5303ca8fd4750ba0da5ae12ae1b6084c86e7c3450c7557524b4e82",
+    "optimizedBlendSha256": "98a71af45e8155edbfbf3aa6397f430f1a501f1fda610d31ecfe05a6504e08b4",
+    "closeRenderSha256": "9a4bb667dd91f6e2ecf1c5d209bae718f21e8906612d731e95713dfd0baf19ea",
+    "upperAssemblyRenderSha256": "b0fcff2b6b528c8f849d4a808b98f493b2099a37a5a399464e4971e8cf57003c",
+    "unityPrefabSha256": "c5c9265022697b7998577cc79018bc6f6e64239b9284429f00e423f40fdb386b"
+  },
+  "evidence": [
+    "Previews/PlazaFountain_v7_FinialClose.png",
+    "Previews/PlazaFountain_v7_UpperAssemblyClose.png",
+    "Previews/PlazaFountain_Blender.png",
+    "Pipeline/PlazaFountain/glb-export-report.json",
+    "Pipeline/PlazaFountain/blender-optimization-report.json",
+    "UnityProject/Assets/PlazaFountain/PrefabValidationReport.json",
+    "Pipeline/PlazaFountain/unity-batch.log"
+  ],
+  "limitations": [
+    "Vertical wall and upper-bowl seams remain separate embedded solids rather than destructive mortar cuts.",
+    "Water jets and impacts remain runtime or review effects excluded from structural GLB and FBX geometry.",
+    "Android device performance and final user art-direction approval remain pending."
+  ]
+}

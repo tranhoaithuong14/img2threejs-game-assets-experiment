@@ -1,0 +1,74 @@
+{
+  "assetId": "plaza-fountain",
+  "version": 2,
+  "request": "Improve the existing fountain to match the supplied detailed six-view target more closely.",
+  "route": "explicit img2threejs and Blender procedural refinement of the accepted source",
+  "target": {
+    "path": "Assets/References/PlazaFountain_Target6View_v2.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "17ca3ac240dfe4b052cbd622fe52e018213b668cab06522193e267690b43ee6f"
+  },
+  "providerGenerationUsed": false,
+  "creditsConsumed": 0,
+  "cost": 0,
+  "status": "pass",
+  "requiredCorrections": [
+    "alternate panels and fish spouts across the eight pedestal faces",
+    "add limestone frames around four teal inset panels",
+    "replace blob-like fish ornaments with multi-part sculpted heads",
+    "add masonry joints and layered bevels to the octagonal plinth and basin",
+    "refine the upper bowl, copper collars, and fluted acorn finial",
+    "retain the five-material and mobile LOD budgets"
+  ],
+  "results": {
+    "sourceExport": {
+      "meshes": 119,
+      "triangles": 23136,
+      "materials": 5
+    },
+    "blender": {
+      "lod0Triangles": 23528,
+      "lod1Triangles": 11292,
+      "lod2Triangles": 3764,
+      "materials": 5,
+      "lod0EstimatedDrawCalls": 8,
+      "degenerateFaces": 0,
+      "looseVertices": 0
+    },
+    "unity": {
+      "version": "6000.5.4f1",
+      "lod0Triangles": 23528,
+      "lod1Triangles": 11292,
+      "lod2Triangles": 3692,
+      "colliders": 3,
+      "missingScripts": 0,
+      "rigConfigured": true,
+      "lodGroupConfigured": true
+    }
+  },
+  "artifacts": [
+    "Previews/PlazaFountain_v2_ThreeQuarter.png",
+    "Previews/PlazaFountain_v2_Front.png",
+    "Previews/PlazaFountain_v2_Top.png",
+    "Previews/PlazaFountain_Blender.png",
+    "Pipeline/PlazaFountain/comparison-refinement-v2-blender.png",
+    "Assets/PlazaFountain.source.glb",
+    "Assets/PlazaFountain.optimized.glb",
+    "Blender/PlazaFountain.optimized.blend",
+    "UnityProject/Assets/PlazaFountain/Prefabs/PlazaFountain.prefab"
+  ],
+  "validation": {
+    "browserVisualReview": "pass",
+    "glbReimport": "pass",
+    "blenderBudgets": "pass",
+    "unityBatch": "pass",
+    "eligibility": "candidate-development-only"
+  },
+  "limitations": [
+    "The fish ornaments use deterministic procedural primitives and remain more stylized than a hand-sculpted high-poly source.",
+    "Masonry joints are simplified geometry intended to read at the isometric gameplay camera.",
+    "Water jets are runtime effects and are intentionally excluded from structural GLB and FBX geometry.",
+    "Android device performance and final in-game art-direction approval remain pending."
+  ]
+}

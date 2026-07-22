@@ -1,0 +1,77 @@
+{
+  "assetId": "plaza-fountain",
+  "version": 6,
+  "timestamp": "2026-07-22T11:12:01Z",
+  "request": "Remove the remaining top-surface seam geometry that still appeared to sit on the stone.",
+  "route": "deterministic img2threejs component reconstruction followed by source GLB export, Blender MCP close-angle validation and optimization, optimized GLB re-import, and Unity prefab rebuild",
+  "providerGenerationUsed": false,
+  "creditsConsumed": 0,
+  "cost": 0,
+  "status": "superseded-by-v7",
+  "userDecision": "revision-requested because the copper finial flute capsules remained separate geometry floating above the top stone surface",
+  "rootCause": "V5 made the seam meshes conform to the torus, but they remained separate colored solids over the top faces. Surface conformity removed side overhang without making the seams genuine stone-block boundaries.",
+  "changes": [
+    "removed every overlaid seam mesh from the lower and upper rim top surfaces",
+    "rebuilt the lower rim as sixteen individually capped limestone torus segments",
+    "rebuilt the upper rim as eight individually capped limestone torus segments",
+    "created narrow physical gaps between adjacent stones so separation is part of the rim geometry",
+    "kept the tapered basin-wall and lathed upper-bowl vertical seams as nearly flush embedded closed solids",
+    "retained the existing five-material and eight-draw-call limits"
+  ],
+  "results": {
+    "sourceExport": {
+      "meshes": 164,
+      "vertices": 15957,
+      "triangles": 21448,
+      "materials": 5
+    },
+    "blender": {
+      "sourceImportedTriangles": 21952,
+      "lod0Triangles": 21832,
+      "lod1Triangles": 10478,
+      "lod2Triangles": 3492,
+      "materials": 5,
+      "lod0EstimatedDrawCalls": 8,
+      "nonManifoldEdges": 152,
+      "degenerateFaces": 0,
+      "looseVertices": 0
+    },
+    "unity": {
+      "version": "6000.5.4f1",
+      "lod0Triangles": 21832,
+      "lod1Triangles": 10478,
+      "lod2Triangles": 3396,
+      "materials": 5,
+      "estimatedLod0DrawCalls": 8,
+      "colliders": 3,
+      "missingScripts": 0,
+      "rigConfigured": true,
+      "lodGroupConfigured": true
+    }
+  },
+  "validation": {
+    "typescriptBuild": "pass",
+    "closeLowAngleVisualReview": "pass",
+    "threeQuarterBlenderReview": "pass",
+    "optimizedGlbReimport": "pass",
+    "physicalRimGapNodesPreserved": "pass",
+    "blenderBudgets": "pass",
+    "unityBatch": "pass",
+    "browserCapture": "not repeated because the local browser URL was blocked in the preceding correction pass; exact exported geometry was reviewed through Blender",
+    "eligibility": "candidate-development-only"
+  },
+  "evidence": [
+    "Previews/PlazaFountain_v6_SegmentedRimClose.png",
+    "Previews/PlazaFountain_Blender.png",
+    "Pipeline/PlazaFountain/comparison-refinement-v6-physical-rim-gaps.png",
+    "Pipeline/PlazaFountain/glb-export-report.json",
+    "Pipeline/PlazaFountain/blender-optimization-report.json",
+    "UnityProject/Assets/PlazaFountain/PrefabValidationReport.json",
+    "Pipeline/PlazaFountain/unity-batch.log"
+  ],
+  "limitations": [
+    "Vertical wall and upper-bowl seams remain separate embedded solids rather than destructive mortar cuts.",
+    "Water jets and impacts remain runtime/review effects excluded from structural GLB and FBX geometry.",
+    "Android device performance and final user art-direction approval remain pending."
+  ]
+}

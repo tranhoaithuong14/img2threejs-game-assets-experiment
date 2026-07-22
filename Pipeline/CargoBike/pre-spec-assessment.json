@@ -1,0 +1,121 @@
+{
+  "targetName": "Delivery Cargo Bike",
+  "sourceImage": "../../Assets/Concepts/DeliveryCargoBike_6View.png",
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "stylized electric delivery bicycle",
+      "primaryDomain": "object",
+      "formLanguage": ["hard-surface", "mechanical", "rounded low-poly", "toy-like bevels"],
+      "structureKind": ["compound object", "articulated assembly", "repeated radial modules", "layered shell"],
+      "motionPotential": ["whole-object transform", "steering articulation", "wheel rotation", "pedal rotation", "detachable cargo box"],
+      "materialFamilies": ["painted metal", "rubber", "matte polymer", "cream vinyl", "clear lens"],
+      "notes": "Six consistent views isolate the same riderless asset. Hidden geometry is limited to the underside and can be inferred symmetrically."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 2,
+        "componentCount": 3,
+        "hierarchyDepth": 2,
+        "repetitionDensity": 2,
+        "materialLayerCount": 2,
+        "localDetailDensity": 2,
+        "occlusionRisk": 1,
+        "actionReadinessNeed": 3
+      },
+      "estimatedCounts": {
+        "macroComponents": 4,
+        "mesoComponents": 12,
+        "microFeatureGroups": 18,
+        "materialLayers": 6,
+        "repetitionSystems": 3
+      },
+      "reasoning": [
+        "The step-through frame, steering assembly, two wheels, drivetrain, battery, saddle, mudguards, cargo shell and lights form a deep compound hierarchy.",
+        "Spokes, tread blocks and reflector accents are repeated systems.",
+        "Unity use requires stable wheel and steering pivots, colliders and named sockets."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": ["macro", "meso", "micro"],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "The asset must remain readable in isometric gameplay while supporting steering and wheel animation in Unity."
+    },
+    "unknownsToResolveBeforeImplementation": [],
+    "detailInventory": {
+      "scanMethod": "grid-3x3",
+      "targetMinDetails": 10,
+      "details": []
+    },
+    "anatomy": {"applies": false},
+    "sourceImage": "../../Assets/Concepts/DeliveryCargoBike_6View.png"
+  },
+  "qualityContract": {
+    "qualityBar": "complex stylized real-time game prop",
+    "definitionOfDone": [
+      "All six views read as the same compact cargo e-bike with the correct wheelbase, low step-through frame, tall cargo box and teal/cream/orange palette.",
+      "Front steering and both wheels have stable animation pivots; cargo and light sockets are named for Unity use.",
+      "The optimized GLB stays under 35k triangles, uses no more than six PBR materials and renders cleanly in Blender and Unity."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 3,
+      "mesoComponents": 8,
+      "microFeatureGroups": 10,
+      "materialLayers": 5,
+      "repetitionSystems": 2,
+      "reviewViewpoints": 6
+    },
+    "featureGroups": [
+      {
+        "id": "bike-silhouette",
+        "name": "Step-through frame and compact wheelbase",
+        "required": true,
+        "qualityCriteria": ["The curved teal frame stays low between the wheel centers and rises at the steering column and saddle mast."],
+        "evidenceRefs": ["left-view", "right-view"],
+        "failureModes": ["diamond-frame silhouette", "racing-bike proportions", "incorrect wheel spacing"]
+      },
+      {
+        "id": "cargo-system",
+        "name": "Rear cargo shell and rack",
+        "required": true,
+        "qualityCriteria": ["The beveled teal box is centered over the rear wheel and carries a cream parcel emblem, lid seam, latch and orange corner guards."],
+        "evidenceRefs": ["rear-view", "three-quarter-view"],
+        "failureModes": ["cargo box too small", "box floats above rack", "missing lid break"]
+      },
+      {
+        "id": "wheel-steering-system",
+        "name": "Wheels, fork and steering assembly",
+        "required": true,
+        "qualityCriteria": ["Both wheels share diameter and cream rims; the front fork, handlebar and light form one steerable hierarchy."],
+        "evidenceRefs": ["front-view", "left-view", "top-view"],
+        "failureModes": ["floating fork", "unequal wheels", "handlebar width mismatch"]
+      },
+      {
+        "id": "material-palette",
+        "name": "Teal cream black and orange material separation",
+        "required": true,
+        "qualityCriteria": ["Painted teal reads satin, rubber reads matte, cream parts read warm and orange accents stay small and saturated."],
+        "evidenceRefs": ["three-quarter-view"],
+        "failureModes": ["flat single-color material", "photoreal grunge", "missing orange accents"]
+      }
+    ],
+    "visualDeltaChecks": [
+      "wheel-center and wheel-diameter delta",
+      "step-through frame curve and negative-space delta",
+      "cargo-box width height depth and rack-contact delta",
+      "handlebar saddle battery and light placement delta",
+      "teal cream black orange palette and roughness delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not merge wheels, steering pivot or cargo box into the chassis.",
+      "Do not represent spokes or tire tread as prose only.",
+      "Do not continue when a wheel, fork, rack or handlebar has a visible attachment gap.",
+      "Do not exceed the real-time triangle and material budget after Blender optimization."
+    ]
+  },
+  "authoringInstruction": "Assessment completed from the generated six-view sheet; author the procedural hierarchy and keep the result stylized rather than claiming manufacturing accuracy."
+}

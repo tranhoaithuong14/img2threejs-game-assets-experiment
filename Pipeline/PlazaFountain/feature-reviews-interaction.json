@@ -1,0 +1,23 @@
+{
+  "passId": "interaction-pass",
+  "referenceImage": "Assets/Concepts/PlazaFountain_6View.png",
+  "renderImage": "Previews/img2threejs-fountain-interaction-pass.png",
+  "comparisonImage": "Pipeline/PlazaFountain/comparison-interaction-pass.png",
+  "featureReviews": [
+    {
+      "id": "spout-panel-system",
+      "score": 0.83,
+      "threshold": 0.70,
+      "visible": true,
+      "notes": "The top view verifies four evenly spaced fish-spout modules and four matching tower faces at exact 90-degree intervals. Their effect sockets point radially into the lower basin."
+    },
+    {
+      "id": "gameplay-readability",
+      "score": 0.81,
+      "threshold": 0.70,
+      "visible": true,
+      "notes": "The concentric tier silhouette, four-way interaction layout, bright limestone rim, and teal water remain legible from the high isometric gameplay angle."
+    }
+  ],
+  "verdict": "pass"
+}

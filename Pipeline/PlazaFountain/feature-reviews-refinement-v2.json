@@ -1,0 +1,48 @@
+{
+  "assetId": "plaza-fountain",
+  "version": 2,
+  "reference": "Assets/References/PlazaFountain_Target6View_v2.png",
+  "render": "Previews/PlazaFountain_Blender.png",
+  "comparison": "Pipeline/PlazaFountain/comparison-refinement-v2-blender.png",
+  "cameraView": "three-quarter",
+  "threshold": 0.7,
+  "overallScore": 0.85,
+  "decision": "pass",
+  "reviews": [
+    {
+      "feature": "tiered silhouette and proportions",
+      "score": 0.83,
+      "visible": true,
+      "notes": "The broad octagonal plinth, circular lower basin, tapered pedestal, separated upper bowl, and compact finial reproduce the target hierarchy at gameplay scale."
+    },
+    {
+      "feature": "alternating pedestal faces",
+      "score": 0.93,
+      "visible": true,
+      "notes": "Four framed teal panels alternate with four cardinal fish-spout faces instead of overlapping on the same faces."
+    },
+    {
+      "feature": "fish-spout anatomy",
+      "score": 0.84,
+      "visible": true,
+      "notes": "Each spout now has a neck, cranium, muzzle, jaw, open outlet, paired eyes, brows, fins, crest, nostrils, and a named effect socket."
+    },
+    {
+      "feature": "stone construction detail",
+      "score": 0.82,
+      "visible": true,
+      "notes": "Layered bevels, faceted stone masses, trim frames, rim segmentation, and masonry joint markers add the construction detail missing from v1."
+    },
+    {
+      "feature": "water and material separation",
+      "score": 0.86,
+      "visible": true,
+      "notes": "Both teal water surfaces are visible and remain distinct from limestone, glazed ceramic, dark recess, and aged copper material zones."
+    }
+  ],
+  "limitations": [
+    "The deterministic fish geometry is more stylized than a hand-sculpted high-poly ornament.",
+    "Masonry joints are intentionally simplified for the target mobile isometric camera.",
+    "Review water arcs are runtime intent visualization and are not structural export geometry."
+  ]
+}

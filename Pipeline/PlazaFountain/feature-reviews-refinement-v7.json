@@ -1,0 +1,37 @@
+{
+  "assetId": "plaza-fountain",
+  "version": 7,
+  "reference": "Assets/References/PlazaFountain_Target6View_v2.png",
+  "render": "Previews/PlazaFountain_v7_UpperAssemblyClose.png",
+  "cameraView": "finial-close-three-quarter",
+  "threshold": 0.7,
+  "overallScore": 0.98,
+  "decision": "revision-requested",
+  "userFeedback": "The finial flute overlays were gone, but the rear half of the open copper torus remained visible and made the top appear transparent.",
+  "reviews": [
+    {
+      "feature": "floating finial overlays",
+      "score": 1.0,
+      "visible": true,
+      "notes": "All eight reddish copper FinialFlute capsule objects have been removed; the export contains zero nodes with that name."
+    },
+    {
+      "feature": "integrated finial channels",
+      "score": 0.98,
+      "visible": true,
+      "notes": "Eight shallow radial channels are sculpted into the closed limestone finial vertex surface instead of being placed above it."
+    },
+    {
+      "feature": "finial material continuity",
+      "score": 0.99,
+      "visible": true,
+      "notes": "The finial remains one continuous limestone piece; copper is restricted to the intentional collar below it."
+    },
+    {
+      "feature": "mobile production budget",
+      "score": 0.97,
+      "visible": true,
+      "notes": "The corrected asset remains at five materials, eight LOD0 draw calls, three colliders, and strictly decreasing LOD counts with zero degenerate faces or loose vertices."
+    }
+  ]
+}

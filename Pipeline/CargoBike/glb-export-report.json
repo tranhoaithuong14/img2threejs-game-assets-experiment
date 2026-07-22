@@ -1,0 +1,22 @@
+{
+  "source": "ThreeJS/src/createDeliveryCargoBikeModel.ts",
+  "output": "/Users/cristian/Documents/Game assets/Assets/DeliveryCargoBike.source.glb",
+  "bytes": 2330836,
+  "meshes": 123,
+  "vertices": 66692,
+  "triangles": 29108,
+  "materials": [
+    "M_Brushed_Metal",
+    "M_Charcoal",
+    "M_Headlight_Lens",
+    "M_Safety_Orange",
+    "M_Tail_Lens",
+    "M_Teal_Dark",
+    "M_Teal_Satin",
+    "M_Tire_Rubber",
+    "M_Warm_Cream"
+  ],
+  "forward": "+Z",
+  "up": "+Y",
+  "unit": "meter"
+}

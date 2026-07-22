@@ -1,0 +1,8 @@
+[
+  {
+    "id": "stone-water-materials",
+    "score": 0.73,
+    "visible": true,
+    "notes": "Limestone, teal ceramic, dark panels, water, and copper have distinct PBR values, but the lower copper band is exposed only as disconnected scallops because its torus intersects the octagonal pedestal."
+  }
+]

@@ -1,0 +1,64 @@
+{
+  "asset": "PlazaFountain",
+  "blenderVersion": "5.2.0 LTS",
+  "source": "Assets/PlazaFountain.source.glb",
+  "optimizedBlend": "Blender/PlazaFountain.optimized.blend",
+  "exports": {
+    "lod0": "Assets/PlazaFountain.optimized.glb",
+    "lod1": "Assets/PlazaFountain.LOD1.glb",
+    "lod2": "Assets/PlazaFountain.LOD2.glb",
+    "unityFbx": "UnityProject/Assets/PlazaFountain/Models/PlazaFountain.fbx"
+  },
+  "metrics": {
+    "sourceImportedTriangles": 21600,
+    "lod0Triangles": 21600,
+    "lod1Triangles": 10368,
+    "lod2Triangles": 3455,
+    "lod0MeshObjects": 2,
+    "lod1MeshObjects": 1,
+    "lod2MeshObjects": 1,
+    "materials": 5,
+    "materialNames": [
+      "M_Aged_Copper",
+      "M_Dark_Teal_Recess",
+      "M_Limestone",
+      "M_Teal_Ceramic",
+      "M_Water"
+    ],
+    "lod0EstimatedDrawCalls": 8,
+    "targetTriangles": {
+      "lod0": 25000,
+      "lod1": 12000,
+      "lod2": 4000
+    },
+    "targetDrawCalls": 8,
+    "targetFps": 60
+  },
+  "geometryHealth": {
+    "nonManifoldEdges": 192,
+    "degenerateFaces": 0,
+    "looseVertices": 0,
+    "allowedOpenSurfaceNote": "Water disks and thin panel/ornament surfaces intentionally contribute open boundary edges; vertical masonry seams are closed embedded solids, top-rim separation uses capped stone segments with physical gaps, the closed finial has outward winding for correct front-face depth occlusion of its torus collar, and no degenerate faces or loose vertices are accepted."
+  },
+  "operations": [
+    "preserved LOD0 semantic hierarchy, pivots, and effect sockets",
+    "consolidated LOD0 visuals into static and upper-assembly renderers for eight material draw calls",
+    "reconstructed independent limestone roughness and micro-normal response",
+    "reconstructed water ripple-normal response",
+    "retained eight shallow finial channels as recessed surface geometry with no attached flute meshes",
+    "retained the real finial torus while correcting the stone mesh winding for natural near-arc visibility and far-arc occlusion during orbit",
+    "reconstructed all four fish heads from a shared tapered cranium with short mouth cavity, lower jaw, brows, eyes, gill plates, fins, and exact mouth sockets",
+    "created joined and decimated LOD1/LOD2 meshes",
+    "kept four pale runtime water jets with double impact ripples as review-only effects, excluded from exports",
+    "exported optimized GLB tiers and Unity FBX"
+  ],
+  "validation": {
+    "strictlyDecreasingLods": true,
+    "withinTriangleBudgets": true,
+    "materialBudgetPass": true,
+    "drawCallBudgetPass": true,
+    "degenerateFacesPass": true,
+    "looseVerticesPass": true
+  },
+  "preview": "Previews/PlazaFountain_Blender.png"
+}

@@ -1,0 +1,5014 @@
+{
+  "targetName": "Delivery Cargo Bike",
+  "targetId": "delivery-cargo-bike",
+  "schemaVersion": "2.0",
+  "terminologyProfile": {
+    "domain": "real-time procedural Three.js asset",
+    "geometryTerms": [
+      "silhouette",
+      "topology",
+      "primitive",
+      "bevel",
+      "chamfer",
+      "taper",
+      "bend",
+      "boolean cut",
+      "edge loop",
+      "surface normal",
+      "displacement"
+    ],
+    "materialTerms": [
+      "albedo",
+      "baseColor",
+      "roughness",
+      "metalness",
+      "normal map",
+      "bump map",
+      "ambient occlusion",
+      "cavity dirt",
+      "edge wear",
+      "clearcoat"
+    ],
+    "lightingTerms": [
+      "key light",
+      "fill light",
+      "rim light",
+      "HDRI/environment reflection",
+      "contact shadow"
+    ],
+    "descriptionRule": "Use measurable 3D graphics terms. Avoid vague words unless they are paired with concrete geometry/material/shader parameters."
+  },
+  "sourceImage": "../../Assets/Concepts/DeliveryCargoBike_6View.png",
+  "referenceCamera": {
+    "solved": false,
+    "fovDegrees": 40.0,
+    "aspect": 1.0,
+    "orientation": {
+      "yaw": 0.0,
+      "pitch": 0.0,
+      "roll": 0.0
+    },
+    "positionHint": [
+      0.0,
+      0.0,
+      3.0
+    ],
+    "note": "For likeness work, solve the reference camera (forge/stage1_intake/solve_camera_pose.py) so the review render aligns with the photo and the reference can be projected. Confirm by overlay review."
+  },
+  "suitability": "pass",
+  "scores": {
+    "object_isolation": 3,
+    "silhouette_readability": 3,
+    "depth_inference": 3,
+    "primitive_decomposition": 3,
+    "material_procedurality": 3,
+    "occlusion_risk": 1,
+    "interaction_fit": 3
+  },
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "stylized electric delivery bicycle",
+      "primaryDomain": "object",
+      "formLanguage": [
+        "hard-surface",
+        "mechanical",
+        "rounded low-poly",
+        "toy-like bevels"
+      ],
+      "structureKind": [
+        "compound object",
+        "articulated assembly",
+        "repeated radial modules",
+        "layered shell"
+      ],
+      "motionPotential": [
+        "whole-object transform",
+        "steering articulation",
+        "wheel rotation",
+        "pedal rotation",
+        "detachable cargo box"
+      ],
+      "materialFamilies": [
+        "painted metal",
+        "rubber",
+        "matte polymer",
+        "cream vinyl",
+        "clear lens"
+      ],
+      "notes": "Six consistent views isolate the same riderless asset. Hidden geometry is limited to the underside and can be inferred symmetrically."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 2,
+        "componentCount": 3,
+        "hierarchyDepth": 2,
+        "repetitionDensity": 2,
+        "materialLayerCount": 2,
+        "localDetailDensity": 2,
+        "occlusionRisk": 1,
+        "actionReadinessNeed": 3
+      },
+      "estimatedCounts": {
+        "macroComponents": 4,
+        "mesoComponents": 12,
+        "microFeatureGroups": 18,
+        "materialLayers": 6,
+        "repetitionSystems": 3
+      },
+      "reasoning": [
+        "The step-through frame, steering assembly, two wheels, drivetrain, battery, saddle, mudguards, cargo shell and lights form a deep compound hierarchy.",
+        "Spokes, tread blocks and reflector accents are repeated systems.",
+        "Unity use requires stable wheel and steering pivots, colliders and named sockets."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "The asset must remain readable in isometric gameplay while supporting steering and wheel animation in Unity."
+    },
+    "unknownsToResolveBeforeImplementation": [],
+    "detailInventory": {
+      "scanMethod": "grid-3x3",
+      "targetMinDetails": 10,
+      "details": [
+        {
+          "id": "d01-frame-bevel",
+          "kind": "bevel",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "frame-sweep-bevel"
+          },
+          "evidenceRef": "left-view",
+          "confidence": 0.96
+        },
+        {
+          "id": "d02-tire-tread",
+          "kind": "ridge",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "tire-tread-ridge"
+          },
+          "evidenceRef": "left-view",
+          "confidence": 0.9
+        },
+        {
+          "id": "d03-rim-gloss",
+          "kind": "gloss",
+          "mapsTo": {
+            "type": "material.localOverrides",
+            "ref": "cream/rim-gloss-band"
+          },
+          "evidenceRef": "left-view",
+          "confidence": 0.94
+        },
+        {
+          "id": "d04-spoke-fasteners",
+          "kind": "fastener",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "radial-spoke-system"
+          },
+          "evidenceRef": "right-view",
+          "confidence": 0.91
+        },
+        {
+          "id": "d05-cargo-lid-seam",
+          "kind": "seam",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "cargo-lid-seam"
+          },
+          "evidenceRef": "rear-view",
+          "confidence": 0.98
+        },
+        {
+          "id": "d06-corner-guards",
+          "kind": "decal",
+          "mapsTo": {
+            "type": "material.localOverrides",
+            "ref": "orange/cargo-corner-guards"
+          },
+          "evidenceRef": "rear-view",
+          "confidence": 0.98
+        },
+        {
+          "id": "d07-parcel-emblem",
+          "kind": "decal",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "parcel-emblem-relief"
+          },
+          "evidenceRef": "three-quarter-view",
+          "confidence": 0.97
+        },
+        {
+          "id": "d08-headlight-ring",
+          "kind": "gloss",
+          "mapsTo": {
+            "type": "material.localOverrides",
+            "ref": "lens/headlight-gloss"
+          },
+          "evidenceRef": "front-view",
+          "confidence": 0.97
+        },
+        {
+          "id": "d09-chain-guard-groove",
+          "kind": "groove",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "chain-guard-inset"
+          },
+          "evidenceRef": "left-view",
+          "confidence": 0.93
+        },
+        {
+          "id": "d10-battery-bevel",
+          "kind": "bevel",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "battery-corner-bevel"
+          },
+          "evidenceRef": "left-view",
+          "confidence": 0.92
+        },
+        {
+          "id": "d11-reflector-accents",
+          "kind": "emissive",
+          "mapsTo": {
+            "type": "material.localOverrides",
+            "ref": "orange/reflector-emissive"
+          },
+          "evidenceRef": "right-view",
+          "confidence": 0.88
+        },
+        {
+          "id": "d12-mudguard-ridge",
+          "kind": "ridge",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "mudguard-arch-ridge"
+          },
+          "evidenceRef": "right-view",
+          "confidence": 0.92
+        }
+      ]
+    },
+    "anatomy": {
+      "applies": false
+    },
+    "sourceImage": "../../Assets/Concepts/DeliveryCargoBike_6View.png"
+  },
+  "qualityContract": {
+    "qualityBar": "complex stylized real-time game prop",
+    "definitionOfDone": [
+      "All six views read as the same compact cargo e-bike with the correct wheelbase, low step-through frame, tall cargo box and teal/cream/orange palette.",
+      "Front steering and both wheels have stable animation pivots; cargo and light sockets are named for Unity use.",
+      "The optimized GLB stays under 35k triangles, uses no more than six PBR materials and renders cleanly in Blender and Unity."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 3,
+      "mesoComponents": 8,
+      "microFeatureGroups": 10,
+      "materialLayers": 5,
+      "repetitionSystems": 2,
+      "reviewViewpoints": 6
+    },
+    "featureGroups": [
+      {
+        "id": "bike-silhouette",
+        "name": "Step-through frame and compact wheelbase",
+        "required": true,
+        "qualityCriteria": [
+          "The curved teal frame stays low between the wheel centers and rises at the steering column and saddle mast."
+        ],
+        "evidenceRefs": [
+          "left-view",
+          "right-view"
+        ],
+        "failureModes": [
+          "diamond-frame silhouette",
+          "racing-bike proportions",
+          "incorrect wheel spacing"
+        ]
+      },
+      {
+        "id": "cargo-system",
+        "name": "Rear cargo shell and rack",
+        "required": true,
+        "qualityCriteria": [
+          "The beveled teal box is centered over the rear wheel and carries a cream parcel emblem, lid seam, latch and orange corner guards."
+        ],
+        "evidenceRefs": [
+          "rear-view",
+          "three-quarter-view"
+        ],
+        "failureModes": [
+          "cargo box too small",
+          "box floats above rack",
+          "missing lid break"
+        ]
+      },
+      {
+        "id": "wheel-steering-system",
+        "name": "Wheels, fork and steering assembly",
+        "required": true,
+        "qualityCriteria": [
+          "Both wheels share diameter and cream rims; the front fork, handlebar and light form one steerable hierarchy."
+        ],
+        "evidenceRefs": [
+          "front-view",
+          "left-view",
+          "top-view"
+        ],
+        "failureModes": [
+          "floating fork",
+          "unequal wheels",
+          "handlebar width mismatch"
+        ]
+      },
+      {
+        "id": "material-palette",
+        "name": "Teal cream black and orange material separation",
+        "required": true,
+        "qualityCriteria": [
+          "Painted teal reads satin, rubber reads matte, cream parts read warm and orange accents stay small and saturated."
+        ],
+        "evidenceRefs": [
+          "three-quarter-view"
+        ],
+        "failureModes": [
+          "flat single-color material",
+          "photoreal grunge",
+          "missing orange accents"
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "wheel-center and wheel-diameter delta",
+      "step-through frame curve and negative-space delta",
+      "cargo-box width height depth and rack-contact delta",
+      "handlebar saddle battery and light placement delta",
+      "teal cream black orange palette and roughness delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not merge wheels, steering pivot or cargo box into the chassis.",
+      "Do not represent spokes or tire tread as prose only.",
+      "Do not continue when a wheel, fork, rack or handlebar has a visible attachment gap.",
+      "Do not exceed the real-time triangle and material budget after Blender optimization."
+    ]
+  },
+  "qualityTargets": {
+    "targetFidelity": 0.82,
+    "mustMatch": [
+      "macro silhouette and proportions",
+      "primary material albedo/roughness response",
+      "stylized teal, cream, black and orange PBR separation",
+      "most recognizable local features"
+    ],
+    "niceToHave": [
+      "subtle contact wear on pedals and tires",
+      "LOD1 spoke simplification"
+    ],
+    "fpsTarget": 60,
+    "reviewViewpoints": [
+      "front",
+      "rear",
+      "left",
+      "right",
+      "top",
+      "three-quarter"
+    ]
+  },
+  "selfCorrectLoop": {
+    "enabled": true,
+    "visualAcceptance": {
+      "reviewer": "ai-vision",
+      "threshold": 0.7,
+      "comparisonArtifactRequired": true,
+      "layerScoresRequired": true,
+      "codePixelDiffIsAcceptanceAuthority": false,
+      "scoringRule": "AI vision must inspect a side-by-side reference/render sheet and score the current pass from 0 to 1. Pixel-diff code may assist diagnostics but cannot approve a pass.",
+      "requiredLayerScores": [
+        "silhouetteProportion",
+        "componentStructure",
+        "formDetail",
+        "materialSurface",
+        "lightingCamera"
+      ],
+      "featureReviewPolicy": {
+        "enabled": true,
+        "reviewUnit": "semantic-subsystem",
+        "maxCriticalFeaturesPerPass": 5,
+        "maxImportantFeaturesPerPass": 3,
+        "criticalDefaultThreshold": 0.8,
+        "importantAverageThreshold": 0.65,
+        "adaptiveEscalation": true,
+        "singleImagePairOnly": true,
+        "selectionRule": "Choose only the most visually salient, identity-defining, user-prioritized, or high-risk semantic systems. Group repeated parts instead of reviewing every mesh. AI vision scores every selected feature from the same full reference/render pair."
+      }
+    },
+    "reviewAfterPasses": [
+      "blockout",
+      "structural-pass",
+      "form-refinement",
+      "material-pass",
+      "surface-pass",
+      "lighting-pass",
+      "interaction-pass",
+      "optimization-pass"
+    ],
+    "allowedActions": [
+      "continue",
+      "refine-spec",
+      "refine-code",
+      "request-input",
+      "stop"
+    ],
+    "specRefineTriggers": [
+      "missing component",
+      "wrong primitive family",
+      "wrong proportions",
+      "material layer under-specified",
+      "local feature not traceable to viewEvidence",
+      "reference ambiguity discovered during implementation"
+    ],
+    "codeRefineTriggers": [
+      "spec is adequate but generated geometry/material does not match",
+      "browser render differs from reference",
+      "performance budget exceeded",
+      "lighting hides geometry or material response"
+    ],
+    "stopCriteria": [
+      "target fidelity reached or user accepts current approximation",
+      "remaining gaps require new reference images or manual art"
+    ],
+    "screenshotPolicy": {
+      "requiredForPasses": [
+        "blockout",
+        "structural-pass",
+        "form-refinement",
+        "material-pass",
+        "surface-pass",
+        "lighting-pass",
+        "interaction-pass"
+      ],
+      "preferredCapture": "in-app-browser-screenshot",
+      "fallbackCapture": "user-supplied-screenshot-path",
+      "minimumEvidence": "Each visual pass needs a reference image, rendered screenshot, side-by-side comparison sheet, AI vision score, layer scores, and critique before choosing continue.",
+      "reviewPairRule": "Compare the same camera/viewpoint whenever possible; do not judge a front reference against a random render angle.",
+      "acceptanceAuthority": "AI vision review of the comparison sheet. Code-generated pixel similarity is not sufficient evidence."
+    }
+  },
+  "featureReviewTargets": [
+    {
+      "id": "cargo-bike-silhouette",
+      "name": "Compact wheelbase and low step-through silhouette",
+      "tier": "critical",
+      "passIds": [
+        "blockout",
+        "form-refinement"
+      ],
+      "minimumScore": 0.8,
+      "mustPass": true,
+      "componentRefs": [
+        "chassis",
+        "front-wheel",
+        "rear-wheel"
+      ],
+      "evidenceRefs": [
+        "left-view",
+        "right-view"
+      ]
+    },
+    {
+      "id": "steering-and-wheel-system",
+      "name": "Equal wheels, fork and wide handlebar hierarchy",
+      "tier": "critical",
+      "passIds": [
+        "structural-pass",
+        "interaction-pass"
+      ],
+      "minimumScore": 0.8,
+      "mustPass": true,
+      "componentRefs": [
+        "front-wheel",
+        "rear-wheel",
+        "front-fork",
+        "handlebar"
+      ],
+      "evidenceRefs": [
+        "front-view",
+        "top-view"
+      ]
+    },
+    {
+      "id": "rear-cargo-system",
+      "name": "Beveled cargo shell, lid, rack and parcel emblem",
+      "tier": "critical",
+      "passIds": [
+        "structural-pass",
+        "material-pass",
+        "surface-pass"
+      ],
+      "minimumScore": 0.8,
+      "mustPass": true,
+      "componentRefs": [
+        "cargo-system",
+        "cargo-box",
+        "cargo-lid"
+      ],
+      "evidenceRefs": [
+        "rear-view",
+        "three-quarter-view"
+      ]
+    },
+    {
+      "id": "teal-cream-orange-materials",
+      "name": "Satin teal, warm cream and small orange accents",
+      "tier": "critical",
+      "passIds": [
+        "material-pass",
+        "surface-pass",
+        "lighting-pass"
+      ],
+      "minimumScore": 0.76,
+      "mustPass": true,
+      "componentRefs": [
+        "frame-sweep",
+        "cargo-box",
+        "front-light"
+      ],
+      "evidenceRefs": [
+        "three-quarter-view"
+      ]
+    },
+    {
+      "id": "drivetrain-battery-read",
+      "name": "Battery and chain-guard assembly",
+      "tier": "important",
+      "passIds": [
+        "form-refinement",
+        "material-pass"
+      ],
+      "minimumScore": 0.68,
+      "mustPass": false,
+      "componentRefs": [
+        "battery",
+        "drivetrain"
+      ],
+      "evidenceRefs": [
+        "left-view",
+        "right-view"
+      ]
+    }
+  ],
+  "sculptPipeline": {
+    "passGateMode": "locked-sequential",
+    "passOrder": [
+      "blockout",
+      "structural-pass",
+      "form-refinement",
+      "material-pass",
+      "surface-pass",
+      "lighting-pass",
+      "interaction-pass",
+      "optimization-pass"
+    ],
+    "currentPass": "complete",
+    "completedPasses": [
+      "blockout",
+      "structural-pass",
+      "form-refinement",
+      "material-pass",
+      "surface-pass",
+      "lighting-pass",
+      "interaction-pass",
+      "optimization-pass"
+    ],
+    "lastCompletedPass": "optimization-pass",
+    "blockedReason": "all build passes completed",
+    "nextRequiredEvidence": []
+  },
+  "lookDevTargets": {
+    "qualityPriority": "balanced",
+    "materialPass": {
+      "albedoPaletteRequired": true,
+      "roughnessVariationRequired": true,
+      "normalOrBumpRequired": true,
+      "localOverridesRequired": true,
+      "minimumTextureResolution": 1024,
+      "preferredTextureResolution": 2048,
+      "independentMapChannels": [
+        "albedo",
+        "roughness",
+        "height",
+        "normal",
+        "ambient-occlusion"
+      ],
+      "requiredSurfaceFrequencyBands": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "geometryReliefRequiredWhenSilhouetteAffected": true,
+      "referencePbrExtraction": {
+        "requiredWhenSourceImagePresent": false,
+        "targetThreshold": 0.7,
+        "stopOnLowConfidence": true,
+        "script": "forge/stage1_intake/extract_pbr_evidence.py",
+        "acceptedLimitation": "single-image extraction is reference-derived inference, not exact photogrammetry"
+      },
+      "mustAvoid": [
+        "single flat albedo per material",
+        "uniform roughness",
+        "albedo texture reused as roughness/height/normal/AO",
+        "single-frequency random noise",
+        "plastic-looking smooth bark, stone, cloth, foliage, or aged material",
+        "local color/detail described only in prose without material masks",
+        "claiming exact PBR recovery when confidence is below the target threshold"
+      ]
+    },
+    "lightingPass": {
+      "requiredTerms": [
+        "key light",
+        "fill light",
+        "rim or environment light",
+        "exposure",
+        "tone mapping",
+        "background",
+        "contact shadow"
+      ],
+      "mustAvoid": [
+        "ambient-only lighting",
+        "flat value range",
+        "missing contact shadow",
+        "reference lighting copied without separating material readability"
+      ]
+    },
+    "screenshotReview": [
+      "Compare albedo palette and local color zones.",
+      "Compare roughness/normal/bump response under light.",
+      "Compare cavity dirt, edge wear, stains, moss, scratches, or other local masks.",
+      "Compare key/fill/rim structure, exposure, tone mapping, background, and contact shadows.",
+      "Capture a neutral-light render to verify material readability without reference lighting.",
+      "Capture a grazing-light close-up to expose flat normals, uniform roughness, tiling, and plastic highlights.",
+      "Capture a reference-matched render from the same camera framing as the source."
+    ]
+  },
+  "actionReadiness": {
+    "contract": "Every macro/meso component should be generated as a stable named Object3D pivot node with a mesh child, action metadata, optional sockets, collider proxy, and destruction metadata.",
+    "defaultRigType": "action-ready-static-rig",
+    "rootMotionNode": "root",
+    "requiredComponentFields": [
+      "id",
+      "parent",
+      "transform",
+      "attachment for child appendages, connectors, limbs, tubes, handles, legs, horns, wings, branches, or cables",
+      "actionProfile.animationRole",
+      "actionProfile.pivot",
+      "actionProfile.collider",
+      "actionProfile.destruction"
+    ],
+    "transformChannels": [
+      "translate",
+      "rotate",
+      "scale",
+      "bend",
+      "twist",
+      "detach",
+      "visibility",
+      "material-state"
+    ],
+    "authoringRules": [
+      "Do not collapse independently movable parts into one mesh.",
+      "Put transforms on component pivot groups, not only on raw meshes.",
+      "For attached child parts, put the pivot at the semantic root/socket and build visible geometry from localStart to localEnd.",
+      "Represent hinge, socket, detachable, and breakable intent even when no animation is implemented yet.",
+      "Use simplified collider proxies for runtime physics instead of visual mesh colliders by default."
+    ],
+    "destructionPolicy": {
+      "defaultBreakable": false,
+      "fractureGroupNaming": "Use stable semantic names such as body-shell, left-hinge, glass-panel, branch-segment.",
+      "debrisStrategy": "Prefer detachable component groups and a small number of procedural fragments over random mesh explosion."
+    }
+  },
+  "assumptions": [],
+  "coordinateFrame": {
+    "front": "+Z points from rear wheel toward front wheel",
+    "up": "+Y",
+    "right": "+X",
+    "origin": "ground projection midway between wheel centers",
+    "scaleReference": "meters; overall length 2.05, handlebar height 1.18"
+  },
+  "silhouette": {
+    "boundingShape": "2.05 m long by 0.68 m wide by 1.35 m high including cargo box",
+    "aspectRatios": [
+      "wheel diameter / length = 0.34",
+      "cargo width / handlebar width = 0.82",
+      "cargo height / wheel diameter = 0.66"
+    ],
+    "symmetry": "bilateral across X=0 except drivetrain and kickstand",
+    "dominantCurves": [
+      "low U-shaped step-through frame",
+      "two equal circular tires",
+      "front and rear mudguard arcs"
+    ],
+    "negativeSpaces": [
+      "open step-through area",
+      "triangular rack opening above rear wheel",
+      "spoke gaps"
+    ],
+    "landmarks": [
+      "front wheel z=+0.92",
+      "rear wheel z=-0.92",
+      "wheel centers y=0.35",
+      "saddle y=1.04",
+      "cargo center z=-0.78 y=1.03"
+    ]
+  },
+  "viewEvidence": [
+    {
+      "id": "front-view",
+      "view": "front orthographic",
+      "imageRegion": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 0.5,
+        "height": 0.3333,
+        "units": "normalized"
+      },
+      "observations": [
+        "handlebar width",
+        "fork spacing",
+        "headlight rings",
+        "cargo width"
+      ],
+      "confidence": 0.96
+    },
+    {
+      "id": "rear-view",
+      "view": "rear orthographic",
+      "imageRegion": {
+        "x": 0.5,
+        "y": 0.0,
+        "width": 0.5,
+        "height": 0.3333,
+        "units": "normalized"
+      },
+      "observations": [
+        "cargo lid and latch",
+        "rear parcel emblem",
+        "tail light",
+        "kickstand"
+      ],
+      "confidence": 0.97
+    },
+    {
+      "id": "left-view",
+      "view": "left orthographic",
+      "imageRegion": {
+        "x": 0.0,
+        "y": 0.3333,
+        "width": 0.5,
+        "height": 0.3333,
+        "units": "normalized"
+      },
+      "observations": [
+        "step-through sweep",
+        "battery",
+        "wheelbase",
+        "rack and drivetrain"
+      ],
+      "confidence": 0.98
+    },
+    {
+      "id": "right-view",
+      "view": "right orthographic",
+      "imageRegion": {
+        "x": 0.5,
+        "y": 0.3333,
+        "width": 0.5,
+        "height": 0.3333,
+        "units": "normalized"
+      },
+      "observations": [
+        "chain guard",
+        "pedal",
+        "cargo side emblem",
+        "mudguards"
+      ],
+      "confidence": 0.98
+    },
+    {
+      "id": "top-view",
+      "view": "top orthographic",
+      "imageRegion": {
+        "x": 0.0,
+        "y": 0.6667,
+        "width": 0.5,
+        "height": 0.3333,
+        "units": "normalized"
+      },
+      "observations": [
+        "handlebar sweep",
+        "frame width",
+        "saddle and cargo alignment"
+      ],
+      "confidence": 0.94
+    },
+    {
+      "id": "three-quarter-view",
+      "view": "front-left three-quarter",
+      "imageRegion": {
+        "x": 0.5,
+        "y": 0.6667,
+        "width": 0.5,
+        "height": 0.3333,
+        "units": "normalized"
+      },
+      "observations": [
+        "depth proportions",
+        "bevel language",
+        "material response",
+        "assembly overlaps"
+      ],
+      "confidence": 0.97
+    }
+  ],
+  "componentTree": [
+    {
+      "id": "root",
+      "name": "Delivery Cargo Bike Root",
+      "level": "macro",
+      "role": "root",
+      "importance": 1.0,
+      "confidence": 0.99,
+      "primitive": "box",
+      "parent": null,
+      "dimensions": {
+        "width": 0.01,
+        "height": 0.01,
+        "depth": 0.01,
+        "units": "m",
+        "confidence": 1.0
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "geometryDescriptor": {
+        "topologyIntent": "hidden hierarchy root",
+        "edgeTreatment": {
+          "type": "none",
+          "bevelRadius": 0,
+          "segments": 1
+        },
+        "deformationStack": [],
+        "uvStrategy": "none",
+        "normalStrategy": "none"
+      },
+      "actionProfile": {
+        "animationRole": "root",
+        "pivot": {
+          "mode": "ground-center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 1.0
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "rider-seat",
+            "localPosition": [
+              0,
+              1.08,
+              -0.2
+            ]
+          },
+          {
+            "id": "cargo-mount",
+            "localPosition": [
+              0,
+              0.82,
+              -0.78
+            ]
+          }
+        ],
+        "collider": {
+          "type": "compound",
+          "offset": [
+            0,
+            0.62,
+            0
+          ],
+          "scale": [
+            0.68,
+            1.24,
+            2.05
+          ],
+          "isTrigger": false
+        }
+      },
+      "material": "black-polymer",
+      "materialLayers": [
+        "black-polymer"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "evidenceRefs": [
+        "left-view",
+        "three-quarter-view"
+      ],
+      "fidelityTier": "blockout"
+    },
+    {
+      "id": "chassis",
+      "name": "Chassis Mass",
+      "level": "macro",
+      "role": "chassis",
+      "importance": 1.0,
+      "confidence": 0.98,
+      "primitive": "box",
+      "parent": "root",
+      "dimensions": {
+        "width": 0.2,
+        "height": 0.42,
+        "depth": 1.58,
+        "units": "m",
+        "confidence": 0.9
+      },
+      "transform": {
+        "position": [
+          0,
+          0.57,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "geometryDescriptor": {
+        "topologyIntent": "rounded step-through bicycle chassis blockout",
+        "edgeTreatment": {
+          "type": "chamfer",
+          "bevelRadius": 0.04,
+          "segments": 3
+        },
+        "deformationStack": [
+          "U-shaped center clearance"
+        ],
+        "uvStrategy": "object-space",
+        "normalStrategy": "weighted vertex normals"
+      },
+      "actionProfile": {
+        "animationRole": "static-chassis",
+        "pivot": {
+          "mode": "ground-center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.98
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": false,
+          "scale": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "steering-head",
+            "localPosition": [
+              0,
+              0.75,
+              0.78
+            ]
+          },
+          {
+            "id": "saddle-post",
+            "localPosition": [
+              0,
+              0.7,
+              -0.32
+            ]
+          },
+          {
+            "id": "battery-mount",
+            "localPosition": [
+              0,
+              0.55,
+              -0.28
+            ]
+          },
+          {
+            "id": "crank-axis",
+            "localPosition": [
+              0,
+              0.38,
+              -0.18
+            ]
+          },
+          {
+            "id": "rack-root",
+            "localPosition": [
+              0,
+              0.74,
+              -0.78
+            ]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0.53,
+            0
+          ],
+          "scale": [
+            0.22,
+            0.46,
+            1.45
+          ],
+          "isTrigger": false
+        }
+      },
+      "material": "teal-paint",
+      "materialLayers": [
+        "teal-paint"
+      ],
+      "deformations": [
+        "step-through sweep"
+      ],
+      "joints": [
+        "steering-head"
+      ],
+      "seams": [],
+      "localFeatures": [],
+      "evidenceRefs": [
+        "left-view",
+        "right-view"
+      ],
+      "fidelityTier": "blockout"
+    },
+    {
+      "id": "wheel-system",
+      "name": "Twin Wheel Envelope",
+      "level": "macro",
+      "role": "wheel-assembly",
+      "importance": 1.0,
+      "confidence": 0.99,
+      "primitive": "box",
+      "parent": "root",
+      "dimensions": {
+        "width": 0.1,
+        "height": 0.7,
+        "depth": 2.0,
+        "units": "m",
+        "confidence": 0.95
+      },
+      "transform": {
+        "position": [
+          0,
+          0.35,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "geometryDescriptor": {
+        "topologyIntent": "two equal radial low-poly wheel assemblies",
+        "edgeTreatment": {
+          "type": "rounded",
+          "bevelRadius": 0.01,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "cylindrical",
+        "normalStrategy": "smooth radial normals"
+      },
+      "actionProfile": {
+        "animationRole": "wheel-parent",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": false,
+          "scale": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "front-hub",
+            "localPosition": [
+              0,
+              0,
+              0.92
+            ]
+          },
+          {
+            "id": "rear-hub",
+            "localPosition": [
+              0,
+              0,
+              -0.92
+            ]
+          }
+        ],
+        "collider": {
+          "type": "compound-cylinders",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            0.68,
+            0.68,
+            2.0
+          ],
+          "isTrigger": false
+        }
+      },
+      "material": "rubber",
+      "materialLayers": [
+        "rubber",
+        "cream",
+        "black-polymer"
+      ],
+      "deformations": [],
+      "joints": [
+        "front-hub",
+        "rear-hub"
+      ],
+      "seams": [],
+      "localFeatures": [],
+      "evidenceRefs": [
+        "left-view",
+        "front-view"
+      ],
+      "fidelityTier": "blockout"
+    },
+    {
+      "id": "cargo-system",
+      "name": "Rear Cargo Envelope",
+      "level": "macro",
+      "role": "cargo-shell",
+      "importance": 0.95,
+      "confidence": 0.98,
+      "primitive": "box",
+      "parent": "root",
+      "dimensions": {
+        "width": 0.58,
+        "height": 0.52,
+        "depth": 0.62,
+        "units": "m",
+        "confidence": 0.96
+      },
+      "transform": {
+        "position": [
+          0,
+          1.04,
+          -0.72
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "geometryDescriptor": {
+        "topologyIntent": "beveled detachable cargo shell blockout",
+        "edgeTreatment": {
+          "type": "bevel",
+          "bevelRadius": 0.045,
+          "segments": 3
+        },
+        "deformationStack": [],
+        "uvStrategy": "box projection",
+        "normalStrategy": "weighted vertex normals"
+      },
+      "actionProfile": {
+        "animationRole": "detachable-cargo",
+        "pivot": {
+          "mode": "base",
+          "localPosition": [
+            0,
+            -0.26,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.98
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": false,
+          "detach": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "cargo-lid-hinge",
+            "localPosition": [
+              0,
+              0.26,
+              -0.28
+            ]
+          },
+          {
+            "id": "rear-light-socket",
+            "localPosition": [
+              0,
+              -0.23,
+              -0.32
+            ]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            0.58,
+            0.52,
+            0.62
+          ],
+          "isTrigger": false
+        }
+      },
+      "material": "teal-paint",
+      "materialLayers": [
+        "teal-paint",
+        "cream",
+        "orange"
+      ],
+      "deformations": [],
+      "joints": [
+        "cargo-lid-hinge"
+      ],
+      "seams": [
+        "cargo-lid-seam"
+      ],
+      "localFeatures": [],
+      "evidenceRefs": [
+        "rear-view",
+        "three-quarter-view"
+      ],
+      "fidelityTier": "blockout"
+    },
+    {
+      "id": "frame-sweep",
+      "name": "Teal Step Through Frame Sweep",
+      "level": "meso",
+      "role": "tube",
+      "importance": 1.0,
+      "confidence": 0.98,
+      "primitive": "curve-sweep",
+      "parent": "chassis",
+      "attachment": {
+        "parentId": "chassis",
+        "parentSocket": "steering-head",
+        "localStart": [
+          0,
+          0.72,
+          0.78
+        ],
+        "localEnd": [
+          0,
+          0.42,
+          -0.42
+        ],
+        "baseRadius": 0.075,
+        "endRadius": 0.09,
+        "overlap": 0.05,
+        "contactType": "embedded",
+        "gapTolerance": 0.005,
+        "evidenceRefs": [
+          "left-view"
+        ]
+      },
+      "dimensions": {
+        "width": 0.16,
+        "height": 0.55,
+        "depth": 1.28,
+        "units": "m",
+        "confidence": 0.94
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "geometryDescriptor": {
+        "topologyIntent": "beveled tube along cubic curve with low U midpoint",
+        "edgeTreatment": {
+          "type": "rounded",
+          "bevelRadius": 0.035,
+          "segments": 4
+        },
+        "deformationStack": [
+          "cubic Bezier downward sweep",
+          "taper 0.9"
+        ],
+        "uvStrategy": "curve length cylindrical",
+        "normalStrategy": "smooth curve normals"
+      },
+      "actionProfile": {
+        "animationRole": "static-frame",
+        "pivot": {
+          "mode": "root",
+          "localPosition": [
+            0,
+            0.72,
+            0.78
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.98
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": false,
+          "scale": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "capsule-chain",
+          "offset": [
+            0,
+            0.5,
+            0.1
+          ],
+          "scale": [
+            0.18,
+            0.55,
+            1.25
+          ],
+          "isTrigger": false
+        }
+      },
+      "material": "teal-paint",
+      "materialLayers": [
+        "teal-paint"
+      ],
+      "deformations": [
+        "U sweep"
+      ],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "frame-sweep-bevel",
+          "type": "bevel",
+          "bevelRadius": 0.025,
+          "segments": 3,
+          "evidenceRef": "three-quarter-view"
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.34,
+        "microRoughness": 0.06,
+        "bumpAmplitude": 0.003,
+        "normalPattern": "fine powder-coat orange-peel normal at 64 cycles per meter",
+        "displacementPattern": "none; silhouette relief is modeled with bevel geometry",
+        "occlusionPattern": "localized AO at frame-to-mast and steering-head contacts",
+        "edgeWearPattern": "subtle lower-roughness highlight on exposed bevel crests",
+        "notes": "Keep the teal frame clean and stylized; no photoreal grime."
+      },
+      "evidenceRefs": [
+        "left-view",
+        "right-view",
+        "top-view"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "front-wheel",
+      "name": "Front Wheel",
+      "level": "meso",
+      "role": "wheel",
+      "importance": 1.0,
+      "confidence": 0.99,
+      "primitive": "torus",
+      "parent": "wheel-system",
+      "dimensions": {
+        "radius": 0.35,
+        "width": 0.085,
+        "height": 0.7,
+        "depth": 0.7,
+        "units": "m",
+        "confidence": 0.98
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0.92
+        ],
+        "rotation": [
+          0,
+          1.5708,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "geometryDescriptor": {
+        "topologyIntent": "radial tire rim hub spoke assembly",
+        "edgeTreatment": {
+          "type": "rounded",
+          "bevelRadius": 0.008,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "toroidal",
+        "normalStrategy": "smooth radial normals"
+      },
+      "actionProfile": {
+        "animationRole": "wheel-rotation",
+        "pivot": {
+          "mode": "hub-center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "front-axle",
+            "localPosition": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "collider": {
+          "type": "cylinder",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            0.7,
+            0.085,
+            0.7
+          ],
+          "isTrigger": false
+        }
+      },
+      "material": "rubber",
+      "materialLayers": [
+        "rubber",
+        "cream",
+        "black-polymer",
+        "orange"
+      ],
+      "deformations": [],
+      "joints": [
+        "front-axle"
+      ],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "tire-tread-ridge",
+          "type": "ridge",
+          "repeat": 24
+        },
+        {
+          "id": "radial-spoke-system",
+          "type": "fastener",
+          "repeat": 16
+        },
+        {
+          "id": "front-rim-cream",
+          "type": "ring"
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.78,
+        "microRoughness": 0.08,
+        "bumpAmplitude": 0.018,
+        "normalPattern": "24 directional tread ridges plus fine rubber grain",
+        "displacementPattern": "instanced tread blocks affect silhouette",
+        "occlusionPattern": "AO in tread valleys and at hub-spoke contacts",
+        "edgeWearPattern": "slight polish on tread crowns",
+        "notes": "Tread remains exaggerated for mobile isometric readability."
+      },
+      "evidenceRefs": [
+        "front-view",
+        "left-view"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "rear-wheel",
+      "name": "Rear Wheel",
+      "level": "meso",
+      "role": "wheel",
+      "importance": 1.0,
+      "confidence": 0.99,
+      "primitive": "torus",
+      "parent": "wheel-system",
+      "dimensions": {
+        "radius": 0.35,
+        "width": 0.085,
+        "height": 0.7,
+        "depth": 0.7,
+        "units": "m",
+        "confidence": 0.98
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          -0.92
+        ],
+        "rotation": [
+          0,
+          1.5708,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "geometryDescriptor": {
+        "topologyIntent": "radial tire rim hub spoke assembly",
+        "edgeTreatment": {
+          "type": "rounded",
+          "bevelRadius": 0.008,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "toroidal",
+        "normalStrategy": "smooth radial normals"
+      },
+      "actionProfile": {
+        "animationRole": "wheel-rotation",
+        "pivot": {
+          "mode": "hub-center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "confidence": 1.0
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "rear-axle",
+            "localPosition": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "collider": {
+          "type": "cylinder",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            0.7,
+            0.085,
+            0.7
+          ],
+          "isTrigger": false
+        }
+      },
+      "material": "rubber",
+      "materialLayers": [
+        "rubber",
+        "cream",
+        "black-polymer",
+        "orange"
+      ],
+      "deformations": [],
+      "joints": [
+        "rear-axle"
+      ],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "rear-tread-ridge",
+          "type": "ridge",
+          "repeat": 24
+        },
+        {
+          "id": "rear-radial-spokes",
+          "type": "fastener",
+          "repeat": 16
+        },
+        {
+          "id": "rear-rim-cream",
+          "type": "ring"
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.78,
+        "microRoughness": 0.08,
+        "bumpAmplitude": 0.018,
+        "normalPattern": "24 directional tread ridges plus fine rubber grain",
+        "displacementPattern": "instanced tread blocks affect silhouette",
+        "occlusionPattern": "AO in tread valleys and at hub-spoke contacts",
+        "edgeWearPattern": "slight polish on tread crowns",
+        "notes": "Match front tire response and scale exactly."
+      },
+      "evidenceRefs": [
+        "rear-view",
+        "right-view"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "front-fork",
+      "name": "Front Fork",
+      "level": "meso",
+      "role": "fork",
+      "importance": 0.92,
+      "confidence": 0.96,
+      "primitive": "cylinder",
+      "parent": "chassis",
+      "attachment": {
+        "parentId": "chassis",
+        "parentSocket": "steering-head",
+        "localStart": [
+          0,
+          0.75,
+          0.78
+        ],
+        "localEnd": [
+          0,
+          0.35,
+          0.92
+        ],
+        "baseRadius": 0.04,
+        "endRadius": 0.035,
+        "overlap": 0.04,
+        "contactType": "hinge",
+        "gapTolerance": 0.004,
+        "evidenceRefs": [
+          "front-view",
+          "left-view"
+        ]
+      },
+      "dimensions": {
+        "width": 0.28,
+        "height": 0.58,
+        "depth": 0.08,
+        "units": "m",
+        "confidence": 0.93
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "geometryDescriptor": {
+        "topologyIntent": "paired tapered fork tubes under steering pivot",
+        "edgeTreatment": {
+          "type": "rounded",
+          "bevelRadius": 0.008,
+          "segments": 2
+        },
+        "deformationStack": [
+          "slight rake"
+        ],
+        "uvStrategy": "cylindrical",
+        "normalStrategy": "smooth"
+      },
+      "actionProfile": {
+        "animationRole": "steering-pivot",
+        "pivot": {
+          "mode": "hinge",
+          "localPosition": [
+            0,
+            0.75,
+            0.78
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.98
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "handlebar-root",
+            "localPosition": [
+              0,
+              0.36,
+              0
+            ]
+          },
+          {
+            "id": "headlight-root",
+            "localPosition": [
+              0,
+              0.18,
+              0.08
+            ]
+          },
+          {
+            "id": "front-mudguard-root",
+            "localPosition": [
+              0,
+              -0.35,
+              0.12
+            ]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            -0.18,
+            0.06
+          ],
+          "scale": [
+            0.3,
+            0.58,
+            0.1
+          ],
+          "isTrigger": false
+        }
+      },
+      "material": "black-polymer",
+      "materialLayers": [
+        "black-polymer",
+        "metal"
+      ],
+      "deformations": [
+        "rake"
+      ],
+      "joints": [
+        "steering-head"
+      ],
+      "seams": [],
+      "localFeatures": [],
+      "evidenceRefs": [
+        "front-view",
+        "left-view"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "handlebar",
+      "name": "Wide Handlebar",
+      "level": "meso",
+      "role": "handle",
+      "importance": 0.86,
+      "confidence": 0.96,
+      "primitive": "curve-sweep",
+      "parent": "front-fork",
+      "attachment": {
+        "parentId": "front-fork",
+        "parentSocket": "handlebar-root",
+        "localStart": [
+          0,
+          0.36,
+          0
+        ],
+        "localEnd": [
+          0,
+          0.52,
+          0
+        ],
+        "baseRadius": 0.025,
+        "endRadius": 0.025,
+        "overlap": 0.025,
+        "contactType": "socket",
+        "gapTolerance": 0.003,
+        "evidenceRefs": [
+          "front-view",
+          "top-view"
+        ]
+      },
+      "dimensions": {
+        "width": 0.68,
+        "height": 0.12,
+        "depth": 0.12,
+        "units": "m",
+        "confidence": 0.95
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "geometryDescriptor": {
+        "topologyIntent": "swept bar with shallow rearward grip bends",
+        "edgeTreatment": {
+          "type": "rounded",
+          "bevelRadius": 0.004,
+          "segments": 2
+        },
+        "deformationStack": [
+          "symmetric grip sweep"
+        ],
+        "uvStrategy": "curve length",
+        "normalStrategy": "smooth"
+      },
+      "actionProfile": {
+        "animationRole": "steering-child",
+        "pivot": {
+          "mode": "socket",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.97
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": false,
+          "scale": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "left-grip",
+            "localPosition": [
+              -0.34,
+              0.1,
+              0
+            ]
+          },
+          {
+            "id": "right-grip",
+            "localPosition": [
+              0.34,
+              0.1,
+              0
+            ]
+          }
+        ],
+        "collider": {
+          "type": "capsule",
+          "offset": [
+            0,
+            0.08,
+            0
+          ],
+          "scale": [
+            0.68,
+            0.06,
+            0.08
+          ],
+          "isTrigger": false
+        }
+      },
+      "material": "black-polymer",
+      "materialLayers": [
+        "black-polymer",
+        "cream"
+      ],
+      "deformations": [
+        "grip sweep"
+      ],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "cream-grips",
+          "type": "material bands"
+        }
+      ],
+      "evidenceRefs": [
+        "front-view",
+        "top-view"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "saddle",
+      "name": "Cream Saddle",
+      "level": "meso",
+      "role": "seat",
+      "importance": 0.75,
+      "confidence": 0.96,
+      "primitive": "box",
+      "parent": "chassis",
+      "dimensions": {
+        "width": 0.32,
+        "height": 0.09,
+        "depth": 0.28,
+        "units": "m",
+        "confidence": 0.93
+      },
+      "transform": {
+        "position": [
+          0,
+          1.04,
+          -0.26
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "geometryDescriptor": {
+        "topologyIntent": "rounded low-poly seat wedge",
+        "edgeTreatment": {
+          "type": "bevel",
+          "bevelRadius": 0.045,
+          "segments": 3
+        },
+        "deformationStack": [
+          "front taper"
+        ],
+        "uvStrategy": "box projection",
+        "normalStrategy": "weighted"
+      },
+      "actionProfile": {
+        "animationRole": "static-seat",
+        "pivot": {
+          "mode": "base",
+          "localPosition": [
+            0,
+            -0.045,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.95
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": false,
+          "scale": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "rider-contact",
+            "localPosition": [
+              0,
+              0.05,
+              0
+            ]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            0.32,
+            0.09,
+            0.28
+          ],
+          "isTrigger": false
+        }
+      },
+      "material": "cream",
+      "materialLayers": [
+        "cream"
+      ],
+      "deformations": [
+        "front taper"
+      ],
+      "joints": [],
+      "seams": [
+        "seat-edge-seam"
+      ],
+      "localFeatures": [
+        {
+          "id": "seat-edge-bevel",
+          "type": "bevel"
+        }
+      ],
+      "evidenceRefs": [
+        "left-view",
+        "top-view"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "battery",
+      "name": "Battery Housing",
+      "level": "meso",
+      "role": "battery",
+      "importance": 0.8,
+      "confidence": 0.95,
+      "primitive": "box",
+      "parent": "chassis",
+      "dimensions": {
+        "width": 0.22,
+        "height": 0.47,
+        "depth": 0.24,
+        "units": "m",
+        "confidence": 0.94
+      },
+      "transform": {
+        "position": [
+          0,
+          0.6,
+          -0.27
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "geometryDescriptor": {
+        "topologyIntent": "tapered black polymer battery shell",
+        "edgeTreatment": {
+          "type": "bevel",
+          "bevelRadius": 0.035,
+          "segments": 3
+        },
+        "deformationStack": [
+          "top taper"
+        ],
+        "uvStrategy": "box projection",
+        "normalStrategy": "weighted"
+      },
+      "actionProfile": {
+        "animationRole": "detachable-battery",
+        "pivot": {
+          "mode": "base",
+          "localPosition": [
+            0,
+            -0.235,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.94
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": false,
+          "scale": false,
+          "detach": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "battery-charge",
+            "localPosition": [
+              0.11,
+              0.05,
+              0
+            ]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            0.22,
+            0.47,
+            0.24
+          ],
+          "isTrigger": false
+        }
+      },
+      "material": "black-polymer",
+      "materialLayers": [
+        "black-polymer"
+      ],
+      "deformations": [
+        "top taper"
+      ],
+      "joints": [],
+      "seams": [
+        "battery-panel-seam"
+      ],
+      "localFeatures": [
+        {
+          "id": "battery-corner-bevel",
+          "type": "bevel",
+          "bevelRadius": 0.035
+        }
+      ],
+      "evidenceRefs": [
+        "left-view",
+        "right-view"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "cargo-box",
+      "name": "Cargo Box Body",
+      "level": "meso",
+      "role": "cargo-box",
+      "importance": 0.95,
+      "confidence": 0.99,
+      "primitive": "box",
+      "parent": "cargo-system",
+      "dimensions": {
+        "width": 0.58,
+        "height": 0.44,
+        "depth": 0.62,
+        "units": "m",
+        "confidence": 0.98
+      },
+      "transform": {
+        "position": [
+          0,
+          -0.04,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "geometryDescriptor": {
+        "topologyIntent": "beveled box shell with shallow parcel emblem relief",
+        "edgeTreatment": {
+          "type": "bevel",
+          "bevelRadius": 0.045,
+          "segments": 3
+        },
+        "deformationStack": [],
+        "uvStrategy": "box projection",
+        "normalStrategy": "weighted"
+      },
+      "actionProfile": {
+        "animationRole": "cargo-body",
+        "pivot": {
+          "mode": "base",
+          "localPosition": [
+            0,
+            -0.22,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.99
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": false,
+          "scale": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "parcel-emblem-side",
+            "localPosition": [
+              -0.295,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "parcel-emblem-rear",
+            "localPosition": [
+              0,
+              0,
+              -0.315
+            ]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            0.58,
+            0.44,
+            0.62
+          ],
+          "isTrigger": false
+        }
+      },
+      "material": "teal-paint",
+      "materialLayers": [
+        "teal-paint",
+        "cream",
+        "orange"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [
+        "cargo-lid-seam"
+      ],
+      "localFeatures": [
+        {
+          "id": "parcel-emblem-relief",
+          "type": "decal relief",
+          "thickness": 0.006
+        },
+        {
+          "id": "cargo-corner-accent-plates",
+          "type": "decal plates"
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.34,
+        "microRoughness": 0.05,
+        "bumpAmplitude": 0.002,
+        "normalPattern": "subtle powder-coat micro normal",
+        "displacementPattern": "parcel badge and corner plates use real shallow relief",
+        "occlusionPattern": "AO under lid seam, latch and corner guards",
+        "edgeWearPattern": "clean bevel highlight with minimal contact wear at lower corners",
+        "notes": "Large cargo faces stay visually calm so the parcel badge remains legible."
+      },
+      "evidenceRefs": [
+        "rear-view",
+        "right-view",
+        "three-quarter-view"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "cargo-lid",
+      "name": "Cargo Lid",
+      "level": "meso",
+      "role": "lid",
+      "importance": 0.82,
+      "confidence": 0.98,
+      "primitive": "box",
+      "parent": "cargo-system",
+      "dimensions": {
+        "width": 0.62,
+        "height": 0.09,
+        "depth": 0.66,
+        "units": "m",
+        "confidence": 0.98
+      },
+      "transform": {
+        "position": [
+          0,
+          0.26,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "geometryDescriptor": {
+        "topologyIntent": "overlapping beveled lid shell",
+        "edgeTreatment": {
+          "type": "bevel",
+          "bevelRadius": 0.045,
+          "segments": 3
+        },
+        "deformationStack": [],
+        "uvStrategy": "box projection",
+        "normalStrategy": "weighted"
+      },
+      "actionProfile": {
+        "animationRole": "hinged-lid",
+        "pivot": {
+          "mode": "hinge",
+          "localPosition": [
+            0,
+            0,
+            -0.33
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "confidence": 0.95
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "cargo-latch",
+            "localPosition": [
+              0,
+              0,
+              0.33
+            ]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            0.62,
+            0.09,
+            0.66
+          ],
+          "isTrigger": false
+        }
+      },
+      "material": "teal-paint",
+      "materialLayers": [
+        "teal-paint",
+        "cream"
+      ],
+      "deformations": [],
+      "joints": [
+        "cargo-lid-hinge"
+      ],
+      "seams": [
+        "cargo-lid-seam"
+      ],
+      "localFeatures": [
+        {
+          "id": "cargo-lid-seam",
+          "type": "recessed seam",
+          "width": 0.012,
+          "depth": 0.006
+        },
+        {
+          "id": "cargo-latch-cream",
+          "type": "raised latch"
+        }
+      ],
+      "evidenceRefs": [
+        "rear-view",
+        "top-view"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "drivetrain",
+      "name": "Crank and Chain Guard",
+      "level": "meso",
+      "role": "connector",
+      "importance": 0.78,
+      "confidence": 0.92,
+      "primitive": "cylinder",
+      "parent": "chassis",
+      "attachment": {
+        "parentId": "chassis",
+        "parentSocket": "crank-axis",
+        "localStart": [
+          0,
+          0.38,
+          -0.18
+        ],
+        "localEnd": [
+          0,
+          0.38,
+          -0.62
+        ],
+        "baseRadius": 0.12,
+        "endRadius": 0.08,
+        "overlap": 0.035,
+        "contactType": "socket",
+        "gapTolerance": 0.004,
+        "evidenceRefs": [
+          "right-view"
+        ]
+      },
+      "dimensions": {
+        "width": 0.28,
+        "height": 0.25,
+        "depth": 0.68,
+        "units": "m",
+        "confidence": 0.9
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "geometryDescriptor": {
+        "topologyIntent": "rounded chain guard with crank hub and pedal arms",
+        "edgeTreatment": {
+          "type": "bevel",
+          "bevelRadius": 0.025,
+          "segments": 3
+        },
+        "deformationStack": [],
+        "uvStrategy": "box and cylindrical",
+        "normalStrategy": "weighted"
+      },
+      "actionProfile": {
+        "animationRole": "pedal-rotation",
+        "pivot": {
+          "mode": "axle-center",
+          "localPosition": [
+            0,
+            0.38,
+            -0.18
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "confidence": 0.94
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "left-pedal",
+            "localPosition": [
+              -0.22,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "right-pedal",
+            "localPosition": [
+              0.22,
+              0,
+              0
+            ]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            -0.22
+          ],
+          "scale": [
+            0.28,
+            0.25,
+            0.68
+          ],
+          "isTrigger": false
+        }
+      },
+      "material": "black-polymer",
+      "materialLayers": [
+        "black-polymer",
+        "orange"
+      ],
+      "deformations": [],
+      "joints": [
+        "crank-axis"
+      ],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "chain-guard-inset",
+          "type": "recessed groove",
+          "width": 0.03,
+          "depth": 0.01
+        }
+      ],
+      "evidenceRefs": [
+        "left-view",
+        "right-view"
+      ],
+      "fidelityTier": "form-refinement"
+    },
+    {
+      "id": "front-light",
+      "name": "Round Front Light",
+      "level": "meso",
+      "role": "connector",
+      "importance": 0.72,
+      "confidence": 0.98,
+      "primitive": "cylinder",
+      "parent": "front-fork",
+      "attachment": {
+        "parentId": "front-fork",
+        "parentSocket": "headlight-root",
+        "localStart": [
+          0,
+          0.18,
+          0.08
+        ],
+        "localEnd": [
+          0,
+          0.18,
+          0.18
+        ],
+        "baseRadius": 0.095,
+        "endRadius": 0.08,
+        "overlap": 0.02,
+        "contactType": "socket",
+        "gapTolerance": 0.002,
+        "evidenceRefs": [
+          "front-view",
+          "three-quarter-view"
+        ]
+      },
+      "dimensions": {
+        "radius": 0.095,
+        "length": 0.13,
+        "units": "m",
+        "confidence": 0.97
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          1.5708,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "geometryDescriptor": {
+        "topologyIntent": "concentric housing ring and inset lens",
+        "edgeTreatment": {
+          "type": "bevel",
+          "bevelRadius": 0.008,
+          "segments": 3
+        },
+        "deformationStack": [],
+        "uvStrategy": "cylindrical",
+        "normalStrategy": "smooth"
+      },
+      "actionProfile": {
+        "animationRole": "light-socket",
+        "pivot": {
+          "mode": "socket",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "confidence": 0.98
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": false,
+          "scale": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "headlight-emitter",
+            "localPosition": [
+              0,
+              0,
+              0.07
+            ]
+          }
+        ],
+        "collider": {
+          "type": "cylinder",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            0.19,
+            0.13,
+            0.19
+          ],
+          "isTrigger": false
+        }
+      },
+      "material": "teal-paint",
+      "materialLayers": [
+        "teal-paint",
+        "cream",
+        "lens"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [
+        "lens-ring"
+      ],
+      "localFeatures": [
+        {
+          "id": "headlight-concentric-ring",
+          "type": "ridge"
+        }
+      ],
+      "evidenceRefs": [
+        "front-view",
+        "three-quarter-view"
+      ],
+      "fidelityTier": "form-refinement"
+    },
+    {
+      "id": "front-mudguard",
+      "name": "Front Mudguard",
+      "level": "meso",
+      "role": "guard",
+      "importance": 0.62,
+      "confidence": 0.95,
+      "primitive": "torus",
+      "parent": "front-fork",
+      "dimensions": {
+        "radius": 0.38,
+        "width": 0.1,
+        "height": 0.42,
+        "depth": 0.42,
+        "units": "m",
+        "confidence": 0.92
+      },
+      "transform": {
+        "position": [
+          0,
+          0.02,
+          0.14
+        ],
+        "rotation": [
+          0,
+          1.5708,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "geometryDescriptor": {
+        "topologyIntent": "upper partial wheel arch",
+        "edgeTreatment": {
+          "type": "rounded",
+          "bevelRadius": 0.006,
+          "segments": 2
+        },
+        "deformationStack": [
+          "trim to 120 degree arc"
+        ],
+        "uvStrategy": "toroidal",
+        "normalStrategy": "smooth"
+      },
+      "actionProfile": {
+        "animationRole": "steering-child",
+        "pivot": {
+          "mode": "hub-center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.94
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": false,
+          "scale": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "none",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false
+        }
+      },
+      "material": "teal-paint",
+      "materialLayers": [
+        "teal-paint"
+      ],
+      "deformations": [
+        "arc trim"
+      ],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "mudguard-arch-ridge",
+          "type": "ridge",
+          "height": 0.006
+        }
+      ],
+      "evidenceRefs": [
+        "left-view",
+        "three-quarter-view"
+      ],
+      "fidelityTier": "form-refinement"
+    },
+    {
+      "id": "rear-mudguard",
+      "name": "Rear Mudguard",
+      "level": "meso",
+      "role": "guard",
+      "importance": 0.58,
+      "confidence": 0.94,
+      "primitive": "torus",
+      "parent": "chassis",
+      "dimensions": {
+        "radius": 0.38,
+        "width": 0.1,
+        "height": 0.42,
+        "depth": 0.42,
+        "units": "m",
+        "confidence": 0.92
+      },
+      "transform": {
+        "position": [
+          0,
+          0.35,
+          -0.92
+        ],
+        "rotation": [
+          0,
+          1.5708,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "geometryDescriptor": {
+        "topologyIntent": "upper partial wheel arch under rack",
+        "edgeTreatment": {
+          "type": "rounded",
+          "bevelRadius": 0.006,
+          "segments": 2
+        },
+        "deformationStack": [
+          "trim to 135 degree arc"
+        ],
+        "uvStrategy": "toroidal",
+        "normalStrategy": "smooth"
+      },
+      "actionProfile": {
+        "animationRole": "static-guard",
+        "pivot": {
+          "mode": "hub-center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "confidence": 0.94
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": false,
+          "scale": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "none",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false
+        }
+      },
+      "material": "teal-paint",
+      "materialLayers": [
+        "teal-paint"
+      ],
+      "deformations": [
+        "arc trim"
+      ],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "rear-mudguard-arch",
+          "type": "ridge"
+        }
+      ],
+      "evidenceRefs": [
+        "right-view"
+      ],
+      "fidelityTier": "form-refinement"
+    },
+    {
+      "id": "rack-support",
+      "name": "Cargo Rack Supports",
+      "level": "meso",
+      "role": "support",
+      "importance": 0.7,
+      "confidence": 0.92,
+      "primitive": "cylinder",
+      "parent": "chassis",
+      "attachment": {
+        "parentId": "chassis",
+        "parentSocket": "rack-root",
+        "localStart": [
+          0,
+          0.74,
+          -0.78
+        ],
+        "localEnd": [
+          0,
+          0.88,
+          -0.72
+        ],
+        "baseRadius": 0.025,
+        "endRadius": 0.025,
+        "overlap": 0.03,
+        "contactType": "embedded",
+        "gapTolerance": 0.003,
+        "evidenceRefs": [
+          "left-view",
+          "right-view"
+        ]
+      },
+      "dimensions": {
+        "width": 0.48,
+        "height": 0.28,
+        "depth": 0.5,
+        "units": "m",
+        "confidence": 0.9
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "geometryDescriptor": {
+        "topologyIntent": "paired black tubular rack braces",
+        "edgeTreatment": {
+          "type": "rounded",
+          "bevelRadius": 0.004,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "cylindrical",
+        "normalStrategy": "smooth"
+      },
+      "actionProfile": {
+        "animationRole": "cargo-support",
+        "pivot": {
+          "mode": "root",
+          "localPosition": [
+            0,
+            0.74,
+            -0.78
+          ],
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "confidence": 0.92
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": false,
+          "scale": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "cargo-base",
+            "localPosition": [
+              0,
+              0.16,
+              0.04
+            ]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0.12,
+            0
+          ],
+          "scale": [
+            0.48,
+            0.28,
+            0.5
+          ],
+          "isTrigger": false
+        }
+      },
+      "material": "black-polymer",
+      "materialLayers": [
+        "black-polymer"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "evidenceRefs": [
+        "left-view",
+        "right-view"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "rear-light",
+      "name": "Rear Red Light",
+      "level": "meso",
+      "role": "light",
+      "importance": 0.58,
+      "confidence": 0.98,
+      "primitive": "box",
+      "parent": "cargo-system",
+      "dimensions": {
+        "width": 0.16,
+        "height": 0.1,
+        "depth": 0.05,
+        "units": "m",
+        "confidence": 0.97
+      },
+      "transform": {
+        "position": [
+          0,
+          -0.25,
+          -0.335
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "geometryDescriptor": {
+        "topologyIntent": "beveled red lens block",
+        "edgeTreatment": {
+          "type": "bevel",
+          "bevelRadius": 0.015,
+          "segments": 3
+        },
+        "deformationStack": [],
+        "uvStrategy": "box projection",
+        "normalStrategy": "weighted"
+      },
+      "actionProfile": {
+        "animationRole": "light-socket",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "confidence": 0.98
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": false,
+          "scale": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "rear-light-emitter",
+            "localPosition": [
+              0,
+              0,
+              -0.03
+            ]
+          }
+        ],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            0.16,
+            0.1,
+            0.05
+          ],
+          "isTrigger": false
+        }
+      },
+      "material": "orange",
+      "materialLayers": [
+        "orange",
+        "lens"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "rear-light-gloss",
+          "type": "gloss"
+        }
+      ],
+      "evidenceRefs": [
+        "rear-view"
+      ],
+      "fidelityTier": "form-refinement"
+    },
+    {
+      "id": "kickstand",
+      "name": "Left Kickstand",
+      "level": "meso",
+      "role": "leg",
+      "importance": 0.42,
+      "confidence": 0.9,
+      "primitive": "cylinder",
+      "parent": "chassis",
+      "attachment": {
+        "parentId": "chassis",
+        "parentSocket": "rack-root",
+        "localStart": [
+          -0.1,
+          0.38,
+          -0.58
+        ],
+        "localEnd": [
+          -0.2,
+          0.03,
+          -0.68
+        ],
+        "baseRadius": 0.018,
+        "endRadius": 0.014,
+        "overlap": 0.02,
+        "contactType": "hinge",
+        "gapTolerance": 0.003,
+        "evidenceRefs": [
+          "rear-view",
+          "left-view"
+        ]
+      },
+      "dimensions": {
+        "radius": 0.018,
+        "length": 0.38,
+        "units": "m",
+        "confidence": 0.88
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "geometryDescriptor": {
+        "topologyIntent": "tapered deployed support leg",
+        "edgeTreatment": {
+          "type": "rounded",
+          "bevelRadius": 0.003,
+          "segments": 2
+        },
+        "deformationStack": [
+          "rearward lean"
+        ],
+        "uvStrategy": "cylindrical",
+        "normalStrategy": "smooth"
+      },
+      "actionProfile": {
+        "animationRole": "kickstand-hinge",
+        "pivot": {
+          "mode": "hinge",
+          "localPosition": [
+            -0.1,
+            0.38,
+            -0.58
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "confidence": 0.9
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": false,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "capsule",
+          "offset": [
+            -0.15,
+            0.2,
+            -0.63
+          ],
+          "scale": [
+            0.04,
+            0.38,
+            0.04
+          ],
+          "isTrigger": false
+        }
+      },
+      "material": "black-polymer",
+      "materialLayers": [
+        "black-polymer"
+      ],
+      "deformations": [
+        "rear lean"
+      ],
+      "joints": [
+        "kickstand-hinge"
+      ],
+      "seams": [],
+      "localFeatures": [],
+      "evidenceRefs": [
+        "rear-view",
+        "left-view"
+      ],
+      "fidelityTier": "interaction-pass"
+    }
+  ],
+  "materials": [
+    {
+      "id": "teal-paint",
+      "name": "Satin Teal Powder Coat",
+      "type": "physical",
+      "shaderModel": "MeshPhysicalMaterial / Unity Lit PBR",
+      "baseColor": "#1FA899",
+      "albedo": {
+        "dominant": "#1FA899",
+        "secondary": [
+          "#178E84",
+          "#43C2B3"
+        ],
+        "samplingNotes": "Frame and cargo shell sampled from neutral six-view sheet."
+      },
+      "colorVariation": {
+        "palette": [
+          "#178E84",
+          "#1FA899",
+          "#43C2B3"
+        ],
+        "pattern": "very subtle object-space mottling",
+        "amplitude": 0.04,
+        "heightCorrelation": 0.1
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "object-space triplanar",
+        "repeat": [
+          2,
+          2
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "stable 512 px per meter"
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 1.5,
+          "amplitude": 0.05,
+          "role": "panel value separation"
+        },
+        {
+          "id": "meso",
+          "frequency": 14,
+          "amplitude": 0.025,
+          "role": "powder-coat orange peel"
+        },
+        {
+          "id": "micro",
+          "frequency": 64,
+          "amplitude": 0.01,
+          "role": "highlight breakup"
+        }
+      ],
+      "roughness": {
+        "base": 0.34,
+        "variation": 0.06,
+        "map": "independent procedural roughness"
+      },
+      "metalness": {
+        "base": 0.08,
+        "variation": 0
+      },
+      "normal": {
+        "pattern": "powder-coat micro normal",
+        "strength": 0.08,
+        "scale": 64
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.18,
+        "contactShadowBias": 0.25
+      },
+      "wear": {
+        "edgeWear": 0.035,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.015,
+        "cavityBias": 0.4,
+        "color": "#123D39"
+      },
+      "localOverrides": [
+        {
+          "id": "lid-edge-highlight",
+          "region": "cargo lid bevel",
+          "roughness": 0.26,
+          "evidenceRef": "three-quarter-view"
+        }
+      ],
+      "shaderNotes": [
+        "Use low clearcoat around 0.18; keep paint stylized and clean."
+      ]
+    },
+    {
+      "id": "black-polymer",
+      "name": "Charcoal Polymer and Painted Steel",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / Unity Lit PBR",
+      "baseColor": "#1D2426",
+      "albedo": {
+        "dominant": "#1D2426",
+        "secondary": [
+          "#101516",
+          "#30383A"
+        ]
+      },
+      "colorVariation": {
+        "palette": [
+          "#101516",
+          "#1D2426",
+          "#30383A"
+        ],
+        "pattern": "subtle part variation",
+        "amplitude": 0.04
+      },
+      "textureResolution": 512,
+      "textureProjection": {
+        "mode": "object-space",
+        "repeat": [
+          2,
+          2
+        ],
+        "anisotropy": 4,
+        "texelDensityIntent": "stable across frame parts"
+      },
+      "roughness": {
+        "base": 0.48,
+        "variation": 0.08,
+        "map": "independent procedural roughness"
+      },
+      "metalness": {
+        "base": 0.12,
+        "variation": 0.12
+      },
+      "normal": {
+        "pattern": "fine polymer grain",
+        "strength": 0.06,
+        "scale": 48
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.22,
+        "contactShadowBias": 0.32
+      },
+      "wear": {
+        "edgeWear": 0.025,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.02,
+        "cavityBias": 0.55,
+        "color": "#090B0C"
+      },
+      "localOverrides": []
+    },
+    {
+      "id": "rubber",
+      "name": "Matte Tire Rubber",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / Unity Lit PBR",
+      "baseColor": "#171A19",
+      "albedo": {
+        "dominant": "#171A19",
+        "secondary": [
+          "#0C0F0E",
+          "#2A2E2C"
+        ]
+      },
+      "colorVariation": {
+        "palette": [
+          "#0C0F0E",
+          "#171A19",
+          "#2A2E2C"
+        ],
+        "pattern": "tread directional",
+        "amplitude": 0.05
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "toroidal",
+        "repeat": [
+          4,
+          1
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "one tread cycle per 15 degrees"
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2,
+          "amplitude": 0.04,
+          "role": "sidewall variation"
+        },
+        {
+          "id": "meso",
+          "frequency": 24,
+          "amplitude": 0.12,
+          "role": "tread blocks"
+        },
+        {
+          "id": "micro",
+          "frequency": 72,
+          "amplitude": 0.025,
+          "role": "rubber grain"
+        }
+      ],
+      "roughness": {
+        "base": 0.78,
+        "variation": 0.08,
+        "map": "independent tread roughness"
+      },
+      "metalness": {
+        "base": 0,
+        "variation": 0
+      },
+      "normal": {
+        "pattern": "directional tread normal",
+        "strength": 0.32,
+        "scale": 24
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.3,
+        "contactShadowBias": 0.4
+      },
+      "wear": {
+        "edgeWear": 0.04,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.035,
+        "cavityBias": 0.65,
+        "color": "#272622"
+      },
+      "localOverrides": []
+    },
+    {
+      "id": "cream",
+      "name": "Warm Cream Rims Seat and Grips",
+      "type": "physical",
+      "shaderModel": "MeshPhysicalMaterial / Unity Lit PBR",
+      "baseColor": "#F1D7A7",
+      "albedo": {
+        "dominant": "#F1D7A7",
+        "secondary": [
+          "#D9BB86",
+          "#FFF0CA"
+        ]
+      },
+      "colorVariation": {
+        "palette": [
+          "#D9BB86",
+          "#F1D7A7",
+          "#FFF0CA"
+        ],
+        "pattern": "clean manufactured parts",
+        "amplitude": 0.025
+      },
+      "textureResolution": 512,
+      "textureProjection": {
+        "mode": "object-space",
+        "repeat": [
+          1,
+          1
+        ],
+        "anisotropy": 4,
+        "texelDensityIntent": "clean solid color"
+      },
+      "roughness": {
+        "base": 0.31,
+        "variation": 0.05,
+        "map": "independent procedural roughness"
+      },
+      "metalness": {
+        "base": 0.02,
+        "variation": 0
+      },
+      "normal": {
+        "pattern": "fine vinyl grain",
+        "strength": 0.04,
+        "scale": 58
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.14,
+        "contactShadowBias": 0.25
+      },
+      "wear": {
+        "edgeWear": 0.015,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.01,
+        "cavityBias": 0.3,
+        "color": "#8B744E"
+      },
+      "localOverrides": [
+        {
+          "id": "rim-gloss-band",
+          "region": "both wheel rims",
+          "roughness": 0.2,
+          "clearcoat": 0.25,
+          "evidenceRef": "left-view"
+        }
+      ]
+    },
+    {
+      "id": "orange",
+      "name": "Safety Orange Accents",
+      "type": "physical",
+      "shaderModel": "MeshPhysicalMaterial / Unity Lit PBR",
+      "baseColor": "#F27A32",
+      "albedo": {
+        "dominant": "#F27A32",
+        "secondary": [
+          "#D95624",
+          "#FF9B43"
+        ]
+      },
+      "colorVariation": {
+        "palette": [
+          "#D95624",
+          "#F27A32",
+          "#FF9B43"
+        ],
+        "pattern": "solid accent",
+        "amplitude": 0.02
+      },
+      "textureResolution": 256,
+      "textureProjection": {
+        "mode": "object-space",
+        "repeat": [
+          1,
+          1
+        ],
+        "anisotropy": 4,
+        "texelDensityIntent": "solid micro parts"
+      },
+      "roughness": {
+        "base": 0.28,
+        "variation": 0.04,
+        "map": "independent procedural roughness"
+      },
+      "metalness": {
+        "base": 0,
+        "variation": 0
+      },
+      "normal": {
+        "pattern": "smooth molded accent",
+        "strength": 0.02,
+        "scale": 32
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.12,
+        "contactShadowBias": 0.2
+      },
+      "wear": {
+        "edgeWear": 0.01,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0,
+        "cavityBias": 0,
+        "color": "#6D2A19"
+      },
+      "localOverrides": [
+        {
+          "id": "cargo-corner-guards",
+          "region": "eight cargo corners",
+          "roughness": 0.24,
+          "evidenceRef": "rear-view"
+        },
+        {
+          "id": "reflector-emissive",
+          "region": "wheel and fork reflectors",
+          "roughness": 0.18,
+          "emissive": "#FF8A32",
+          "emissiveIntensity": 0.35,
+          "evidenceRef": "right-view"
+        }
+      ]
+    },
+    {
+      "id": "lens",
+      "name": "Headlight and Tail Lens",
+      "type": "physical",
+      "shaderModel": "MeshPhysicalMaterial / Unity Lit transparent",
+      "baseColor": "#E8FBFF",
+      "albedo": {
+        "dominant": "#E8FBFF",
+        "secondary": [
+          "#BBDDE0",
+          "#FFFFFF"
+        ]
+      },
+      "colorVariation": {
+        "palette": [
+          "#BBDDE0",
+          "#E8FBFF",
+          "#FFFFFF"
+        ],
+        "pattern": "concentric lens rings",
+        "amplitude": 0.03
+      },
+      "textureResolution": 512,
+      "textureProjection": {
+        "mode": "planar",
+        "repeat": [
+          1,
+          1
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "front lens only"
+      },
+      "roughness": {
+        "base": 0.08,
+        "variation": 0.02,
+        "map": "independent smooth lens roughness"
+      },
+      "metalness": {
+        "base": 0,
+        "variation": 0
+      },
+      "normal": {
+        "pattern": "concentric lens micro rings",
+        "strength": 0.06,
+        "scale": 40
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.08,
+        "contactShadowBias": 0.1
+      },
+      "wear": {
+        "edgeWear": 0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0,
+        "cavityBias": 0,
+        "color": "#8EA8AA"
+      },
+      "localOverrides": [
+        {
+          "id": "headlight-gloss",
+          "region": "front lens",
+          "roughness": 0.04,
+          "clearcoat": 0.8,
+          "evidenceRef": "front-view"
+        }
+      ]
+    },
+    {
+      "id": "metal",
+      "name": "Brushed Hub and Fork Metal",
+      "type": "standard",
+      "shaderModel": "MeshStandardMaterial / Unity Lit PBR",
+      "baseColor": "#8C9694",
+      "albedo": {
+        "dominant": "#8C9694",
+        "secondary": [
+          "#66706F",
+          "#B5C0BD"
+        ]
+      },
+      "colorVariation": {
+        "palette": [
+          "#66706F",
+          "#8C9694",
+          "#B5C0BD"
+        ],
+        "pattern": "axial brush",
+        "amplitude": 0.05
+      },
+      "textureResolution": 512,
+      "textureProjection": {
+        "mode": "cylindrical",
+        "repeat": [
+          3,
+          1
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "aligned to fork and hubs"
+      },
+      "roughness": {
+        "base": 0.24,
+        "variation": 0.07,
+        "map": "independent brushed roughness"
+      },
+      "metalness": {
+        "base": 0.82,
+        "variation": 0.08
+      },
+      "normal": {
+        "pattern": "axial brushed lines",
+        "strength": 0.05,
+        "scale": 64
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.16,
+        "contactShadowBias": 0.25
+      },
+      "wear": {
+        "edgeWear": 0.02,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.01,
+        "cavityBias": 0.25,
+        "color": "#303635"
+      },
+      "localOverrides": []
+    }
+  ],
+  "repetitionSystems": [
+    {
+      "id": "wheel-spokes",
+      "kind": "radial-instancing",
+      "componentRefs": [
+        "front-wheel",
+        "rear-wheel"
+      ],
+      "countPerWheel": 16,
+      "distribution": "uniform radial",
+      "geometry": "thin cylinders from hub to rim",
+      "material": "black-polymer",
+      "evidenceRefs": [
+        "left-view",
+        "right-view"
+      ]
+    },
+    {
+      "id": "tire-tread",
+      "kind": "radial-instancing",
+      "componentRefs": [
+        "front-wheel",
+        "rear-wheel"
+      ],
+      "countPerWheel": 24,
+      "distribution": "alternating radial blocks",
+      "geometry": "low raised box ridges",
+      "material": "rubber",
+      "evidenceRefs": [
+        "three-quarter-view"
+      ]
+    },
+    {
+      "id": "cargo-corner-plates",
+      "kind": "mirror-and-corner-instancing",
+      "componentRefs": [
+        "cargo-box"
+      ],
+      "count": 8,
+      "distribution": "box corners",
+      "geometry": "small beveled square plates",
+      "material": "orange",
+      "evidenceRefs": [
+        "rear-view",
+        "three-quarter-view"
+      ]
+    }
+  ],
+  "buildPasses": [
+    {
+      "id": "blockout",
+      "goal": "Match macro silhouette and proportions.",
+      "componentRefs": [
+        "root"
+      ],
+      "acceptance": [
+        "Silhouette reads correctly without materials.",
+        "Quality contract has named all required macro feature groups before code generation.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "structural-pass",
+      "goal": "Build the component hierarchy implied by the pre-spec complexity assessment.",
+      "componentRefs": [
+        "root"
+      ],
+      "acceptance": [
+        "Macro, meso, and repeated structures meet qualityContract.minimumSpecDepth.",
+        "Parent-child relations, joints, seams, sockets, and contact points are explicit.",
+        "Every attached child appendage/connector has parentSocket, localStart/localEnd, contactType, embedDepth or overlap, and gapTolerance.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "form-refinement",
+      "goal": "Refine shape, deformation, bevels, tapers, curves, asymmetry, and visible local geometry.",
+      "componentRefs": [
+        "root"
+      ],
+      "acceptance": [
+        "Important visible forms are represented in component geometryDescriptor, deformations, localFeatures, or repetitionSystems.",
+        "Endpoint-based child parts are rooted at their attachment sockets and do not visibly float away from parents.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "material-pass",
+      "goal": "Match material color, roughness, bump, and local variation.",
+      "componentRefs": [
+        "root"
+      ],
+      "acceptance": [
+        "Reference-derived albedo palette records dominant, secondary, and accent colors per visible material.",
+        "Each important material defines roughness variation and at least one normal/bump/displacement response.",
+        "Local material overrides, dirt/wear/stains/moss/chips/scratches or equivalent masks are tied to evidenceRefs.",
+        "Thin, transparent, reflective, wet, or fibrous materials document alpha/transmission/clearcoat/metalness/fiber response when relevant.",
+        "Generated preview uses procedural albedo/roughness/bump texture or vertex color variation instead of one flat color.",
+        "Generated preview uses independent PBR maps at 1024px or higher for the quality-first tier.",
+        "If source pixels are available, referencePbr extraction passed at confidence >= 0.7 or the pass is stopped/requesting better references.",
+        "Macro, meso, and micro surface frequency bands are visible at the intended review distance without obvious tiling.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "surface-pass",
+      "goal": "Add procedural surface locality such as normal/bump/displacement, AO, dirt, stains, chips, grain, moss, scratches, and wear.",
+      "componentRefs": [
+        "root"
+      ],
+      "acceptance": [
+        "Every required material feature group has local overrides or surfaceDetail tied to evidenceRefs.",
+        "A grazing-angle close-up proves that normal/height detail breaks highlights naturally and does not read as smooth plastic.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "lighting-pass",
+      "goal": "Make material and form readable under neutral turntable lighting plus optional reference lighting.",
+      "componentRefs": [
+        "root"
+      ],
+      "acceptance": [
+        "lightingFromPhoto identifies key light direction/color/intensity, fill light, rim or environment light, and ambient color.",
+        "Exposure, tone mapping, background color/gradient, shadow softness, and contact shadow behavior are specified.",
+        "Lighting does not hide geometry/material gaps and screenshots can be compared fairly to the reference.",
+        "Neutral, grazing, and reference-matched lighting checks distinguish material errors from lighting errors.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "interaction-pass",
+      "goal": "Make the model ready for future animation, transformation, physics, or destruction.",
+      "componentRefs": [
+        "root"
+      ],
+      "acceptance": [
+        "Macro and movable meso components have stable pivot nodes.",
+        "Sockets, collider proxies, and destruction metadata are present for future runtime actions.",
+        "AI vision comparison score meets selfCorrectLoop.visualAcceptance.threshold."
+      ]
+    },
+    {
+      "id": "optimization-pass",
+      "goal": "Protect runtime performance after visual fidelity is accepted.",
+      "componentRefs": [
+        "root"
+      ],
+      "acceptance": [
+        "Triangle count, draw calls, instancing, LOD strategy, and FPS target are documented or verified.",
+        "Repeated detail is instanced or simplified where possible without breaking silhouette/material believability."
+      ]
+    }
+  ],
+  "visualEvidence": [
+    {
+      "timestamp": "2026-07-21T07:31:48.561988+00:00",
+      "passId": "blockout",
+      "estimatedFidelity": 0.18,
+      "aiVisionScore": 0.18,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.1,
+        "componentStructure": 0.12,
+        "formDetail": 0.05,
+        "materialSurface": 0.35,
+        "lightingCamera": 0.62
+      },
+      "featureReviews": [
+        {
+          "id": "cargo-bike-silhouette",
+          "score": 0.12,
+          "visible": true,
+          "notes": "The render contains only stacked boxes; circular wheels, compact wheelbase and the low step-through negative space are absent."
+        }
+      ],
+      "referenceScreenshot": "../../Assets/Concepts/DeliveryCargoBike_6View.png",
+      "renderScreenshot": "../../Previews/img2threejs-blockout.png",
+      "comparisonImage": "../../Pipeline/CargoBike/comparison-blockout-v1.png",
+      "cameraView": "three-quarter",
+      "notes": "",
+      "aiVisionNotes": "Spec is not the root cause. The generic box implementation failed to instantiate the component geometry required by the spec."
+    },
+    {
+      "timestamp": "2026-07-21T07:34:43.388838+00:00",
+      "passId": "blockout",
+      "estimatedFidelity": 0.8,
+      "aiVisionScore": 0.8,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.84,
+        "componentStructure": 0.8,
+        "formDetail": 0.73,
+        "materialSurface": 0.76,
+        "lightingCamera": 0.79
+      },
+      "featureReviews": [
+        {
+          "id": "cargo-bike-silhouette",
+          "score": 0.83,
+          "visible": true,
+          "notes": "Two equal wheels, a compact wheelbase, low U-shaped frame and large rear cargo mass now match the six-view concept at blockout fidelity."
+        }
+      ],
+      "referenceScreenshot": "../../Assets/Concepts/DeliveryCargoBike_6View.png",
+      "renderScreenshot": "../../Previews/img2threejs-blockout-v2.png",
+      "comparisonImage": "../../Pipeline/CargoBike/comparison-blockout-v2.png",
+      "cameraView": "three-quarter",
+      "notes": "",
+      "aiVisionNotes": "The asset is immediately recognizable and the primary negative space is correct. Remaining differences are below the blockout gate."
+    },
+    {
+      "timestamp": "2026-07-21T07:35:47.034159+00:00",
+      "passId": "structural-pass",
+      "estimatedFidelity": 0.72,
+      "aiVisionScore": 0.72,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.84,
+        "componentStructure": 0.68,
+        "formDetail": 0.77,
+        "materialSurface": 0.78,
+        "lightingCamera": 0.8
+      },
+      "featureReviews": [
+        {
+          "id": "steering-and-wheel-system",
+          "score": 0.61,
+          "visible": true,
+          "notes": "Wheel and fork hierarchy reads correctly, but the headlight has a clear gap from the steering column and fails the attachment gate."
+        },
+        {
+          "id": "rear-cargo-system",
+          "score": 0.82,
+          "visible": true,
+          "notes": "Cargo body, lid, rack supports and rear wheel overlap form a coherent attached assembly."
+        }
+      ],
+      "referenceScreenshot": "../../Assets/Concepts/DeliveryCargoBike_6View.png",
+      "renderScreenshot": "../../Previews/img2threejs-structural-pass.png",
+      "comparisonImage": "../../Pipeline/CargoBike/comparison-structural-v1.png",
+      "cameraView": "side",
+      "notes": "",
+      "aiVisionNotes": "The attachment defect is implementation-local; the spec already defines a headlight root socket."
+    },
+    {
+      "timestamp": "2026-07-21T07:36:17.775576+00:00",
+      "passId": "structural-pass",
+      "estimatedFidelity": 0.82,
+      "aiVisionScore": 0.82,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.85,
+        "componentStructure": 0.85,
+        "formDetail": 0.78,
+        "materialSurface": 0.79,
+        "lightingCamera": 0.81
+      },
+      "featureReviews": [
+        {
+          "id": "steering-and-wheel-system",
+          "score": 0.82,
+          "visible": true,
+          "notes": "Fork legs overlap the front hub, the headlight bracket now closes the air gap, and the handlebar shares the steering pivot."
+        },
+        {
+          "id": "rear-cargo-system",
+          "score": 0.84,
+          "visible": true,
+          "notes": "Cargo shell, lid, rack supports, rear light and wheel stay form a coherent attached hierarchy."
+        }
+      ],
+      "referenceScreenshot": "../../Assets/Concepts/DeliveryCargoBike_6View.png",
+      "renderScreenshot": "../../Previews/img2threejs-structural-pass-v2.png",
+      "comparisonImage": "../../Pipeline/CargoBike/comparison-structural-v2.png",
+      "cameraView": "side",
+      "notes": "",
+      "aiVisionNotes": "The previously floating headlight is now visibly bracketed to the steering assembly. Wheel and cargo attachments pass."
+    },
+    {
+      "timestamp": "2026-07-21T07:36:53.553963+00:00",
+      "passId": "form-refinement",
+      "estimatedFidelity": 0.83,
+      "aiVisionScore": 0.83,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.86,
+        "componentStructure": 0.85,
+        "formDetail": 0.83,
+        "materialSurface": 0.8,
+        "lightingCamera": 0.82
+      },
+      "featureReviews": [
+        {
+          "id": "cargo-bike-silhouette",
+          "score": 0.85,
+          "visible": true,
+          "notes": "Rounded step-through tube, equal tires, front mudguard and high rear cargo silhouette track the concept closely."
+        },
+        {
+          "id": "drivetrain-battery-read",
+          "score": 0.78,
+          "visible": true,
+          "notes": "The black battery block, crank hub, chain guard inset and paired pedals are distinct at gameplay distance."
+        }
+      ],
+      "referenceScreenshot": "../../Assets/Concepts/DeliveryCargoBike_6View.png",
+      "renderScreenshot": "../../Previews/img2threejs-form-refinement.png",
+      "comparisonImage": "../../Pipeline/CargoBike/comparison-form-refinement.png",
+      "cameraView": "three-quarter",
+      "notes": "",
+      "aiVisionNotes": "Identity-defining hard-surface forms are present and the remaining simplifications are appropriate for a stylized mobile-game asset."
+    },
+    {
+      "timestamp": "2026-07-21T07:37:46.782556+00:00",
+      "passId": "material-pass",
+      "estimatedFidelity": 0.82,
+      "aiVisionScore": 0.82,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.85,
+        "componentStructure": 0.85,
+        "formDetail": 0.82,
+        "materialSurface": 0.84,
+        "lightingCamera": 0.8
+      },
+      "featureReviews": [
+        {
+          "id": "rear-cargo-system",
+          "score": 0.84,
+          "visible": true,
+          "notes": "Cargo body, lid seam, cream latch and orange corner guards remain distinct under neutral light."
+        },
+        {
+          "id": "teal-cream-orange-materials",
+          "score": 0.82,
+          "visible": true,
+          "notes": "Satin teal, warm cream, matte charcoal rubber/polymer and small orange accents match the concept hierarchy."
+        },
+        {
+          "id": "drivetrain-battery-read",
+          "score": 0.77,
+          "visible": true,
+          "notes": "Battery and chain guard stay readable through separate charcoal value and teal inset accents."
+        }
+      ],
+      "referenceScreenshot": "../../Assets/Concepts/DeliveryCargoBike_6View.png",
+      "renderScreenshot": "../../Previews/img2threejs-material-pass.png",
+      "comparisonImage": "../../Pipeline/CargoBike/comparison-material-pass.png",
+      "cameraView": "neutral-three-quarter",
+      "notes": "",
+      "aiVisionNotes": "Color blocks and roughness hierarchy match the concept. The clean stylized finish is intentional and PBR evidence is treated as inference, not exact recovery."
+    },
+    {
+      "timestamp": "2026-07-21T07:39:28.135171+00:00",
+      "passId": "surface-pass",
+      "estimatedFidelity": 0.72,
+      "aiVisionScore": 0.72,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.84,
+        "componentStructure": 0.84,
+        "formDetail": 0.82,
+        "materialSurface": 0.67,
+        "lightingCamera": 0.81
+      },
+      "featureReviews": [
+        {
+          "id": "rear-cargo-system",
+          "score": 0.79,
+          "visible": true,
+          "notes": "Bevels, lid seam, latch and corner plates read, but the broad teal faces have overly uniform highlights."
+        },
+        {
+          "id": "teal-cream-orange-materials",
+          "score": 0.69,
+          "visible": true,
+          "notes": "Palette is correct; teal and rubber lack the independent micro normal and roughness breakup required by the surface contract."
+        }
+      ],
+      "referenceScreenshot": "../../Assets/Concepts/DeliveryCargoBike_6View.png",
+      "renderScreenshot": "../../Previews/img2threejs-surface-pass.png",
+      "comparisonImage": "../../Pipeline/CargoBike/comparison-surface-v1.png",
+      "cameraView": "grazing",
+      "notes": "",
+      "aiVisionNotes": "The spec already names surface frequency bands; implementation needs independent micro normal and roughness fields."
+    },
+    {
+      "timestamp": "2026-07-21T07:40:05.837195+00:00",
+      "passId": "surface-pass",
+      "estimatedFidelity": 0.8,
+      "aiVisionScore": 0.8,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.84,
+        "componentStructure": 0.84,
+        "formDetail": 0.83,
+        "materialSurface": 0.8,
+        "lightingCamera": 0.81
+      },
+      "featureReviews": [
+        {
+          "id": "rear-cargo-system",
+          "score": 0.83,
+          "visible": true,
+          "notes": "Lid bevel, seam shadow, latch, badge relief and corner-guard contacts remain legible under grazing light."
+        },
+        {
+          "id": "teal-cream-orange-materials",
+          "score": 0.79,
+          "visible": true,
+          "notes": "Teal frame now shows fine highlight breakup independent of albedo, while rubber keeps a rougher granular response."
+        }
+      ],
+      "referenceScreenshot": "../../Assets/Concepts/DeliveryCargoBike_6View.png",
+      "renderScreenshot": "../../Previews/img2threejs-surface-pass-v2.png",
+      "comparisonImage": "../../Pipeline/CargoBike/comparison-surface-v2.png",
+      "cameraView": "grazing",
+      "notes": "",
+      "aiVisionNotes": "Independent normal/roughness breakup is visible on the teal tube and tires without introducing photoreal grunge."
+    },
+    {
+      "timestamp": "2026-07-21T07:40:45.032806+00:00",
+      "passId": "lighting-pass",
+      "estimatedFidelity": 0.82,
+      "aiVisionScore": 0.82,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.85,
+        "componentStructure": 0.84,
+        "formDetail": 0.82,
+        "materialSurface": 0.82,
+        "lightingCamera": 0.84
+      },
+      "featureReviews": [
+        {
+          "id": "teal-cream-orange-materials",
+          "score": 0.82,
+          "visible": true,
+          "notes": "Warm key, cool rim/fill, ACES tone mapping and ground contact shadows preserve the concept palette and separate the silhouette."
+        }
+      ],
+      "referenceScreenshot": "../../Assets/Concepts/DeliveryCargoBike_6View.png",
+      "renderScreenshot": "../../Previews/img2threejs-lighting-pass.png",
+      "comparisonImage": "../../Pipeline/CargoBike/comparison-lighting-pass.png",
+      "cameraView": "reference-match-three-quarter",
+      "notes": "",
+      "aiVisionNotes": "Lighting explains the bevels and materials, with a clear key/fill/rim structure and grounded tires."
+    },
+    {
+      "timestamp": "2026-07-21T07:41:28.928607+00:00",
+      "passId": "interaction-pass",
+      "estimatedFidelity": 0.83,
+      "aiVisionScore": 0.83,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.83,
+        "componentStructure": 0.86,
+        "formDetail": 0.81,
+        "materialSurface": 0.81,
+        "lightingCamera": 0.82
+      },
+      "featureReviews": [
+        {
+          "id": "steering-and-wheel-system",
+          "score": 0.84,
+          "visible": true,
+          "notes": "Front view confirms the steering pivot centers the handlebar, headlight, fork, mudguard and front-wheel hierarchy on one axis."
+        }
+      ],
+      "referenceScreenshot": "../../Assets/Concepts/DeliveryCargoBike_6View.png",
+      "renderScreenshot": "../../Previews/img2threejs-interaction-pass.png",
+      "comparisonImage": "../../Pipeline/CargoBike/comparison-interaction-pass.png",
+      "cameraView": "front",
+      "notes": "",
+      "aiVisionNotes": "The front view confirms alignment while the generated runtime map provides stable animation and socket targets."
+    },
+    {
+      "timestamp": "2026-07-21T07:51:21.551305+00:00",
+      "passId": "optimization-pass",
+      "estimatedFidelity": 0.85,
+      "aiVisionScore": null,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {},
+      "featureReviews": [],
+      "referenceScreenshot": "../../Assets/Concepts/DeliveryCargoBike_6View.png",
+      "renderScreenshot": "",
+      "comparisonImage": "",
+      "cameraView": "optimized hero three-quarter",
+      "notes": "Optimized Blender render preserves the concept silhouette, teal cargo branding, cream accents, black frame, and readable chunky wheel profile.",
+      "aiVisionNotes": ""
+    }
+  ],
+  "reviewHistory": [
+    {
+      "timestamp": "2026-07-21T07:31:48.561988+00:00",
+      "passId": "blockout",
+      "estimatedFidelity": 0.18,
+      "aiVisionScore": 0.18,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.1,
+        "componentStructure": 0.12,
+        "formDetail": 0.05,
+        "materialSurface": 0.35,
+        "lightingCamera": 0.62
+      },
+      "featureReviews": [
+        {
+          "id": "cargo-bike-silhouette",
+          "score": 0.12,
+          "visible": true,
+          "notes": "The render contains only stacked boxes; circular wheels, compact wheelbase and the low step-through negative space are absent."
+        }
+      ],
+      "action": "refine-code",
+      "summary": "Generated macro primitives do not express the bicycle silhouette; replace the placeholder geometry implementation while preserving the validated hierarchy.",
+      "matched": [
+        "teal cargo mass,grounded lighting"
+      ],
+      "mismatches": [
+        "missing wheels,missing step-through frame,missing fork and handlebar,macro boxes read as a chair"
+      ],
+      "specFixes": [],
+      "codeFixes": [
+        "implement wheel torus assemblies and curve-based frame,hide hierarchy-only blockout meshes,use exact spec dimensions"
+      ],
+      "evidence": [
+        "six-view reference vs browser render"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "../../Assets/Concepts/DeliveryCargoBike_6View.png",
+        "renderScreenshot": "../../Previews/img2threejs-blockout.png",
+        "comparisonImage": "../../Pipeline/CargoBike/comparison-blockout-v1.png",
+        "cameraView": "three-quarter",
+        "notes": "",
+        "aiVisionNotes": "Spec is not the root cause. The generic box implementation failed to instantiate the component geometry required by the spec."
+      }
+    },
+    {
+      "timestamp": "2026-07-21T07:34:43.388838+00:00",
+      "passId": "blockout",
+      "estimatedFidelity": 0.8,
+      "aiVisionScore": 0.8,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.84,
+        "componentStructure": 0.8,
+        "formDetail": 0.73,
+        "materialSurface": 0.76,
+        "lightingCamera": 0.79
+      },
+      "featureReviews": [
+        {
+          "id": "cargo-bike-silhouette",
+          "score": 0.83,
+          "visible": true,
+          "notes": "Two equal wheels, a compact wheelbase, low U-shaped frame and large rear cargo mass now match the six-view concept at blockout fidelity."
+        }
+      ],
+      "action": "continue",
+      "summary": "Macro silhouette now reads as the same compact delivery e-bike across the reference and render.",
+      "matched": [
+        "equal wheel diameter,compact wheelbase,low step-through sweep,large rear cargo mass"
+      ],
+      "mismatches": [
+        "tread is chunkier than concept,parcel emblem is simplified"
+      ],
+      "specFixes": [],
+      "codeFixes": [
+        "defer tread density and emblem geometry to form refinement"
+      ],
+      "evidence": [
+        "six-view sheet compared with browser three-quarter render"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "../../Assets/Concepts/DeliveryCargoBike_6View.png",
+        "renderScreenshot": "../../Previews/img2threejs-blockout-v2.png",
+        "comparisonImage": "../../Pipeline/CargoBike/comparison-blockout-v2.png",
+        "cameraView": "three-quarter",
+        "notes": "",
+        "aiVisionNotes": "The asset is immediately recognizable and the primary negative space is correct. Remaining differences are below the blockout gate."
+      }
+    },
+    {
+      "timestamp": "2026-07-21T07:35:47.034159+00:00",
+      "passId": "structural-pass",
+      "estimatedFidelity": 0.72,
+      "aiVisionScore": 0.72,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.84,
+        "componentStructure": 0.68,
+        "formDetail": 0.77,
+        "materialSurface": 0.78,
+        "lightingCamera": 0.8
+      },
+      "featureReviews": [
+        {
+          "id": "steering-and-wheel-system",
+          "score": 0.61,
+          "visible": true,
+          "notes": "Wheel and fork hierarchy reads correctly, but the headlight has a clear gap from the steering column and fails the attachment gate."
+        },
+        {
+          "id": "rear-cargo-system",
+          "score": 0.82,
+          "visible": true,
+          "notes": "Cargo body, lid, rack supports and rear wheel overlap form a coherent attached assembly."
+        }
+      ],
+      "action": "refine-code",
+      "summary": "The wheel, fork and cargo hierarchy is present, but the headlight attachment lacks a visible bracket.",
+      "matched": [
+        "wheel hubs touch fork and stays,rack supports contact cargo base,cargo lid overlaps shell"
+      ],
+      "mismatches": [
+        "headlight floats ahead of steering column"
+      ],
+      "specFixes": [],
+      "codeFixes": [
+        "add short black headlight bracket from steering column to housing rear face"
+      ],
+      "evidence": [
+        "side browser render shows a clear air gap"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "../../Assets/Concepts/DeliveryCargoBike_6View.png",
+        "renderScreenshot": "../../Previews/img2threejs-structural-pass.png",
+        "comparisonImage": "../../Pipeline/CargoBike/comparison-structural-v1.png",
+        "cameraView": "side",
+        "notes": "",
+        "aiVisionNotes": "The attachment defect is implementation-local; the spec already defines a headlight root socket."
+      }
+    },
+    {
+      "timestamp": "2026-07-21T07:36:17.775576+00:00",
+      "passId": "structural-pass",
+      "estimatedFidelity": 0.82,
+      "aiVisionScore": 0.82,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.85,
+        "componentStructure": 0.85,
+        "formDetail": 0.78,
+        "materialSurface": 0.79,
+        "lightingCamera": 0.81
+      },
+      "featureReviews": [
+        {
+          "id": "steering-and-wheel-system",
+          "score": 0.82,
+          "visible": true,
+          "notes": "Fork legs overlap the front hub, the headlight bracket now closes the air gap, and the handlebar shares the steering pivot."
+        },
+        {
+          "id": "rear-cargo-system",
+          "score": 0.84,
+          "visible": true,
+          "notes": "Cargo shell, lid, rack supports, rear light and wheel stay form a coherent attached hierarchy."
+        }
+      ],
+      "action": "continue",
+      "summary": "All macro and meso assemblies now connect cleanly with named pivots and no visible floating roots.",
+      "matched": [
+        "fork-to-hub contact,headlight bracket,rack-to-cargo contact,seat post and battery mount"
+      ],
+      "mismatches": [
+        "handlebar controls remain simplified"
+      ],
+      "specFixes": [],
+      "codeFixes": [
+        "defer control detail to form refinement"
+      ],
+      "evidence": [
+        "corrected side browser render"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "../../Assets/Concepts/DeliveryCargoBike_6View.png",
+        "renderScreenshot": "../../Previews/img2threejs-structural-pass-v2.png",
+        "comparisonImage": "../../Pipeline/CargoBike/comparison-structural-v2.png",
+        "cameraView": "side",
+        "notes": "",
+        "aiVisionNotes": "The previously floating headlight is now visibly bracketed to the steering assembly. Wheel and cargo attachments pass."
+      }
+    },
+    {
+      "timestamp": "2026-07-21T07:36:53.553963+00:00",
+      "passId": "form-refinement",
+      "estimatedFidelity": 0.83,
+      "aiVisionScore": 0.83,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.86,
+        "componentStructure": 0.85,
+        "formDetail": 0.83,
+        "materialSurface": 0.8,
+        "lightingCamera": 0.82
+      },
+      "featureReviews": [
+        {
+          "id": "cargo-bike-silhouette",
+          "score": 0.85,
+          "visible": true,
+          "notes": "Rounded step-through tube, equal tires, front mudguard and high rear cargo silhouette track the concept closely."
+        },
+        {
+          "id": "drivetrain-battery-read",
+          "score": 0.78,
+          "visible": true,
+          "notes": "The black battery block, crank hub, chain guard inset and paired pedals are distinct at gameplay distance."
+        }
+      ],
+      "action": "continue",
+      "summary": "Bevels, frame sweep, tire tread, spokes, guards, lights and drivetrain details now support the concept silhouette.",
+      "matched": [
+        "rounded frame sweep,beveled cargo shell,radial spokes,tread ridges,chain guard and battery,cream saddle and grips"
+      ],
+      "mismatches": [
+        "parcel emblem is abstracted,tread blocks are intentionally exaggerated for mobile readability"
+      ],
+      "specFixes": [],
+      "codeFixes": [
+        "no blocking geometry correction"
+      ],
+      "evidence": [
+        "three-quarter browser render compared against six-view sheet"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "../../Assets/Concepts/DeliveryCargoBike_6View.png",
+        "renderScreenshot": "../../Previews/img2threejs-form-refinement.png",
+        "comparisonImage": "../../Pipeline/CargoBike/comparison-form-refinement.png",
+        "cameraView": "three-quarter",
+        "notes": "",
+        "aiVisionNotes": "Identity-defining hard-surface forms are present and the remaining simplifications are appropriate for a stylized mobile-game asset."
+      }
+    },
+    {
+      "timestamp": "2026-07-21T07:37:46.782556+00:00",
+      "passId": "material-pass",
+      "estimatedFidelity": 0.82,
+      "aiVisionScore": 0.82,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.85,
+        "componentStructure": 0.85,
+        "formDetail": 0.82,
+        "materialSurface": 0.84,
+        "lightingCamera": 0.8
+      },
+      "featureReviews": [
+        {
+          "id": "rear-cargo-system",
+          "score": 0.84,
+          "visible": true,
+          "notes": "Cargo body, lid seam, cream latch and orange corner guards remain distinct under neutral light."
+        },
+        {
+          "id": "teal-cream-orange-materials",
+          "score": 0.82,
+          "visible": true,
+          "notes": "Satin teal, warm cream, matte charcoal rubber/polymer and small orange accents match the concept hierarchy."
+        },
+        {
+          "id": "drivetrain-battery-read",
+          "score": 0.77,
+          "visible": true,
+          "notes": "Battery and chain guard stay readable through separate charcoal value and teal inset accents."
+        }
+      ],
+      "action": "continue",
+      "summary": "The stylized PBR palette is separated cleanly and the teal reference extraction passed at 0.86 confidence.",
+      "matched": [
+        "satin teal frame and cargo,warm cream rims seat grips,matte black tire and drivetrain,orange corner and reflector accents"
+      ],
+      "mismatches": [
+        "reference has slightly softer cream and less aggressive tire relief"
+      ],
+      "specFixes": [],
+      "codeFixes": [
+        "retain for mobile readability",
+        "verify under grazing light in surface pass"
+      ],
+      "evidence": [
+        "browser neutral render plus teal-paint reference PBR report confidence 0.86"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "../../Assets/Concepts/DeliveryCargoBike_6View.png",
+        "renderScreenshot": "../../Previews/img2threejs-material-pass.png",
+        "comparisonImage": "../../Pipeline/CargoBike/comparison-material-pass.png",
+        "cameraView": "neutral-three-quarter",
+        "notes": "",
+        "aiVisionNotes": "Color blocks and roughness hierarchy match the concept. The clean stylized finish is intentional and PBR evidence is treated as inference, not exact recovery."
+      }
+    },
+    {
+      "timestamp": "2026-07-21T07:39:28.135171+00:00",
+      "passId": "surface-pass",
+      "estimatedFidelity": 0.72,
+      "aiVisionScore": 0.72,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.84,
+        "componentStructure": 0.84,
+        "formDetail": 0.82,
+        "materialSurface": 0.67,
+        "lightingCamera": 0.81
+      },
+      "featureReviews": [
+        {
+          "id": "rear-cargo-system",
+          "score": 0.79,
+          "visible": true,
+          "notes": "Bevels, lid seam, latch and corner plates read, but the broad teal faces have overly uniform highlights."
+        },
+        {
+          "id": "teal-cream-orange-materials",
+          "score": 0.69,
+          "visible": true,
+          "notes": "Palette is correct; teal and rubber lack the independent micro normal and roughness breakup required by the surface contract."
+        }
+      ],
+      "action": "refine-code",
+      "summary": "Grazing light shows broad teal and rubber surfaces remain too uniformly smooth.",
+      "matched": [
+        "geometric tread,lid seam,beveled shell,orange relief accents"
+      ],
+      "mismatches": [
+        "uniform teal highlight,insufficient rubber micro grain"
+      ],
+      "specFixes": [],
+      "codeFixes": [
+        "add deterministic independent normal and roughness DataTextures to teal and rubber materials"
+      ],
+      "evidence": [
+        "grazing browser close-up"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "../../Assets/Concepts/DeliveryCargoBike_6View.png",
+        "renderScreenshot": "../../Previews/img2threejs-surface-pass.png",
+        "comparisonImage": "../../Pipeline/CargoBike/comparison-surface-v1.png",
+        "cameraView": "grazing",
+        "notes": "",
+        "aiVisionNotes": "The spec already names surface frequency bands; implementation needs independent micro normal and roughness fields."
+      }
+    },
+    {
+      "timestamp": "2026-07-21T07:40:05.837195+00:00",
+      "passId": "surface-pass",
+      "estimatedFidelity": 0.8,
+      "aiVisionScore": 0.8,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.84,
+        "componentStructure": 0.84,
+        "formDetail": 0.83,
+        "materialSurface": 0.8,
+        "lightingCamera": 0.81
+      },
+      "featureReviews": [
+        {
+          "id": "rear-cargo-system",
+          "score": 0.83,
+          "visible": true,
+          "notes": "Lid bevel, seam shadow, latch, badge relief and corner-guard contacts remain legible under grazing light."
+        },
+        {
+          "id": "teal-cream-orange-materials",
+          "score": 0.79,
+          "visible": true,
+          "notes": "Teal frame now shows fine highlight breakup independent of albedo, while rubber keeps a rougher granular response."
+        }
+      ],
+      "action": "continue",
+      "summary": "Grazing light now reveals independent teal paint and rubber micro response while geometry relief remains crisp.",
+      "matched": [
+        "powder-coat highlight breakup,rubber grain,tread relief,lid seam AO,bevel crest highlights"
+      ],
+      "mismatches": [
+        "micro grain is deliberately subtle on cargo faces"
+      ],
+      "specFixes": [],
+      "codeFixes": [
+        "none",
+        "surface response meets stylized real-time target"
+      ],
+      "evidence": [
+        "corrected grazing browser render"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "../../Assets/Concepts/DeliveryCargoBike_6View.png",
+        "renderScreenshot": "../../Previews/img2threejs-surface-pass-v2.png",
+        "comparisonImage": "../../Pipeline/CargoBike/comparison-surface-v2.png",
+        "cameraView": "grazing",
+        "notes": "",
+        "aiVisionNotes": "Independent normal/roughness breakup is visible on the teal tube and tires without introducing photoreal grunge."
+      }
+    },
+    {
+      "timestamp": "2026-07-21T07:40:45.032806+00:00",
+      "passId": "lighting-pass",
+      "estimatedFidelity": 0.82,
+      "aiVisionScore": 0.82,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.85,
+        "componentStructure": 0.84,
+        "formDetail": 0.82,
+        "materialSurface": 0.82,
+        "lightingCamera": 0.84
+      },
+      "featureReviews": [
+        {
+          "id": "teal-cream-orange-materials",
+          "score": 0.82,
+          "visible": true,
+          "notes": "Warm key, cool rim/fill, ACES tone mapping and ground contact shadows preserve the concept palette and separate the silhouette."
+        }
+      ],
+      "action": "continue",
+      "summary": "Warm key, cool fill/rim and soft grounded shadows make the form and stylized materials readable without flattening values.",
+      "matched": [
+        "warm upper-left highlight,cool silhouette separation,light gray studio background,ground contact shadows,ACES highlight rolloff"
+      ],
+      "mismatches": [
+        "browser shadow is slightly crisper than the concept render"
+      ],
+      "specFixes": [],
+      "codeFixes": [
+        "Blender optimization stage will soften final area-light shadows"
+      ],
+      "evidence": [
+        "reference-match three-quarter browser render plus prior neutral and grazing checks"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "../../Assets/Concepts/DeliveryCargoBike_6View.png",
+        "renderScreenshot": "../../Previews/img2threejs-lighting-pass.png",
+        "comparisonImage": "../../Pipeline/CargoBike/comparison-lighting-pass.png",
+        "cameraView": "reference-match-three-quarter",
+        "notes": "",
+        "aiVisionNotes": "Lighting explains the bevels and materials, with a clear key/fill/rim structure and grounded tires."
+      }
+    },
+    {
+      "timestamp": "2026-07-21T07:41:28.928607+00:00",
+      "passId": "interaction-pass",
+      "estimatedFidelity": 0.83,
+      "aiVisionScore": 0.83,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {
+        "silhouetteProportion": 0.83,
+        "componentStructure": 0.86,
+        "formDetail": 0.81,
+        "materialSurface": 0.81,
+        "lightingCamera": 0.82
+      },
+      "featureReviews": [
+        {
+          "id": "steering-and-wheel-system",
+          "score": 0.84,
+          "visible": true,
+          "notes": "Front view confirms the steering pivot centers the handlebar, headlight, fork, mudguard and front-wheel hierarchy on one axis."
+        }
+      ],
+      "action": "continue",
+      "summary": "The runtime hierarchy exposes stable steering, wheel, crank, cargo, lid, battery and kickstand nodes plus sockets and primitive collider metadata.",
+      "matched": [
+        "centered steering stack,independent front and rear wheel pivots,cargo and lid pivots,named rider and light sockets"
+      ],
+      "mismatches": [
+        "no skeletal rider rig by design"
+      ],
+      "specFixes": [],
+      "codeFixes": [
+        "none",
+        "prop-level interaction contract is satisfied"
+      ],
+      "evidence": [
+        "front browser render and runtime metadata in procedural factory"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "../../Assets/Concepts/DeliveryCargoBike_6View.png",
+        "renderScreenshot": "../../Previews/img2threejs-interaction-pass.png",
+        "comparisonImage": "../../Pipeline/CargoBike/comparison-interaction-pass.png",
+        "cameraView": "front",
+        "notes": "",
+        "aiVisionNotes": "The front view confirms alignment while the generated runtime map provides stable animation and socket targets."
+      }
+    },
+    {
+      "timestamp": "2026-07-21T07:51:21.551305+00:00",
+      "passId": "optimization-pass",
+      "estimatedFidelity": 0.85,
+      "aiVisionScore": null,
+      "visualAcceptanceThreshold": 0.7,
+      "layerScores": {},
+      "featureReviews": [],
+      "action": "continue",
+      "summary": "Blender optimization and Unity import validation passed within the 35k triangle budget while preserving gameplay pivots.",
+      "matched": [
+        "Blender object count reduced from 185 to 88",
+        "mesh object count reduced from 169 to 72",
+        "optimized GLB is 2.27 MB",
+        "Unity imported 33,796 triangles and 6 materials",
+        "all steering wheel cargo battery and kickstand nodes preserved"
+      ],
+      "mismatches": [
+        "Repeated parts remain authored as merged functional groups instead of GPU instances",
+        "final material appearance is renderer dependent"
+      ],
+      "specFixes": [],
+      "codeFixes": [
+        "No further code refinement required for this prototype asset"
+      ],
+      "evidence": [
+        "Pipeline/CargoBike/blender-optimization-report.json",
+        "Assets/DeliveryCargoBike.optimized.glb",
+        "Previews/DeliveryCargoBike_Blender.png",
+        "UnityProject/Assets/DeliveryCargoBike/PrefabValidationReport.json"
+      ],
+      "visualEvidence": {
+        "referenceScreenshot": "../../Assets/Concepts/DeliveryCargoBike_6View.png",
+        "renderScreenshot": "",
+        "comparisonImage": "",
+        "cameraView": "optimized hero three-quarter",
+        "notes": "Optimized Blender render preserves the concept silhouette, teal cargo branding, cream accents, black frame, and readable chunky wheel profile.",
+        "aiVisionNotes": ""
+      }
+    }
+  ],
+  "lodPlan": [
+    {
+      "tier": "near",
+      "distance": 0,
+      "strategy": "full component tree and material layers"
+    },
+    {
+      "tier": "far",
+      "distance": 18,
+      "strategy": "remove tread blocks, halve spoke count and merge static shell meshes"
+    }
+  ],
+  "performanceBudget": {
+    "qualityPriority": "balanced mobile game prop",
+    "targetTriangles": 35000,
+    "maxDrawCalls": 12,
+    "textureSize": 1024,
+    "fpsTarget": 60,
+    "optimizationPolicy": "Preserve the wheel, frame and cargo silhouettes; instance spokes and tread; merge only static same-material parts."
+  },
+  "lightingFromPhoto": [
+    "Key light: large warm area light from front-left and above, 4800 K, soft shadows, intensity 3.0.",
+    "Fill and environment: cool neutral hemisphere fill from camera-right, strength 0.65, gray studio world at 0.35.",
+    "Rim and output: soft rear-right area rim at 5200 K; ACES/Filmic tone mapping, exposure +0.3, light gray background, contact shadow and ground AO under tires."
+  ],
+  "proceduralStrategy": [
+    "Block out macro silhouette first.",
+    "Add component hierarchy and joints.",
+    "Create stable pivot groups, sockets, collider proxies, and destruction metadata before visual polish.",
+    "Refine forms with bevels, tapers, bends, and procedural noise.",
+    "Use independent procedural roughness and normal variation for teal paint, tire rubber and cream parts.",
+    "Add material variation before micro-geometry; instance spokes, tread blocks and cargo corner accents.",
+    "Export a named hierarchy to GLB with front +Z and up +Y for Unity."
+  ],
+  "animationAnchors": [
+    "root pivot node supports whole-object translation, rotation, scale, and visibility changes",
+    "component pivot groups support later local transforms without rebuilding geometry"
+  ],
+  "destructionAnchors": [
+    "actionProfile.destruction.fractureGroup marks detachable or breakable component sets",
+    "component seams and sockets define plausible break points instead of random explosions"
+  ],
+  "risks": []
+}

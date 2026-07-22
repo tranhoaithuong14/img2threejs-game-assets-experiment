@@ -1,0 +1,59 @@
+{
+    "status": "pass",
+    "eligibility": "candidate-development-only",
+    "unityVersion": "6000.5.4f1",
+    "modelPath": "Assets/PlazaFountain/Models/PlazaFountain.fbx",
+    "prefabPath": "Assets/PlazaFountain/Prefabs/PlazaFountain.prefab",
+    "reviewScenePath": "Assets/PlazaFountain/Scenes/PlazaFountainReview.unity",
+    "transforms": 37,
+    "renderers": 4,
+    "meshes": 4,
+    "materials": 5,
+    "colliders": 3,
+    "missingScripts": 0,
+    "rigConfigured": true,
+    "lodGroupConfigured": true,
+    "strictlyDecreasingLods": true,
+    "triangleBudgetsPass": true,
+    "materialBudgetPass": true,
+    "drawCallBudgetPass": true,
+    "lods": [
+        {
+            "name": "LOD0",
+            "renderers": 2,
+            "triangles": 21600,
+            "estimatedDrawCalls": 8
+        },
+        {
+            "name": "LOD1",
+            "renderers": 1,
+            "triangles": 10368,
+            "estimatedDrawCalls": 5
+        },
+        {
+            "name": "LOD2",
+            "renderers": 1,
+            "triangles": 3361,
+            "estimatedDrawCalls": 5
+        }
+    ],
+    "requiredNodes": [
+        "LOD0",
+        "LOD1",
+        "LOD2",
+        "LowerBasin_System",
+        "Tower_System",
+        "WaterLower_Socket",
+        "WaterUpper_Socket",
+        "Spout_N",
+        "Spout_E",
+        "Spout_S",
+        "Spout_W",
+        "UpperBowl_Pivot",
+        "Finial_Pivot"
+    ],
+    "limitations": [
+        "Water jets are runtime effects and are not structural FBX geometry.",
+        "Android/device performance validation remains pending."
+    ]
+}

@@ -1,0 +1,71 @@
+{
+  "assetId": "plaza-fountain",
+  "version": 3,
+  "request": "Correct the missing water-flow details and the stone-separation lines after close comparison with the supplied target.",
+  "route": "deterministic img2threejs geometry refinement followed by Blender MCP optimization and Unity prefab rebuild",
+  "providerGenerationUsed": false,
+  "creditsConsumed": 0,
+  "cost": 0,
+  "status": "pass",
+  "changes": [
+    "changed four water streams to pale translucent 0.006 m tubes landing at 0.72 m radius",
+    "added two concentric impact ripples and a small splash stem per stream",
+    "rebuilt the octagonal plinth with explicit horizontal ledges",
+    "added flush top-face and full-height riser joints to both plinth tiers",
+    "changed the lower basin wall to sixteen stone segments with aligned full-height joints",
+    "placed sixteen radial joints on the visible top of the lower rim",
+    "added upper-bowl rim and body separation joints",
+    "removed the incorrect broken copper band from the pedestal base",
+    "matched the Blender review water effects to the browser geometry"
+  ],
+  "results": {
+    "sourceExport": {
+      "meshes": 126,
+      "triangles": 22888,
+      "materials": 5
+    },
+    "blender": {
+      "sourceImportedTriangles": 23920,
+      "lod0Triangles": 23784,
+      "lod1Triangles": 11416,
+      "lod2Triangles": 3804,
+      "materials": 5,
+      "lod0EstimatedDrawCalls": 8,
+      "degenerateFaces": 0,
+      "looseVertices": 0
+    },
+    "unity": {
+      "version": "6000.5.4f1",
+      "lod0Triangles": 23784,
+      "lod1Triangles": 11376,
+      "lod2Triangles": 3684,
+      "colliders": 3,
+      "missingScripts": 0,
+      "rigConfigured": true,
+      "lodGroupConfigured": true
+    }
+  },
+  "validation": {
+    "browserFixedViews": "pass",
+    "blenderVisualReview": "pass",
+    "optimizedGlbReimport": "pass",
+    "blenderBudgets": "pass",
+    "unityBatch": "pass",
+    "eligibility": "candidate-development-only"
+  },
+  "evidence": [
+    "Previews/PlazaFountain_v3_ThreeQuarter.png",
+    "Previews/PlazaFountain_v3_Front.png",
+    "Previews/PlazaFountain_v3_Top.png",
+    "Previews/PlazaFountain_Blender.png",
+    "Pipeline/PlazaFountain/comparison-refinement-v3-water-joints.png",
+    "Pipeline/PlazaFountain/blender-optimization-report.json",
+    "UnityProject/Assets/PlazaFountain/PrefabValidationReport.json"
+  ],
+  "limitations": [
+    "The fish ornaments remain deterministic stylized geometry rather than hand-sculpted organic meshes.",
+    "Stone joints are thin flush geometry strips rather than destructive boolean mortar cuts.",
+    "Water effects are review/runtime visuals and remain excluded from structural GLB and FBX collision geometry.",
+    "Android device performance and final in-game art-direction approval remain pending."
+  ]
+}

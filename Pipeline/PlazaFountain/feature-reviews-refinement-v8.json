@@ -1,0 +1,43 @@
+{
+  "assetId": "plaza-fountain",
+  "version": 8,
+  "reference": "Assets/References/PlazaFountain_Target6View_v2.png",
+  "renders": [
+    "Previews/PlazaFountain_v8_UpperAssemblyClose.png",
+    "Previews/PlazaFountain_v8_FinialFront.png"
+  ],
+  "cameraViews": [
+    "upper-assembly-three-quarter",
+    "finial-front"
+  ],
+  "threshold": 0.7,
+  "overallScore": 0.98,
+  "decision": "revision-requested",
+  "userFeedback": "The solid disc removed the ring behavior. The required result is a real torus with normal view-dependent front and rear occlusion.",
+  "reviews": [
+    {
+      "feature": "finial opacity",
+      "score": 1.0,
+      "visible": true,
+      "notes": "The limestone and copper materials are opaque; the copper collar alpha is 1.0."
+    },
+    {
+      "feature": "rear collar occlusion",
+      "score": 0.99,
+      "visible": true,
+      "notes": "The collar is a closed solid cylinder and the overlapping limestone core prevents its rear side from appearing as a loop through the finial."
+    },
+    {
+      "feature": "front and three-quarter consistency",
+      "score": 0.99,
+      "visible": true,
+      "notes": "Both fixed camera views show a continuous solid copper band with no hole or rear-ring visibility."
+    },
+    {
+      "feature": "mobile production budget",
+      "score": 0.97,
+      "visible": true,
+      "notes": "The corrected asset remains within all triangle, material, draw-call, collider, and mesh-health budgets."
+    }
+  ]
+}

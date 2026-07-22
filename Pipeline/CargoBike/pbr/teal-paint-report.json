@@ -1,0 +1,85 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.86,
+  "estimatedFidelity": 0.86,
+  "targetThreshold": 0.7,
+  "materialId": "teal-paint",
+  "sourceImage": "/Users/cristian/Documents/Game assets/Pipeline/CargoBike/detail-zones/zone-r1c0.png",
+  "outDir": "/Users/cristian/Documents/Game assets/Pipeline/CargoBike/pbr/teal-paint",
+  "palette": [
+    "#373A38",
+    "#191A18",
+    "#529994",
+    "#C2B399",
+    "#54645E"
+  ],
+  "maps": {
+    "albedo": {
+      "path": "/Users/cristian/Documents/Game assets/Pipeline/CargoBike/pbr/teal-paint/teal-paint_albedo.png",
+      "url": "teal-paint_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "/Users/cristian/Documents/Game assets/Pipeline/CargoBike/pbr/teal-paint/teal-paint_roughness.png",
+      "url": "teal-paint_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "/Users/cristian/Documents/Game assets/Pipeline/CargoBike/pbr/teal-paint/teal-paint_height.png",
+      "url": "teal-paint_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "/Users/cristian/Documents/Game assets/Pipeline/CargoBike/pbr/teal-paint/teal-paint_normal.png",
+      "url": "teal-paint_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "/Users/cristian/Documents/Game assets/Pipeline/CargoBike/pbr/teal-paint/teal-paint_ao.png",
+      "url": "teal-paint_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 341,
+    "sourceHeight": 512,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 12,
+      "y": 88,
+      "width": 329,
+      "height": 424
+    },
+    "mask": {
+      "backgroundColor": "#DDDCDC",
+      "backgroundNoise": 29.479,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.2231
+    },
+    "mapStats": {
+      "valueRange": 0.6784,
+      "heightP90Gradient": 0.0498,
+      "roughnessBase": 0.68,
+      "roughnessVariation": 0.094,
+      "normalStrength": 0.215,
+      "blurRadius": 21
+    },
+    "palette": [
+      "#373A38",
+      "#191A18",
+      "#529994",
+      "#C2B399",
+      "#54645E"
+    ]
+  },
+  "warnings": [
+    "single-image inverse rendering cannot prove true physical PBR; confidence is capped"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

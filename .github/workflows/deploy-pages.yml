@@ -1,0 +1,66 @@
+name: Deploy interactive demos
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            ThreeJS/package-lock.json
+            ThreeJS/PlazaFountain/package-lock.json
+
+      - name: Build Delivery Cargo Bike
+        run: |
+          npm --prefix ThreeJS ci
+          npm --prefix ThreeJS run build -- --base=./
+
+      - name: Build Plaza Fountain
+        run: |
+          npm --prefix ThreeJS/PlazaFountain ci
+          npm --prefix ThreeJS/PlazaFountain run build -- --base=./
+
+      - name: Assemble gallery
+        run: |
+          mkdir -p public-site/bike public-site/fountain public-site/assets
+          cp site/index.html public-site/index.html
+          cp -R ThreeJS/dist/. public-site/bike/
+          cp -R ThreeJS/PlazaFountain/dist/. public-site/fountain/
+          cp Previews/DeliveryCargoBike_Blender.png public-site/assets/delivery-cargo-bike.png
+          cp Previews/PlazaFountain_Blender.png public-site/assets/plaza-fountain.png
+          touch public-site/.nojekyll
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public-site
+
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

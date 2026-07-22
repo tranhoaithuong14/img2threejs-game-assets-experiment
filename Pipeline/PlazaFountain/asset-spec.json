@@ -1,0 +1,88 @@
+{
+  "assetId": "plaza-fountain",
+  "version": 10,
+  "status": "candidate-development-only",
+  "gameplayPurpose": "Decorative city-plaza landmark and navigation prop for an isometric delivery game.",
+  "intendedCamera": {
+    "projection": "isometric or mild perspective",
+    "distanceMeters": [8, 25],
+    "primaryPlatform": "mobile"
+  },
+  "identity": {
+    "name": "Stylized Tiered Plaza Fountain",
+    "silhouette": "Broad octagonal stepped base, circular lower pool, tapered central pedestal, smaller upper bowl, and compact finial.",
+    "palette": ["warm limestone", "muted teal water", "dark teal ceramic insets", "small copper accents"],
+    "materials": ["carved limestone", "glazed teal ceramic", "water", "aged copper", "dark recess"],
+    "distinctiveFeatures": [
+      "octagonal two-step plinth",
+      "slim segmented lower basin lip surrounding a broad visible water surface",
+      "four compact downward-angled sculpted fish spouts on alternating octagonal faces",
+      "faceted pedestal with four framed inset teal panels alternating with spouts",
+      "compact shallow segmented upper bowl, restrained copper collars, and grooved acorn finial",
+      "visible masonry joints across both octagonal plinth steps and basin wall",
+      "thin pale water streams with paired impact ripples at four landing points",
+      "flush radial joints across lower and upper basin rims plus full-height wall joints",
+      "separate lower and upper water surfaces"
+    ],
+    "forbidden": ["text", "logos", "people", "environment clutter", "cropped geometry", "extra props", "photoreal weathering", "asymmetric panel counts", "panels hidden behind fish heads", "featureless spherical fish ornaments", "inflated or toy-like stone tiers"]
+  },
+  "dimensionsMeters": {
+    "diameter": 2.68,
+    "height": 2.18,
+    "origin": "ground-center",
+    "forward": "+Z",
+    "up": "+Y"
+  },
+  "budgets": {
+    "lod0TrianglesMax": 25000,
+    "lod1TrianglesMax": 12000,
+    "lod2TrianglesMax": 4000,
+    "materialsMax": 5,
+    "textureMaxPixels": 1024,
+    "targetDrawCalls": 8,
+    "fpsTarget": 60
+  },
+  "construction": {
+    "requiredMethod": "six-view concept to hoainho/img2threejs procedural reconstruction to GLB to Blender optimization to Unity prefab",
+    "route": "explicit procedural hard-surface construction",
+    "reason": "Rotational symmetry, repeated spouts, dimension-critical basins, and gameplay sockets favor deterministic geometry."
+  },
+  "interaction": {
+    "colliders": ["base box proxy", "lower basin box proxy", "pedestal capsule proxy"],
+    "pivots": ["UpperBowl_Pivot", "Finial_Pivot"],
+    "sockets": ["WaterLower_Socket", "WaterUpper_Socket", "Spout_N", "Spout_E", "Spout_S", "Spout_W"],
+    "water": "Separate non-colliding meshes and emitter sockets; no baked particles in GLB."
+  },
+  "unity": {
+    "editorVersion": "6000.5.4f1",
+    "prefabPath": "UnityProject/Assets/PlazaFountain/Prefabs/PlazaFountain.prefab",
+    "developmentLabel": "AI_ASSET_CANDIDATE",
+    "reviewSceneRequired": true
+  },
+  "referenceViews": ["front", "rear", "left", "right", "top", "three-quarter"],
+  "rights": {
+    "classification": "user-supplied and explicitly approved six-view art-direction target for this asset refinement",
+    "exactReproduction": true,
+    "referencePath": "Assets/References/PlazaFountain_Target6View_v2.png",
+    "referenceSha256": "17ca3ac240dfe4b052cbd622fe52e018213b668cab06522193e267690b43ee6f"
+  },
+  "acceptance": {
+    "visual": [
+      "All six views depict the same footprint, tier count, panel count, proportions, and material zones.",
+      "The lower pool, pedestal, four spouts, upper bowl, and finial remain readable at isometric gameplay distance.",
+      "Four framed teal panels alternate with four fish-spout faces instead of occupying the same faces.",
+      "Each fish head has a separate neck, tapered cranium, compact muzzle, open circular mouth, subtle side-set eyes, gill plates, side fins, and top crest.",
+      "Each fish spout reads as a compact sculpted mask rather than a sphere-and-pipe assembly: broad cheeks taper into a short puckered outlet with a lower jaw, shallow orbital brows, and a named mouth socket from which the water begins exactly.",
+      "The tower cap, upper bowl, copper collars, and finial remain compact and subordinate to the lower pool, matching the supplied target proportions.",
+      "Stone tiers show controlled faceting, bevel layers, and masonry joints without inflated toy-like rounding.",
+      "Water streams fall inward from each fish mouth and terminate in two readable impact rings plus a small splash stem.",
+      "Top-rim separation is modeled as physical gaps between individually capped limestone segments, vertical seams follow the exact tapered or lathed profiles, the finial channels are recessed directly into the stone surface, and its real torus collar uses correct outward finial winding plus opaque depth-tested materials so the far arc is occluded naturally during orbit.",
+      "No melted, floating, duplicated, or missing critical component is visible in fixed-camera renders."
+    ],
+    "technical": [
+      "Optimized LOD0 is at or below 25000 triangles and five materials.",
+      "Coordinates are finite and the ground-center origin, meter scale, +Y up, and +Z forward convention are preserved.",
+      "Unity prefab has compound colliders, named water/spout sockets, a valid LODGroup, and no missing scripts or mesh bindings."
+    ]
+  }
+}

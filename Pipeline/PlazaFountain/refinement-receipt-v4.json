@@ -1,0 +1,79 @@
+{
+  "assetId": "plaza-fountain",
+  "version": 4,
+  "timestamp": "2026-07-22T09:05:23Z",
+  "request": "Push the fountain closer to the supplied detailed target after another close visual comparison.",
+  "route": "deterministic img2threejs geometry refinement followed by source GLB export, Blender MCP optimization, optimized GLB re-import, and Unity prefab rebuild",
+  "providerGenerationUsed": false,
+  "creditsConsumed": 0,
+  "cost": 0,
+  "status": "superseded-by-v5",
+  "userDecision": "revision-requested because planar seam-strip endpoints floated beyond curved stone surfaces",
+  "changes": [
+    "reduced the lower rim volume and increased the readable lower water area",
+    "replaced the roof-like pedestal cap with a compact two-stage octagonal cap",
+    "reprofiled the upper bowl into a smaller and shallower tier",
+    "reduced the upper copper collar and rebuilt the finial as a shorter grooved acorn",
+    "resculpted all four fish spouts with narrower necks, tapered heads, compact circular mouths, subtle side-set eyes, gill plates, fins, crests, and a slight downward aim",
+    "kept four pale curved streams with paired impact ripples and splash stems aligned to the new mouth positions",
+    "changed the visible stone-joint treatment from blue-green to a restrained warm shadow line while retaining the five-material and eight-draw-call budgets",
+    "replaced the lower-basin Unity capsule proxy with a correctly proportioned box proxy"
+  ],
+  "results": {
+    "sourceExport": {
+      "meshes": 122,
+      "vertices": 15202,
+      "triangles": 19688,
+      "materials": 5
+    },
+    "blender": {
+      "sourceImportedTriangles": 20720,
+      "lod0Triangles": 20600,
+      "lod1Triangles": 9888,
+      "lod2Triangles": 3295,
+      "lod0MeshObjects": 2,
+      "materials": 5,
+      "lod0EstimatedDrawCalls": 8,
+      "degenerateFaces": 0,
+      "looseVertices": 0
+    },
+    "unity": {
+      "version": "6000.5.4f1",
+      "lod0Triangles": 20600,
+      "lod1Triangles": 9880,
+      "lod2Triangles": 3167,
+      "materials": 5,
+      "estimatedLod0DrawCalls": 8,
+      "colliders": 3,
+      "missingScripts": 0,
+      "rigConfigured": true,
+      "lodGroupConfigured": true
+    }
+  },
+  "validation": {
+    "typescriptBuild": "pass",
+    "browserFixedViews": "pass",
+    "blenderVisualReview": "pass",
+    "optimizedGlbReimport": "pass",
+    "blenderBudgets": "pass",
+    "unityBatch": "pass",
+    "eligibility": "candidate-development-only"
+  },
+  "evidence": [
+    "Previews/PlazaFountain_v4_ThreeQuarter.png",
+    "Previews/PlazaFountain_v4_Front.png",
+    "Previews/PlazaFountain_v4_Top.png",
+    "Previews/PlazaFountain_Blender.png",
+    "Pipeline/PlazaFountain/comparison-refinement-v4-proportions-sculpt.png",
+    "Pipeline/PlazaFountain/glb-export-report.json",
+    "Pipeline/PlazaFountain/blender-optimization-report.json",
+    "UnityProject/Assets/PlazaFountain/PrefabValidationReport.json",
+    "Pipeline/PlazaFountain/unity-batch.log"
+  ],
+  "limitations": [
+    "The fish ornaments remain deterministic procedural geometry rather than hand-sculpted organic meshes.",
+    "Stone joints remain thin flush geometry rather than destructive mortar cuts.",
+    "Water jets and impact effects are review/runtime visuals and are excluded from the structural GLB and FBX geometry.",
+    "Android device performance and final in-game art-direction approval remain pending."
+  ]
+}

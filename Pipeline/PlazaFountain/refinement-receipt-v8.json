@@ -1,0 +1,85 @@
+{
+  "assetId": "plaza-fountain",
+  "version": 8,
+  "timestamp": "2026-07-22T12:11:58Z",
+  "request": "Correct the transparent-looking top where the rear copper ring remained visible through the finial assembly.",
+  "route": "deterministic img2threejs geometry correction followed by source GLB export, Blender front and three-quarter occlusion validation, optimized GLB re-import, and Unity prefab rebuild",
+  "providerGenerationUsed": false,
+  "creditsConsumed": 0,
+  "cost": 0,
+  "status": "superseded-by-v9",
+  "userDecision": "revision-requested because the copper element must remain a real torus ring whose far arc is naturally depth-occluded during orbit, not a solid disc",
+  "rootCause": "No material was transparent. The copper collar was an open torus wrapped around a narrow stone core, so its rear semicircle remained visible and created a see-through illusion.",
+  "changes": [
+    "replaced the open donut-shaped torus with a closed capped copper cylinder collar",
+    "widened the limestone finial base and lower finial profile",
+    "overlapped the opaque stone core through the collar so the rear side is fully depth-occluded",
+    "retained the integrated finial channels and physical basin-rim gaps from prior corrections"
+  ],
+  "results": {
+    "sourceExport": {
+      "meshes": 156,
+      "vertices": 15675,
+      "triangles": 20936,
+      "materials": 5,
+      "finialFluteObjects": 0,
+      "copperCollarAlpha": 1.0,
+      "copperCollarTopology": "closed-capped-cylinder"
+    },
+    "blender": {
+      "sourceImportedTriangles": 21440,
+      "lod0Triangles": 21440,
+      "lod1Triangles": 10290,
+      "lod2Triangles": 3430,
+      "materials": 5,
+      "lod0EstimatedDrawCalls": 8,
+      "nonManifoldEdges": 112,
+      "degenerateFaces": 0,
+      "looseVertices": 0
+    },
+    "unity": {
+      "version": "6000.5.4f1",
+      "lod0Triangles": 21440,
+      "lod1Triangles": 10290,
+      "lod2Triangles": 3342,
+      "materials": 5,
+      "estimatedLod0DrawCalls": 8,
+      "colliders": 3,
+      "missingScripts": 0,
+      "rigConfigured": true,
+      "lodGroupConfigured": true
+    }
+  },
+  "validation": {
+    "typescriptBuild": "pass",
+    "frontOcclusionReview": "pass",
+    "threeQuarterOcclusionReview": "pass",
+    "optimizedGlbReimport": "pass",
+    "opaqueCollarMaterial": "pass",
+    "blenderBudgets": "pass",
+    "unityBatch": "pass",
+    "eligibility": "candidate-development-only"
+  },
+  "hashes": {
+    "sourceGlbSha256": "524a24ce84ac3f5ed3625dc9e6e15189142cc1daed6fae5bf8c50b0a041ff37c",
+    "optimizedGlbSha256": "597cae4bbe95b0561aceee7f4cfdd895334437b646ebc0c6ef4679780fca6896",
+    "optimizedBlendSha256": "bd4704effec6ca2a30465c61b4652f7dd145000f2e09f8e545407e521b0ea94e",
+    "threeQuarterRenderSha256": "88464830639226b6540f914d29434bd27192cc4454fed23458c0afbc4f677bb6",
+    "frontRenderSha256": "548973fcfa543a7d426a3f28ef1ab3c65c9bd24c0b03eb4fef6206e6a4320419",
+    "unityPrefabSha256": "c5c9265022697b7998577cc79018bc6f6e64239b9284429f00e423f40fdb386b"
+  },
+  "evidence": [
+    "Previews/PlazaFountain_v8_UpperAssemblyClose.png",
+    "Previews/PlazaFountain_v8_FinialFront.png",
+    "Previews/PlazaFountain_Blender.png",
+    "Pipeline/PlazaFountain/glb-export-report.json",
+    "Pipeline/PlazaFountain/blender-optimization-report.json",
+    "UnityProject/Assets/PlazaFountain/PrefabValidationReport.json",
+    "Pipeline/PlazaFountain/unity-batch.log"
+  ],
+  "limitations": [
+    "Vertical wall and upper-bowl seams remain separate embedded solids rather than destructive mortar cuts.",
+    "Water jets and impacts remain runtime or review effects excluded from structural GLB and FBX geometry.",
+    "Android device performance and final user art-direction approval remain pending."
+  ]
+}

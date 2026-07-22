@@ -1,0 +1,50 @@
+{
+  "assetId": "plaza-fountain",
+  "version": 4,
+  "reference": "Assets/References/PlazaFountain_Target6View_v2.png",
+  "render": "Previews/PlazaFountain_Blender.png",
+  "comparison": "Pipeline/PlazaFountain/comparison-refinement-v4-proportions-sculpt.png",
+  "cameraView": "three-quarter-close",
+  "threshold": 0.7,
+  "overallScore": 0.9,
+  "decision": "revision-requested",
+  "userFeedback": "Close side-angle review exposed flat stone-separation strips floating beyond the curved lower and upper rim silhouettes; corrected in v5.",
+  "reviews": [
+    {
+      "feature": "macro tier proportions",
+      "score": 0.9,
+      "visible": true,
+      "notes": "The slimmer lower rim, broader pool, flatter tower cap, smaller upper bowl, and shorter finial match the supplied tier hierarchy more closely than v3."
+    },
+    {
+      "feature": "fish-spout sculpt",
+      "score": 0.85,
+      "visible": true,
+      "notes": "All four spouts now use compact downward-aimed heads with tapered necks, circular mouths, subtle side-set eyes, gill plates, fins, and crests; the treatment remains deliberately procedural and mobile-readable."
+    },
+    {
+      "feature": "water-flow trajectory and impact",
+      "score": 0.94,
+      "visible": true,
+      "notes": "Four pale streams leave the adjusted mouth positions, curve inward, and terminate in two concentric ripples plus a small splash stem."
+    },
+    {
+      "feature": "stone separation",
+      "score": 0.92,
+      "visible": true,
+      "notes": "Radial top joints and vertical riser joints remain continuous and flush across the plinth, lower basin wall, lower rim, and upper bowl, now using a warmer less distracting shadow tone."
+    },
+    {
+      "feature": "upper-tier ornament",
+      "score": 0.89,
+      "visible": true,
+      "notes": "The upper bowl is shallower, both copper collars are restrained, and the finial is compact with visible vertical grooves."
+    },
+    {
+      "feature": "mobile production budget",
+      "score": 0.93,
+      "visible": true,
+      "notes": "LOD0/1/2 remain strictly decreasing and under budget with five materials, eight LOD0 draw calls, three collider proxies, and no degenerate faces, loose vertices, missing scripts, or broken sockets."
+    }
+  ]
+}

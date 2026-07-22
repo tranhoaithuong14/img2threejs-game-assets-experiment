@@ -1,0 +1,38 @@
+{
+  "asset": "DeliveryCargoBike",
+  "sourceBlend": "Blender/DeliveryCargoBike.blend",
+  "optimizedBlend": "Blender/DeliveryCargoBike.optimized.blend",
+  "optimizedGlb": "Assets/DeliveryCargoBike.optimized.glb",
+  "unityBridgeFbx": "UnityProject/Assets/DeliveryCargoBike/Models/DeliveryCargoBike.fbx",
+  "before": {
+    "objects": 185,
+    "meshObjects": 169,
+    "triangles": 34076
+  },
+  "after": {
+    "objects": 88,
+    "meshObjects": 72,
+    "triangles": 34076,
+    "materials": 6,
+    "glbBytes": 2271808,
+    "fbxBytes": 1429676
+  },
+  "targetTriangleBudget": 35000,
+  "budgetResult": "pass",
+  "preservedInteractionNodes": [
+    "Steering_Pivot",
+    "FrontWheel_Pivot",
+    "RearWheel_Pivot",
+    "Crank_Pivot",
+    "Cargo_Pivot",
+    "Cargo_Lid_Hinge",
+    "Battery_Detachable",
+    "Kickstand_Hinge"
+  ],
+  "notes": [
+    "Merged non-interactive mesh children by functional group while preserving silhouette and material boundaries.",
+    "Preserved named pivots and detachable nodes required by the Unity prefab.",
+    "Added Blender PBR material tuning and micro-surface grain to teal paint and rubber.",
+    "Consolidated equivalent accent materials to meet the six-material game-asset budget."
+  ]
+}

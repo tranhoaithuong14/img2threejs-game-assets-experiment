@@ -1,0 +1,26 @@
+{
+  "assetId": "plaza-fountain",
+  "provider": "OpenAI built-in image generation",
+  "model": "built-in image generation; model identifier not exposed by tool",
+  "mode": "generate with one style-reference image",
+  "startedAt": "2026-07-21T11:08:11+03:00",
+  "completedAt": "2026-07-21T11:12:04+03:00",
+  "promptPath": "Assets/Concepts/PlazaFountain_6View.prompt.md",
+  "referenceSet": [
+    {
+      "path": "Assets/References/GameStyleReference.png",
+      "role": "broad style, palette, camera, and density reference only",
+      "sha256": "a8e8b8b8310c3e251b3a340110fabb151b53c232f94a23c741eb7db13d1773fb"
+    }
+  ],
+  "output": {
+    "path": "Assets/Concepts/PlazaFountain_6View.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "3ac2176095b36dda317b26d0f34a22ff089a244b4498268fc41c966b0e98b7e4"
+  },
+  "creditsConsumed": null,
+  "cost": "not exposed by built-in tool",
+  "secretsRetained": false
+}
+

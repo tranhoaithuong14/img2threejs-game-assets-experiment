@@ -1,0 +1,55 @@
+{
+  "assetId": "plaza-fountain",
+  "version": 10,
+  "reference": "Assets/References/PlazaFountain_Target6View_v2.png",
+  "referenceClose": "Assets/References/PlazaFountain_FishHeadReferenceClose.png",
+  "renders": [
+    "Previews/PlazaFountain_v10_FishFront.png",
+    "Previews/PlazaFountain_v10_FishSide.png",
+    "Previews/PlazaFountain_v10_FishThreeQuarter.png",
+    "Previews/PlazaFountain_v10_FishHeadClose.png",
+    "Previews/PlazaFountain_v10_FishBlenderClose.png"
+  ],
+  "cameraViews": [
+    "browser-front",
+    "browser-side",
+    "browser-three-quarter",
+    "browser-fish-close",
+    "blender-fish-close"
+  ],
+  "threshold": 0.7,
+  "overallScore": 0.98,
+  "decision": "pass-pending-user-review",
+  "reviews": [
+    {
+      "feature": "compact fish-mask silhouette",
+      "score": 0.98,
+      "visible": true,
+      "notes": "A tapered cranium with broad cheeks replaces the old spherical puffer silhouette."
+    },
+    {
+      "feature": "short integrated mouth",
+      "score": 0.98,
+      "visible": true,
+      "notes": "The long pipe nozzle is gone; short lips, a dark cavity, muzzle pad, and lower jaw form the outlet."
+    },
+    {
+      "feature": "facial and profile anatomy",
+      "score": 0.97,
+      "visible": true,
+      "notes": "Side-set eyes, pupils, subtle brows, gill plates, fins, and dorsal crests remain readable from front, side, and three-quarter views."
+    },
+    {
+      "feature": "water emitter alignment",
+      "score": 1.0,
+      "visible": true,
+      "notes": "Each jet begins at the transformed position of the named mouth socket rather than a manually estimated point."
+    },
+    {
+      "feature": "export durability and mobile budget",
+      "score": 0.99,
+      "visible": true,
+      "notes": "The optimized Blender close-up retains the sculpt, optimized GLB re-import passes, and the rebuilt Unity prefab remains within all budgets."
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "source": "ThreeJS/PlazaFountain/src/createPlazaFountainModel.ts",
+  "output": "Assets/PlazaFountain.source.glb",
+  "bytes": 423652,
+  "meshes": 164,
+  "vertices": 15483,
+  "triangles": 21096,
+  "materials": [
+    "M_Aged_Copper",
+    "M_Dark_Teal_Recess",
+    "M_Limestone",
+    "M_Teal_Ceramic",
+    "M_Water"
+  ],
+  "forward": "+Z",
+  "up": "+Y",
+  "unit": "meter",
+  "excludedRuntimeEffects": [
+    "WaterJet_N",
+    "ImpactRippleInner_N",
+    "ImpactRippleOuter_N",
+    "ImpactSplash_N",
+    "WaterJet_E",
+    "ImpactRippleInner_E",
+    "ImpactRippleOuter_E",
+    "ImpactSplash_E",
+    "WaterJet_S",
+    "ImpactRippleInner_S",
+    "ImpactRippleOuter_S",
+    "ImpactSplash_S",
+    "WaterJet_W",
+    "ImpactRippleInner_W",
+    "ImpactRippleOuter_W",
+    "ImpactSplash_W"
+  ]
+}

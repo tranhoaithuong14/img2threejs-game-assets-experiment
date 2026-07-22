@@ -1,0 +1,43 @@
+{
+  "assetId": "plaza-fountain",
+  "version": 3,
+  "reference": "Assets/References/PlazaFountain_Target6View_v2.png",
+  "render": "Previews/PlazaFountain_Blender.png",
+  "comparison": "Pipeline/PlazaFountain/comparison-refinement-v3-water-joints.png",
+  "cameraView": "three-quarter-close",
+  "threshold": 0.7,
+  "overallScore": 0.89,
+  "decision": "pass",
+  "reviews": [
+    {
+      "feature": "water-flow trajectory",
+      "score": 0.93,
+      "visible": true,
+      "notes": "Four thin pale streams leave the fish-mouth outlets, curve gently inward, and land well inside the basin rim."
+    },
+    {
+      "feature": "water impact detail",
+      "score": 0.91,
+      "visible": true,
+      "notes": "Every stream terminates in two concentric surface ripples and a short splash stem visible in both browser and Blender review renders."
+    },
+    {
+      "feature": "lower-rim stone segmentation",
+      "score": 0.9,
+      "visible": true,
+      "notes": "Sixteen narrow radial joints sit on the visible top of the rounded basin rim and align with a sixteen-segment lower wall."
+    },
+    {
+      "feature": "octagonal plinth construction",
+      "score": 0.88,
+      "visible": true,
+      "notes": "The base now has explicit ledges plus flush radial top joints and full-height riser joints instead of isolated floating markers."
+    },
+    {
+      "feature": "upper-bowl segmentation",
+      "score": 0.86,
+      "visible": true,
+      "notes": "Subtle rim and body joints separate the upper stone bowl into readable constructed sections."
+    }
+  ]
+}

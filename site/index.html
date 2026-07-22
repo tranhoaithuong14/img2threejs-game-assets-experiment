@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Two procedural Three.js game assets reconstructed with img2threejs, exported to GLB, optimized in Blender, and packaged as Unity prefabs." />
+    <title>img2threejs Game-Asset Experiment</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: #08110f;
+        color: #effaf6;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 18% 4%, rgba(46, 196, 165, 0.22), transparent 34rem),
+          radial-gradient(circle at 90% 28%, rgba(240, 151, 54, 0.14), transparent 28rem),
+          #08110f;
+      }
+      main { width: min(1120px, calc(100% - 40px)); margin: 0 auto; padding: 76px 0 64px; }
+      .eyebrow { color: #70dfc3; font-size: 0.76rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; }
+      h1 { margin: 14px 0 16px; max-width: 850px; font-size: clamp(2.6rem, 7vw, 5.9rem); line-height: 0.96; letter-spacing: -0.06em; }
+      .lede { max-width: 760px; color: #b9cbc5; font-size: clamp(1rem, 2vw, 1.28rem); line-height: 1.65; }
+      .pipeline { display: flex; flex-wrap: wrap; gap: 10px; margin: 30px 0 54px; padding: 0; list-style: none; }
+      .pipeline li { border: 1px solid #24463d; border-radius: 999px; padding: 8px 13px; color: #cce3dc; background: rgba(18, 43, 36, 0.72); font-size: 0.83rem; }
+      .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+      .card { overflow: hidden; border: 1px solid #21463b; border-radius: 24px; background: rgba(14, 29, 25, 0.86); box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28); }
+      .card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; background: #dfe7e4; }
+      .content { padding: 24px; }
+      h2 { margin: 0 0 10px; font-size: 1.55rem; }
+      .content p { margin: 0 0 22px; min-height: 3.2em; color: #9fb5ae; line-height: 1.55; }
+      .button { display: inline-flex; align-items: center; gap: 8px; border-radius: 12px; padding: 12px 16px; background: #2ec4a5; color: #04120e; font-weight: 850; text-decoration: none; }
+      footer { display: flex; justify-content: space-between; gap: 20px; margin-top: 38px; padding-top: 24px; border-top: 1px solid #1e3a32; color: #769188; font-size: 0.88rem; }
+      footer a { color: #a9d9cc; }
+      @media (max-width: 760px) { main { padding-top: 48px; } .grid { grid-template-columns: 1fr; } footer { flex-direction: column; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="eyebrow">Six views → procedural mesh → production asset</div>
+      <h1>Game assets, rebuilt entirely in code.</h1>
+      <p class="lede">An experiment with img2threejs v1.2.0: generate consistent concept sheets, reconstruct them as procedural Three.js factories, export GLB, optimize in Blender, and package validated Unity prefabs.</p>
+      <ol class="pipeline" aria-label="Asset pipeline">
+        <li>Six-view concept</li><li>img2threejs</li><li>GLB export</li><li>Blender optimization</li><li>Unity prefab</li>
+      </ol>
+      <section class="grid" aria-label="Interactive assets">
+        <article class="card">
+          <img src="./assets/delivery-cargo-bike.png" alt="Stylized teal electric delivery cargo bike" />
+          <div class="content">
+            <h2>Delivery Cargo Bike</h2>
+            <p>A riderless electric delivery bike built from primitives, curves, procedural material maps, and named gameplay sockets.</p>
+            <a class="button" href="./bike/?view=three-quarter&amp;pass=final">Open interactive viewer <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+        <article class="card">
+          <img src="./assets/plaza-fountain.png" alt="Stylized tiered plaza fountain with fish-shaped water spouts" />
+          <div class="content">
+            <h2>Plaza Fountain</h2>
+            <p>A layered architectural prop with physical masonry segmentation, sculpted fish spouts, water effects, and three Unity LODs.</p>
+            <a class="button" href="./fountain/?view=three-quarter&amp;pass=final">Open interactive viewer <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+      </section>
+      <footer>
+        <span>Procedural geometry. No imported meshes. No runtime network calls.</span>
+        <a href="https://github.com/ccycv/img2threejs-game-assets-experiment">Source, prompts, GLBs, Blender scenes, and Unity prefabs</a>
+      </footer>
+    </main>
+  </body>
+</html>

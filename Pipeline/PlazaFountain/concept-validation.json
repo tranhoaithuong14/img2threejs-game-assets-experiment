@@ -1,0 +1,22 @@
+{
+  "assetId": "plaza-fountain",
+  "status": "pass-as-concept-specification",
+  "calibratedPhotogrammetry": false,
+  "checks": {
+    "sixPanelsPresent": true,
+    "directionLabelsCorrect": true,
+    "assetUncropped": true,
+    "consistentOctagonalFootprint": true,
+    "consistentTierCount": true,
+    "consistentFourSpoutSystem": true,
+    "consistentPaletteAndMaterialZones": true,
+    "backgroundContamination": false,
+    "environmentOrPeoplePresent": false
+  },
+  "observations": [
+    "The lower plinth, round basin, faceted pedestal, upper bowl, and finial remain consistent across the sheet.",
+    "Occluded fish spouts are inferred from the top view and exact four-way rotational symmetry.",
+    "Water streams and subtle surface ripples are treated as runtime effects rather than fused structural geometry.",
+    "The sheet is suitable for explicit procedural reconstruction, not camera-calibrated photogrammetry."
+  ]
+}

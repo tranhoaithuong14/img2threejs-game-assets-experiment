@@ -1,0 +1,11 @@
+{
+  "profileId": "cozy-isometric-city-v1",
+  "source": "Assets/References/GameStyleReference.png",
+  "use": "broad style reference only",
+  "shapeLanguage": ["chunky", "rounded bevels", "clean faceting", "strong readable silhouettes", "slightly exaggerated proportions"],
+  "surfaceLanguage": ["clean stylized PBR", "soft roughness variation", "minimal wear", "warm edge highlights"],
+  "lighting": ["warm key", "cool fill", "soft contact shadows", "gentle filmic highlight rolloff"],
+  "camera": ["isometric gameplay read", "orthographic reference views", "three-quarter hero review"],
+  "avoid": ["exact copying", "brand marks", "photoreal dirt", "tiny noisy detail", "flat unlit materials"]
+}
+

@@ -1,0 +1,22 @@
+{
+    "status": "pass",
+    "unityVersion": "6000.5.4f1",
+    "modelPath": "Assets/DeliveryCargoBike/Models/DeliveryCargoBike.fbx",
+    "prefabPath": "Assets/DeliveryCargoBike/Prefabs/DeliveryCargoBike.prefab",
+    "transforms": 89,
+    "renderers": 72,
+    "meshes": 72,
+    "materials": 6,
+    "triangles": 33796,
+    "colliders": 4,
+    "rigConfigured": true,
+    "requiredNodes": [
+        "Steering_Pivot",
+        "FrontWheel_Pivot",
+        "RearWheel_Pivot",
+        "Cargo_Pivot",
+        "Cargo_Lid_Hinge",
+        "Battery_Detachable",
+        "Kickstand_Hinge"
+    ]
+}

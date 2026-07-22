@@ -1,0 +1,44 @@
+{
+  "assetId": "plaza-fountain",
+  "version": 6,
+  "reference": "Assets/References/PlazaFountain_Target6View_v2.png",
+  "render": "Previews/PlazaFountain_v6_SegmentedRimClose.png",
+  "comparison": "Pipeline/PlazaFountain/comparison-refinement-v6-physical-rim-gaps.png",
+  "cameraView": "close-low-three-quarter",
+  "threshold": 0.7,
+  "overallScore": 0.97,
+  "decision": "revision-requested",
+  "userFeedback": "The basin rim segmentation passed, but the copper flute marks on the top finial were still floating overlay meshes.",
+  "reviews": [
+    {
+      "feature": "lower-rim physical segmentation",
+      "score": 0.98,
+      "visible": true,
+      "notes": "Sixteen capped limestone blocks now form the rim itself. Their narrow gaps remain recessed through the complete torus cross-section, with no separate line geometry above the top surface."
+    },
+    {
+      "feature": "upper-rim physical segmentation",
+      "score": 0.97,
+      "visible": true,
+      "notes": "Eight capped limestone blocks form the upper rim, producing real boundaries on its top and sides instead of overlaid colored strips."
+    },
+    {
+      "feature": "silhouette contact",
+      "score": 0.98,
+      "visible": true,
+      "notes": "The stone blocks define the silhouette directly, so there are no seam endpoints capable of floating beyond either rim at a grazing angle."
+    },
+    {
+      "feature": "vertical seam treatment",
+      "score": 0.95,
+      "visible": true,
+      "notes": "The tapered wall and lathed bowl retain narrow closed seam solids whose visible faces sit only 0.02 mm above their exact sampled surfaces."
+    },
+    {
+      "feature": "mobile production budget",
+      "score": 0.96,
+      "visible": true,
+      "notes": "The corrected asset remains at five materials, eight LOD0 draw calls, three colliders, and strictly decreasing LOD0/1/2 triangle counts with zero degenerate faces or loose vertices."
+    }
+  ]
+}

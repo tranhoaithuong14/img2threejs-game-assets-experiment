@@ -1,0 +1,422 @@
+{
+  "targetName": "Stylized Tiered Plaza Fountain",
+  "sourceImage": "Assets/Concepts/PlazaFountain_6View.png",
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "stylized tiered plaza fountain",
+      "primaryDomain": "object",
+      "formLanguage": [
+        "hard-surface",
+        "architectural",
+        "rotational",
+        "rounded low-poly"
+      ],
+      "structureKind": [
+        "compound object",
+        "layered shell",
+        "radial repeated modules"
+      ],
+      "motionPotential": [
+        "static prop",
+        "effect emitter",
+        "detachable upper bowl and finial"
+      ],
+      "materialFamilies": [
+        "limestone",
+        "glazed ceramic",
+        "water-like transparent surface",
+        "aged copper"
+      ],
+      "notes": "Six generated views expose the full footprint and top layout. Exact four-way symmetry removes hidden-side ambiguity."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 2,
+        "componentCount": 3,
+        "hierarchyDepth": 2,
+        "repetitionDensity": 2,
+        "materialLayerCount": 3,
+        "localDetailDensity": 2,
+        "occlusionRisk": 1,
+        "actionReadinessNeed": 2
+      },
+      "estimatedCounts": {
+        "macroComponents": 5,
+        "mesoComponents": 14,
+        "microFeatureGroups": 12,
+        "materialLayers": 5,
+        "repetitionSystems": 3
+      },
+      "reasoning": [
+        "The prop combines stacked architectural masses with distinct basin, pedestal, bowl, finial, and water layers.",
+        "Four fish spouts, four recessed panels, eight base seams, and eight finial flutes form repeated radial systems.",
+        "Unity review needs compound colliders, water surfaces, and stable emitter sockets while remaining mobile-safe."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "Rotational symmetry is simple to parameterize, but the layered tiers, repeated ornaments, transparent water, and runtime sockets require a deep explicit spec."
+    },
+    "unknownsToResolveBeforeImplementation": [],
+    "detailInventory": {
+      "scanMethod": "grid-3x3",
+      "targetMinDetails": 10,
+      "details": [
+        {
+          "id": "d01-step-bevel",
+          "kind": "bevel",
+          "description": "Rounded chamfer catching a warm highlight on both octagonal steps.",
+          "region": {
+            "x": 0.03,
+            "y": 0.22,
+            "width": 0.45,
+            "height": 0.11,
+            "units": "normalized"
+          },
+          "scale": "0.025 m radius",
+          "affects": "plinth silhouette and highlight",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "step-edge-bevel"
+          },
+          "evidenceRef": "front-view",
+          "confidence": 0.97
+        },
+        {
+          "id": "d02-radial-seams",
+          "kind": "seam",
+          "description": "Eight radial stone joints segment each octagonal plinth ring.",
+          "region": {
+            "x": 0.02,
+            "y": 0.22,
+            "width": 0.46,
+            "height": 0.11,
+            "units": "normalized"
+          },
+          "scale": "8 seams per ring",
+          "affects": "plinth construction read",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "octagonal-radial-seams"
+          },
+          "evidenceRef": "top-view",
+          "confidence": 0.95
+        },
+        {
+          "id": "d03-basin-lip",
+          "kind": "bevel",
+          "description": "Thick rounded lower-basin lip with a broad cream highlight.",
+          "region": {
+            "x": 0.05,
+            "y": 0.14,
+            "width": 0.42,
+            "height": 0.1,
+            "units": "normalized"
+          },
+          "scale": "0.14 m section radius",
+          "affects": "lower basin silhouette",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "lower-lip-bevel"
+          },
+          "evidenceRef": "three-quarter-view",
+          "confidence": 0.98
+        },
+        {
+          "id": "d04-inner-channel",
+          "kind": "groove",
+          "description": "Dark inner channel beneath the cream basin lip.",
+          "region": {
+            "x": 0.06,
+            "y": 0.15,
+            "width": 0.4,
+            "height": 0.05,
+            "units": "normalized"
+          },
+          "scale": "0.025 m recessed band",
+          "affects": "basin depth and contact AO",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "lower-inner-groove"
+          },
+          "evidenceRef": "front-view",
+          "confidence": 0.92
+        },
+        {
+          "id": "d05-panel-recess",
+          "kind": "groove",
+          "description": "Four dark-teal recessed trapezoid panels in the pedestal faces.",
+          "region": {
+            "x": 0.17,
+            "y": 0.08,
+            "width": 0.16,
+            "height": 0.13,
+            "units": "normalized"
+          },
+          "scale": "four radial panels",
+          "affects": "pedestal identity",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "pedestal-panel-recess"
+          },
+          "evidenceRef": "three-quarter-view",
+          "confidence": 0.98
+        },
+        {
+          "id": "d06-fish-mouth",
+          "kind": "hole",
+          "description": "Round fish-mouth outlet at the end of each stylized spout.",
+          "region": {
+            "x": 0.1,
+            "y": 0.09,
+            "width": 0.3,
+            "height": 0.08,
+            "units": "normalized"
+          },
+          "scale": "0.045 m outlet",
+          "affects": "spout silhouette and water emitter",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "fish-mouth-outlet"
+          },
+          "evidenceRef": "front-view",
+          "confidence": 0.91
+        },
+        {
+          "id": "d07-fish-eyes",
+          "kind": "fastener",
+          "description": "Paired raised eye beads on each fish-head spout.",
+          "region": {
+            "x": 0.11,
+            "y": 0.08,
+            "width": 0.28,
+            "height": 0.07,
+            "units": "normalized"
+          },
+          "scale": "two 0.018 m beads per spout",
+          "affects": "spout recognizability",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "fish-eye-beads"
+          },
+          "evidenceRef": "three-quarter-view",
+          "confidence": 0.82
+        },
+        {
+          "id": "d08-upper-rim",
+          "kind": "ridge",
+          "description": "Raised rounded crest on the upper bowl rim.",
+          "region": {
+            "x": 0.17,
+            "y": 0.015,
+            "width": 0.17,
+            "height": 0.08,
+            "units": "normalized"
+          },
+          "scale": "0.08 m rounded ring",
+          "affects": "upper bowl silhouette",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "upper-rim-ridge"
+          },
+          "evidenceRef": "left-view",
+          "confidence": 0.95
+        },
+        {
+          "id": "d09-finial-flutes",
+          "kind": "ridge",
+          "description": "Eight shallow vertical flutes on the acorn finial.",
+          "region": {
+            "x": 0.23,
+            "y": 0,
+            "width": 0.08,
+            "height": 0.05,
+            "units": "normalized"
+          },
+          "scale": "eight radial flutes",
+          "affects": "finial highlight breakup",
+          "mapsTo": {
+            "type": "component.localFeatures",
+            "ref": "finial-flutes"
+          },
+          "evidenceRef": "three-quarter-view",
+          "confidence": 0.89
+        },
+        {
+          "id": "d10-water-ripples",
+          "kind": "gloss",
+          "description": "Low-roughness concentric and radial ripple highlights on both water surfaces.",
+          "region": {
+            "x": 0.06,
+            "y": 0.13,
+            "width": 0.4,
+            "height": 0.09,
+            "units": "normalized"
+          },
+          "scale": "0.02-0.12 m wavelengths",
+          "affects": "water material response",
+          "mapsTo": {
+            "type": "material.localOverrides",
+            "ref": "water-ripple-gloss"
+          },
+          "evidenceRef": "top-view",
+          "confidence": 0.9
+        },
+        {
+          "id": "d11-limestone-mottle",
+          "kind": "stain",
+          "description": "Very subtle warm and cool limestone mottling with cavity-biased darkening.",
+          "region": {
+            "x": 0.02,
+            "y": 0.02,
+            "width": 0.46,
+            "height": 0.29,
+            "units": "normalized"
+          },
+          "scale": "0.06-0.35 m low-contrast patches",
+          "affects": "limestone albedo and roughness",
+          "mapsTo": {
+            "type": "material.localOverrides",
+            "ref": "limestone-mottle"
+          },
+          "evidenceRef": "front-view",
+          "confidence": 0.84
+        },
+        {
+          "id": "d12-copper-patina",
+          "kind": "stain",
+          "description": "Muted brown-red copper rings with restrained teal patina in lower cavities.",
+          "region": {
+            "x": 0.18,
+            "y": 0.03,
+            "width": 0.15,
+            "height": 0.12,
+            "units": "normalized"
+          },
+          "scale": "0.03-0.08 m bands",
+          "affects": "copper color and roughness",
+          "mapsTo": {
+            "type": "material.localOverrides",
+            "ref": "copper-cavity-patina"
+          },
+          "evidenceRef": "three-quarter-view",
+          "confidence": 0.86
+        }
+      ]
+    },
+    "anatomy": {
+      "applies": false
+    },
+    "sourceImage": "Assets/Concepts/PlazaFountain_6View.png"
+  },
+  "qualityContract": {
+    "qualityBar": "complex stylized mobile-game prop",
+    "definitionOfDone": [
+      "All six views read as one 2.6 m octagonal two-tier fountain with the same four-spout and four-panel rotational system.",
+      "The optimized LOD0 retains the plinth, lower pool, faceted pedestal, four fish spouts, upper bowl, water disks, copper bands, and finial at or below 25k triangles and five materials.",
+      "Unity receives stable water and spout sockets, compound colliders, a decreasing three-level LODGroup, and an isolated review scene."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 4,
+      "mesoComponents": 10,
+      "microFeatureGroups": 10,
+      "materialLayers": 5,
+      "repetitionSystems": 3,
+      "reviewViewpoints": 6
+    },
+    "featureGroups": [
+      {
+        "id": "fountain-silhouette",
+        "name": "Octagonal tiered fountain silhouette",
+        "required": true,
+        "qualityCriteria": [
+          "A wide two-step octagonal base supports a round lower basin, narrower faceted tower, smaller upper bowl, and compact finial."
+        ],
+        "evidenceRefs": [
+          "front-view",
+          "three-quarter-view"
+        ],
+        "failureModes": [
+          "cylindrical generic fountain",
+          "wrong base width",
+          "missing upper tier"
+        ]
+      },
+      {
+        "id": "basin-tower-structure",
+        "name": "Lower basin, pedestal, and upper bowl hierarchy",
+        "required": true,
+        "qualityCriteria": [
+          "Every tier visibly overlaps or embeds into its supporting tier with no floating gaps."
+        ],
+        "evidenceRefs": [
+          "left-view",
+          "three-quarter-view"
+        ],
+        "failureModes": [
+          "floating bowl",
+          "pedestal misses basin floor",
+          "upper bowl too large"
+        ]
+      },
+      {
+        "id": "spout-panel-system",
+        "name": "Four fish spouts and four recessed panels",
+        "required": true,
+        "qualityCriteria": [
+          "Four evenly spaced teal fish heads project from alternating pedestal faces and align with four dark-teal inset panels and emitter sockets."
+        ],
+        "evidenceRefs": [
+          "top-view",
+          "three-quarter-view"
+        ],
+        "failureModes": [
+          "wrong count",
+          "uneven radial spacing",
+          "spouts float away from tower"
+        ]
+      },
+      {
+        "id": "stone-water-materials",
+        "name": "Warm limestone, teal ceramic, water, and copper response",
+        "required": true,
+        "qualityCriteria": [
+          "Stone is matte and subtly mottled, water is glossy and translucent, teal panels are glazed, and copper rings remain small metallic accents."
+        ],
+        "evidenceRefs": [
+          "front-view",
+          "three-quarter-view"
+        ],
+        "failureModes": [
+          "flat plastic stone",
+          "opaque water",
+          "excessive copper"
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "diameter-to-height and tier-spacing delta",
+      "octagonal footprint and radial seam delta",
+      "four-spout and four-panel count/spacing delta",
+      "lower-versus-upper basin diameter delta",
+      "limestone/teal/water/copper palette and roughness delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not merge the four spout sockets or water surfaces into the pedestal mesh.",
+      "Do not represent the octagonal seams, panel recesses, fish mouths, finial flutes, or water ripples as prose only.",
+      "Do not continue when any basin, ring, or spout has a visible attachment gap.",
+      "Do not exceed the 25k triangle, five material, or eight draw-call target after Blender optimization."
+    ]
+  },
+  "authoringInstruction": "Fill observed object class, complexity reasoning, featureGroups, visualDeltaChecks, and unknowns before generating or implementing ObjectSculptSpec."
+}

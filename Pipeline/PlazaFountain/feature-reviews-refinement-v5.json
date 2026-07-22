@@ -1,0 +1,45 @@
+{
+  "assetId": "plaza-fountain",
+  "version": 5,
+  "reference": "Assets/References/PlazaFountain_Target6View_v2.png",
+  "defectReference": "Assets/References/PlazaFountain_v4_FloatingSeams_UserMarkup.png",
+  "render": "Previews/PlazaFountain_v5_SeamClose.png",
+  "comparison": "Pipeline/PlazaFountain/comparison-refinement-v5-seam-contact.png",
+  "cameraView": "close-low-three-quarter",
+  "threshold": 0.7,
+  "overallScore": 0.96,
+  "decision": "revision-requested",
+  "userFeedback": "The top seam solids followed the rim profile but still appeared to sit on top of the stone; corrected in v6 by replacing the rim itself with capped stone segments.",
+  "reviews": [
+    {
+      "feature": "lower-rim seam contact",
+      "score": 0.98,
+      "visible": true,
+      "notes": "Each radial seam now bends continuously over the rounded torus surface and terminates inside the stone silhouette without a floating planar endpoint."
+    },
+    {
+      "feature": "basin-wall seam contact",
+      "score": 0.97,
+      "visible": true,
+      "notes": "All sixteen vertical seams follow the changing wall radius from the upper rim to the lower ledge instead of hanging at one constant radius."
+    },
+    {
+      "feature": "upper-tier seam contact",
+      "score": 0.95,
+      "visible": true,
+      "notes": "Upper-rim seams follow its torus cross-section and upper-bowl seams follow the lathed profile; no side endpoint floats in the close proof render."
+    },
+    {
+      "feature": "geometry health",
+      "score": 0.95,
+      "visible": true,
+      "notes": "The new seam pieces are closed solids. LOD0 remains below budget with zero degenerate faces and loose vertices; the remaining accepted open edges belong to water and thin ornament surfaces."
+    },
+    {
+      "feature": "mobile production budget",
+      "score": 0.94,
+      "visible": true,
+      "notes": "The corrected asset remains at five materials, eight LOD0 draw calls, three colliders, and strictly decreasing LOD0/1/2 triangle counts."
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "assetId": "plaza-fountain",
+  "version": 9,
+  "timestamp": "2026-07-22T13:06:58Z",
+  "request": "Keep the top copper element as a real ring that becomes visible during orbit, while preventing its far arc from appearing through the opaque finial.",
+  "route": "deterministic img2threejs topology correction followed by real Chromium orbit validation, source GLB export, Blender optimization, optimized GLB re-import, and Unity prefab rebuild",
+  "providerGenerationUsed": false,
+  "creditsConsumed": 0,
+  "cost": 0,
+  "status": "superseded-by-v10",
+  "userDecision": {
+    "decision": "revision-requested",
+    "feedback": "The fish heads still needed closer comparison and polish; they read as spherical heads with pipe-like nozzles rather than compact sculpted fish masks."
+  },
+  "rootCause": "The custom finial BufferGeometry used inward-wound side and top-cap triangles. Blender displayed both sides, but Three.js FrontSide rendering culled the exterior and rendered the far interior surface, allowing the rear torus arc to appear through the stone.",
+  "changes": [
+    "restored the copper collar as a true TorusGeometry ring",
+    "reversed all finial side triangles to outward counter-clockwise winding",
+    "reversed the finial top-cap winding",
+    "explicitly set limestone and copper to opaque FrontSide materials with depth test and depth write enabled",
+    "captured real-browser gameplay, three-quarter, and top views to validate orbit-dependent occlusion"
+  ],
+  "results": {
+    "sourceExport": {
+      "meshes": 156,
+      "vertices": 15695,
+      "triangles": 21224,
+      "materials": 5,
+      "collarTopology": "torus-ring",
+      "finialWinding": "outward"
+    },
+    "browser": {
+      "engine": "Chromium via Playwright CLI",
+      "gameplayNearArcVisible": true,
+      "gameplayFarArcOccluded": true,
+      "threeQuarterNearArcVisible": true,
+      "threeQuarterFarArcOccluded": true,
+      "topRingOccluded": true,
+      "relevantConsoleErrors": 0,
+      "unrelatedConsoleNote": "favicon.ico returned 404"
+    },
+    "blender": {
+      "sourceImportedTriangles": 21728,
+      "lod0Triangles": 21728,
+      "lod1Triangles": 10428,
+      "lod2Triangles": 3476,
+      "materials": 5,
+      "lod0EstimatedDrawCalls": 8,
+      "nonManifoldEdges": 112,
+      "degenerateFaces": 0,
+      "looseVertices": 0
+    },
+    "unity": {
+      "version": "6000.5.4f1",
+      "lod0Triangles": 21728,
+      "lod1Triangles": 10428,
+      "lod2Triangles": 3388,
+      "materials": 5,
+      "estimatedLod0DrawCalls": 8,
+      "colliders": 3,
+      "missingScripts": 0,
+      "rigConfigured": true,
+      "lodGroupConfigured": true
+    }
+  },
+  "validation": {
+    "typescriptBuild": "pass",
+    "browserOrbitOcclusion": "pass",
+    "browserTopOcclusion": "pass",
+    "blenderReview": "pass",
+    "optimizedGlbReimport": "pass",
+    "blenderBudgets": "pass",
+    "unityBatch": "pass",
+    "eligibility": "candidate-development-only"
+  },
+  "hashes": {
+    "sourceGlbSha256": "cc4c2bfe3a65cf7d5cdf99fe2f1394b7ce87e3ffe880ee17aa7dae5a676f69ec",
+    "optimizedGlbSha256": "056a82de3ded94ca20b2971aed3479bf22043c23688648f14b0e42b5350e09b6",
+    "optimizedBlendSha256": "4fc4162c922a61d8c5ea7aa9c1ab95159cceb6d87ca5eebba8aa2151dda713db",
+    "gameplayCloseSha256": "d5b43c2bdfb6a0cc83da4ec2db818f5b2c59a72b06d10e957e5d02f6fadbaf39",
+    "topViewSha256": "b1a6eaedc59cc7a3302b69f56e0b92a0e322c3ebc89aa51079ad509c201524da",
+    "threeQuarterSha256": "bf47afdf8eb8c73b996397e3a8447b36f615f46394ef540956840c456bea0130",
+    "unityPrefabSha256": "0592079c52134e4065863a3f4425944f90b00c1ddaaba55528424a914f3d80d2"
+  },
+  "evidence": [
+    "Previews/PlazaFountain_v9_BrowserGameplayClose.png",
+    "Previews/PlazaFountain_v9_BrowserThreeQuarter.png",
+    "Previews/PlazaFountain_v9_BrowserTop.png",
+    "Previews/PlazaFountain_Blender.png",
+    "Pipeline/PlazaFountain/glb-export-report.json",
+    "Pipeline/PlazaFountain/blender-optimization-report.json",
+    "UnityProject/Assets/PlazaFountain/PrefabValidationReport.json",
+    "Pipeline/PlazaFountain/unity-batch.log"
+  ],
+  "limitations": [
+    "Vertical wall and upper-bowl seams remain separate embedded solids rather than destructive mortar cuts.",
+    "Water jets and impacts remain runtime or review effects excluded from structural GLB and FBX geometry.",
+    "Android device performance and final user art-direction approval remain pending."
+  ]
+}
