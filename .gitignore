@@ -16,3 +16,4 @@ Assets/*.gif
 Assets/logo.svg
 public-site/
 Pipeline/**/unity-batch.log
+.worktrees/
