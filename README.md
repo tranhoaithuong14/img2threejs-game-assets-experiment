@@ -28,6 +28,8 @@ Revision 2 is a close six-view matching pass. It replaces the blockout-like tire
 - Optimized GLB: `Assets/DeliveryCargoBike.optimized.glb`
 - Hero render: `Previews/DeliveryCargoBike_Blender.png`
 - Unity prefab: `UnityProject/Assets/DeliveryCargoBike/Prefabs/DeliveryCargoBike.prefab`
+- Unity review scene: `UnityProject/Assets/DeliveryCargoBike/Scenes/DeliveryCargoBikeReview.unity`
+- Runtime player controller: `UnityProject/Assets/DeliveryCargoBike/Scripts/DeliveryCargoBikePlayerController.cs`
 - Validation: `UnityProject/Assets/DeliveryCargoBike/PrefabValidationReport.json`
 
 | Bike gate | Result | Budget |
@@ -78,6 +80,7 @@ The second asset is a 2.68 m wide, 2.18 m tall stylized tiered plaza fountain. I
 - Unity FBX: `UnityProject/Assets/PlazaFountain/Models/PlazaFountain.fbx`
 - Unity prefab: `UnityProject/Assets/PlazaFountain/Prefabs/PlazaFountain.prefab`
 - Unity review scene: `UnityProject/Assets/PlazaFountain/Scenes/PlazaFountainReview.unity`
+- Runtime viewer controller: `UnityProject/Assets/PlazaFountain/Scripts/PlazaFountainViewerController.cs`
 - Runtime socket rig: `UnityProject/Assets/PlazaFountain/Scripts/PlazaFountainRig.cs`
 
 ### Verified metrics
@@ -141,6 +144,25 @@ The Blender optimization recipe is retained in `Pipeline/PlazaFountain/blender_o
 - `Pipeline/PlazaFountain/blender-optimization-report.json`
 - `UnityProject/Assets/PlazaFountain/PrefabValidationReport.json`
 - `Pipeline/PlazaFountain/unity-batch.log`
+
+## Unity interactive review
+
+Open `UnityProject` with Unity Editor (version 6 / `6000.x`). Both assets provide interactive review scenes with on-screen HUDs:
+
+- **Delivery Cargo Bike**: `Assets/DeliveryCargoBike/Scenes/DeliveryCargoBikeReview.unity`
+  - `W` / `S` (or `↑` / `↓`): Drive forward / backward (spins wheels via `DeliveryCargoBikeRig`).
+  - `A` / `D` (or `←` / `→`): Steer front fork and handlebar.
+  - `Space` or `E`: Smoothly open / close cargo lid.
+  - `R`: Reset bike position and steering.
+  - `1` / `2`: Switch between Fountain and Bike scenes.
+- **Plaza Fountain**: `Assets/PlazaFountain/Scenes/PlazaFountainReview.unity`
+  - Mouse drag (left / right button): Orbit camera 360°.
+  - Mouse scroll: Zoom in and out.
+  - `Space`: Toggle water effects.
+  - `Q` / `E`: Rotate upper tier assembly manually.
+  - `T`: Toggle continuous auto-rotation.
+  - `R`: Reset camera view.
+  - `1` / `2`: Switch between Fountain and Bike scenes.
 
 ## Eligibility
 

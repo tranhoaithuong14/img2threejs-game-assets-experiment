@@ -4,12 +4,14 @@ using System.IO;
 using System.Linq;
 using GameAssets.DeliveryCargoBike;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public static class DeliveryCargoBikePrefabBuilder
 {
     private const string ModelPath = "Assets/DeliveryCargoBike/Models/DeliveryCargoBike.fbx";
     private const string PrefabPath = "Assets/DeliveryCargoBike/Prefabs/DeliveryCargoBike.prefab";
+    private const string ScenePath = "Assets/DeliveryCargoBike/Scenes/DeliveryCargoBikeReview.unity";
     private const string ReportPath = "Assets/DeliveryCargoBike/PrefabValidationReport.json";
 
     [Serializable]
@@ -86,6 +88,7 @@ public static class DeliveryCargoBikePrefabBuilder
 
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
+            CreateReviewScene();
             ValidateBatch();
         }
         catch (Exception ex)
@@ -148,6 +151,48 @@ public static class DeliveryCargoBikePrefabBuilder
         File.WriteAllText(ReportPath, JsonUtility.ToJson(report, true));
         AssetDatabase.ImportAsset(ReportPath, ImportAssetOptions.ForceUpdate);
         Debug.Log($"DELIVERY_BIKE_PREFAB_OK transforms={report.transforms} renderers={report.renderers} meshes={report.meshes} materials={report.materials} triangles={report.triangles} colliders={report.colliders}");
+    }
+
+    private static void CreateReviewScene()
+    {
+        var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+        var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(PrefabPath);
+        var bike = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+        bike.name = "DeliveryCargoBike_Review";
+
+        var ground = GameObject.CreatePrimitive(PrimitiveType.Plane);
+        ground.name = "ReviewGround";
+        ground.transform.position = new Vector3(0f, -0.01f, 0f);
+        ground.transform.localScale = new Vector3(5f, 1f, 5f);
+
+        var lightObject = new GameObject("ReviewKeyLight");
+        var light = lightObject.AddComponent<Light>();
+        light.type = LightType.Directional;
+        light.color = new Color(1f, 0.82f, 0.68f);
+        light.intensity = 1.35f;
+        lightObject.transform.rotation = Quaternion.Euler(48f, -32f, 0f);
+
+        var fillObject = new GameObject("ReviewFillLight");
+        var fill = fillObject.AddComponent<Light>();
+        fill.type = LightType.Directional;
+        fill.color = new Color(0.55f, 0.76f, 1f);
+        fill.intensity = 0.45f;
+        fillObject.transform.rotation = Quaternion.Euler(28f, 148f, 0f);
+
+        var cameraObject = new GameObject("ReviewCamera");
+        var camera = cameraObject.AddComponent<Camera>();
+        cameraObject.tag = "MainCamera";
+        cameraObject.transform.position = new Vector3(0f, 2.0f, -4.5f);
+        cameraObject.transform.LookAt(new Vector3(0f, 0.9f, 0f));
+        camera.fieldOfView = 45f;
+        camera.clearFlags = CameraClearFlags.SolidColor;
+        camera.backgroundColor = new Color(0.68f, 0.72f, 0.70f);
+
+        cameraObject.AddComponent<DeliveryCargoBikePlayerController>();
+
+        Directory.CreateDirectory(Path.GetDirectoryName(ScenePath) ?? "Assets");
+        EditorSceneManager.SaveScene(scene, ScenePath);
+        AssetDatabase.ImportAsset(ScenePath, ImportAssetOptions.ForceUpdate);
     }
 
     private static WheelCollider ConfigureWheelCollider(GameObject target)
